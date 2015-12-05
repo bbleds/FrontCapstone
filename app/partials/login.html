@@ -1,0 +1,13 @@
+<!-- Login panel -->
+	<div class="jumbotron">
+
+		<p class="formLabel">Email</p>
+
+		<!-- type = email not working with this version of angular, wont store variable -->
+		<input ng-model="loginEmail" id="login-email" type="text" class="form-control" name="login-email"/>
+
+		<p class="formLabel">Password</p>
+		<input ng-model="loginPassword" id="login-password" type="password" class="form-control" name="login-password"/>
+		<button id="login-button" class="btn btn-primary">Log In</button>
+		<button id="register-button" class="btn btn-primary">Register</button>
+	</div>
