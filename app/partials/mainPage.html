@@ -1,1 +1,60 @@
-<p>PooPoo</p>
+<div id="sidebar">
+	<button ng-click="logOutUser()" class="btn"> Log Out</button>
+	<div><button data-toggle="modal" data-target="#createGameModal" class="btn">Create Game</button></div>
+	<div><button data-toggle="modal" data-target="#findGameModal" class="btn">Find Game</button></div>
+	<h1>{{gameCreationSuccess}}</h1>
+</div>
+
+<div id="gameFound" ng-repeat="game in gamesFound">
+	<h1>{{game.sportTitle}}</h1>
+</div>
+
+<!-- Game Creation Modal -->
+	<div id="createGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Create A Game</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input class="form-control" placeholder="Sport/Activity" ng-model="gameTitle" type="text" />
+	      	<input class="form-control" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="text" />
+	      	<input class="form-control" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="text" />
+	      	<input class="form-control" placeholder="Time" ng-model="gameTime" type="text" />
+	      	<input class="form-control" placeholder="Date" ng-model="gameDate" type="text" />
+	      	<input class="form-control" placeholder="Address" ng-model="gameAddress" type="text" />
+	      	<input class="form-control" placeholder="Initial City" ng-model="gameCity" type="text" />
+	      	<input class="form-control" placeholder="Initial State" ng-model="gameState" type="text" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+<!-- Find Games Modal -->
+	<div id="findGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Find Games</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input class="form-control" placeholder="Initial City" ng-model="findCity" type="text" />
+	      	<input class="form-control" placeholder="Initial State" ng-model="findState" type="text" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
