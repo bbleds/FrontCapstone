@@ -12,7 +12,7 @@ app.config(["$routeProvider", function($routeProvider){
 	//login route
 	.when("/login", {
 		templateUrl: "app/partials/login.html",
-		controller: "loginCtrl"
+		controller: "loginAndRegisterCtrl"
 	})
 
 	//default to login route
