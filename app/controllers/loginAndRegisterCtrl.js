@@ -59,31 +59,37 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 
 				console.log("this username already exists please choose another");
 
-			//if username doesnt exist, creat user
+			//if username doesnt exist
 			} else {
 
-				appRef.createUser({
-				  email    : $scope.registerEmail,
-				  password : $scope.registerPassword
-				}, function(error, userData) {
-				  if (error) {
-				    console.log("Error creating user:", error);
-				  } else {
-				    console.log("Successfully created user account with uid:", userData.uid);
+				//if all fields are completed and password = confirm password
+				if($scope.registerEmail && $scope.registerUserName && $scope.registerPassword && $scope.registerConfirmPassword && $scope.initialCity && $scope.initialState && $scope.registerPassword === $scope.registerConfirmPassword){
 
-				    //set user details
-				    appRef.child("Users").child(userData.uid).set({
-				    		username : $scope.registerUserName,
-				    		uid: userData.uid
-				    });
+						appRef.createUser({
+						  email    : $scope.registerEmail,
+						  password : $scope.registerPassword
+						}, function(error, userData) {
+						  if (error) {
+						    console.log("Error creating user:", error);
+						  } else {
+						    console.log("Successfully created user account with uid:", userData.uid);
 
-				    //log user in
+						    //set user details
+						    appRef.child("Users").child(userData.uid).set({
+						    		username : $scope.registerUserName,
+						    		uid: userData.uid
+						    });
 
-				    $scope.loginUser($scope.registerEmail, $scope.registerPassword);
+						    //log user in
+
+						    $scope.loginUser($scope.registerEmail, $scope.registerPassword);
 
 
-				  }
-				});
+						  }
+						});
+				} else {
+					console.log("please check your passwords");
+				}
 				
 			}
 
