@@ -14,7 +14,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/login.html",
 		controller: "loginAndRegisterCtrl"
 	})
-
+	.when("/mainPage",  {
+		templateUrl: "app/partials/mainPage.html",
+		controller: "mainPageCtrl"
+	})
 	//default to login route
 	.otherwise("/login");
 }])

@@ -8,7 +8,7 @@
 
 		<p class="formLabel">Password</p>
 		<input ng-model="loginPassword" id="login-password" type="password" class="form-control" name="login-password"/>
-		<button id="login-button" class="btn btn-primary">Log In</button>
+		<button id="login-button" class="btn btn-primary" ng-click="loginUser(loginEmail,loginPassword)">Log In</button>
 		<button id="register-button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">Register</button>
 	</div>
 
@@ -26,8 +26,8 @@
 	      <div class="modal-body">
 	      	<input class="form-control" placeholder="Email" ng-model="registerEmail" type="text" />
 		    <input class="form-control" placeholder="Username" ng-model="registerUserName" type="text" />
-		    <input class="form-control" placeholder="Password" ng-model="registerPassword" type="text" />
-		    <input class="form-control" placeholder="Confirm Password" ng-model="registerConfirmPassword" type="text" />
+		    <input class="form-control" placeholder="Password" ng-model="registerPassword" type="password" />
+		    <input class="form-control" placeholder="Confirm Password" ng-model="registerConfirmPassword" type="password" />
 	      	<input class="form-control" placeholder="Initial City" ng-model="initialCity" type="text" />
 	      	<input class="form-control" placeholder="Initial State" ng-model="initialState" type="text" />
 	      </div>

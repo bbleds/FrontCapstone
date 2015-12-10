@@ -1,16 +1,23 @@
 //test controller
 app.controller("loginAndRegisterCtrl", 
-["$firebaseArray", "$scope",
+["$firebaseArray", "$scope", "$location", "$rootScope", "generalVariables",
 
-function($firebaseArray, $scope){
+function($firebaseArray, $scope, $location, $rootScope, generalVariables){
+
+	//lodash
+		//how to pass this as depemdency in app.js
+	_ = window._;
+
 
 	//Information For Login
 	$scope.loginEmail;
-	$scope.loginpassword;
+	$scope.loginPassword;
 
 	//app reference
 	var appRef = new Firebase("https://frontcapstone.firebaseio.com");
 
+	//see if user is logged in, and if so, redirect to main page
+	generalVariables.checkUserLogin("mainPage");
 
 	//registration info
 	$scope.registerEmail;
@@ -22,23 +29,88 @@ function($firebaseArray, $scope){
 
 	//register user
 		//when register is clicked
-		//use variables above to add to firebase
+		//use registration info variables to add user to firebase
 	$scope.registerUser = function(){
 		//if username and email is not already registered, register user in firebase
-		appRef.createUser({
-		  email    : $scope.registerEmail,
-		  password : $scope.registerPassword
-		}, function(error, userData) {
+		var dataArray = $firebaseArray(appRef.child("Users"));
+
+		dataArray.$loaded()
+		.then( function(data){
+
+			//get array of all usernames (lodash method)
+			var userNames = _.map(data, 'username');
+
+			console.log("userNames", userNames);
+
+			var userNameExists = false;
+
+			// compare current entered username to username array
+			_.filter(userNames, function(n){
+
+				//if username is found in array of names, set userNameExists to true
+					//looks and compares username entered to all userNames in firebase = AMAZING LODASH
+				 if(n === $scope.registerUserName){
+				 	userNameExists = true
+				 };
+			});
+
+			//userName exists, log username already exists, else, create user
+			if(userNameExists){
+
+				console.log("this username already exists please choose another");
+
+			//if username doesnt exist, creat user
+			} else {
+
+				appRef.createUser({
+				  email    : $scope.registerEmail,
+				  password : $scope.registerPassword
+				}, function(error, userData) {
+				  if (error) {
+				    console.log("Error creating user:", error);
+				  } else {
+				    console.log("Successfully created user account with uid:", userData.uid);
+
+				    //set user details
+				    appRef.child("Users").child(userData.uid).set({
+				    		username : $scope.registerUserName,
+				    		uid: userData.uid
+				    });
+
+				    //log user in
+
+				    $scope.loginUser($scope.registerEmail, $scope.registerPassword);
+
+
+				  }
+				});
+				
+			}
+
+			
+		})
+
+	}
+
+	//Login user
+	$scope.loginUser = function(email, password){
+		appRef.authWithPassword({
+		  email    : email,
+		  password : password
+		}, function(error, authData) {
 		  if (error) {
-		    console.log("Error creating user:", error);
+		    console.log("Login Failed!", error);
 		  } else {
-		    console.log("Successfully created user account with uid:", userData.uid);
-		    appRef.child("Users").child(userData.uid).set({
-		    		username : $scope.registerUserName
-		    })
+		    console.log("Authenticated successfully with payload:", authData);
+
+		    //new path to go to 
+		     $rootScope.$apply(function() {
+
+		       $location.path("/mainPage");
+		        console.log($location.path());
+		      });
 		  }
 		});
-
 	}
 
 
