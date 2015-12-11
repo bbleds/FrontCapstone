@@ -6,7 +6,7 @@
 </div>
 
 <div id="gameFound" ng-repeat="game in gamesFound">
-	<h1>{{game.sportTitle}}</h1>
+	<h1>{{game.sportTitle}}</h1><button class="btn" ng-click="joinGame(game)">Join</button>
 </div>
 
 <!-- Game Creation Modal -->
@@ -48,8 +48,8 @@
 	        <h4 class="modal-title">Find Games</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<input class="form-control" placeholder="Initial City" ng-model="findCity" type="text" />
-	      	<input class="form-control" placeholder="Initial State" ng-model="findState" type="text" />
+	      	<input class="form-control" placeholder="City" ng-model="findCity" type="text" />
+	      	<input class="form-control" placeholder="State" ng-model="findState" type="text" />
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>

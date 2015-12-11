@@ -22,6 +22,7 @@ app.factory("generalVariables", ["$q", "$http", "$location",
       	ref.onAuth(function(authData) {
 	  if (authData) {
 	    console.log("Authenticated with uid:", authData.uid);
+      userUid = authData.uid;
 	    $location.path("/"+pathName);
 	   //if user is not logged in, redirect to login page
 	  } else {
