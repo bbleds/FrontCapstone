@@ -43,7 +43,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 		//create Game in reference 
 
-		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress //&& $scope.gameState && $scope.gameCity
+		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress && $scope.gameDate //&& $scope.gameState && $scope.gameCity
 			){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
@@ -60,7 +60,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			var timeToPass = splitTime[0]+":"+splitTime[1]+" "+amOrPm;
 
-		//fix entered date
+		//fix entered date to format -> dayofweek month day year
+		var splitDate = $scope.gameDate.toString().split(" ");
+		var dateToPass = splitDate[0]+" "+splitDate[1]+" "+splitDate[2]+" "+splitDate[3];
 
 
 
@@ -74,7 +76,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		console.log("address", $scope.gameAddress);
 		console.log("city", $scope.gameCity);
 		console.log("state", $scope.gameState);
-		console.log("date", $scope.gameDate);
+		console.log("date", dateToPass);
 
 
 
