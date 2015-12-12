@@ -81,6 +81,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	}
 
+	//prelist of sports
+	$scope.sportArray = ["Abseiling","Aerobatics","Aikido","Air Racing","Airsoft","Aquathlon","Aquatics","Archery","Arm Wrestling","Artistic Billiards","Autocross","Autograss","Automobile Racing","Ba Game","Badminton","Bagatelle","Ballroom Dancing","Bando","Bandy","Base Jumping","Baseball","Basketball","Beach Volleyball","Biathlon","Bobsleigh","Bocce Ball","Body Building","Boomerang","Bowling","Boxing","Bull Fighting","Camping","Canoeing","Caving","Cheerleading","Chess","Classical Dance","Cricket","Cross Country Running","Cross Country Skiing","Curling","Cycling","Darts","Decathlon","Diving","Dog Sledding","Dog Training","Down Hill Skiing","Equestrianism","Falconry","Fencing","Figure Skating","Fishing","Flag Football","Foosball","Football","Fox Hunting","Golf","Gymnastics","Hand Ball","Hang Gliding","High Jump","Hiking","Hockey","Horseshoes","Hot Air Ballooning","Hunting","Ice Skating","Inline Skating","Jai Alai","Judo","Karate","Kayaking","Knee Boarding","Lacrosse","Land Sailing","Log Rolling","Long Jump","Luge","Modern Dance","Modern Pentathlon","Motorcycle Racing","Mountain Biking","Mountaineering","Netball","Paint Ball","Para Gliding","Parachuting","Petanque","Pool Playing","Power Walking","Ping Pong","Quad Biking","Racquetball","Remote Control Boating","River Rafting","Rock Climbing","Rodeo Riding","Roller Skating","Rowing","Rugby","Sailing","Scuba Diving","Shooting","Shot Put","Shuffleboard","Skateboarding","Skeet Shooting","Snooker","Snow Biking","Snow Boarding","Snow Shoeing","Snow Sledding","Soccer","Sombo","Speed Skating","Sport Fishing","Sport Guide","Sprint Running","Squash","Stunt Plane Flying","Sumo Wrestling","Surfing","Swimming","Synchronized Swimming","Table Tennis","Taekwondo","Tchoukball","Tennis","Track and Field","Trampolining","Triathlon","Tug of War","Volleyball","Water Polo","Water Skiing","Weight Lifting","Wheelchair Basketball","White Water Rafting","Wind Surfing","Wrestling","Wushu","Yachting","Yoga"];
+
+
 	//time picker functions from angular bootstrap ui
 			  $scope.mytime = new Date();
 
