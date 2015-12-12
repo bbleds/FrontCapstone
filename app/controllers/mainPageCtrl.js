@@ -1,8 +1,8 @@
 //controller for main page, need to break it up some more
 
 app.controller("mainPageCtrl", 
-["$firebaseArray", "$scope", "$location", "$rootScope", "generalVariables",
-function($firebaseArray, $scope, $location, $rootScope, generalVariables){
+["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
+function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
@@ -185,6 +185,21 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 
 			    return '';
 			  };
+
+		//typeahead for states
+		  $scope.getLocation = function(val) {
+		    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+		      params: {
+		        address: val,
+		        sensor: false
+		      }
+		    }).then(function(response){
+		      return response.data.results.map(function(item){
+		      	console.log("date", item);
+		        return item.formatted_address;
+		      });
+		    });
+		  };
 
 
 

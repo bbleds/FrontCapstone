@@ -29,8 +29,8 @@
 	      </div>
 	      <div class="modal-body">
 	      	<input class="form-control" placeholder="Sport/Activity" ng-model="gameTitle" type="text" />
-	      	<input class="form-control" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="text" />
-	      	<input class="form-control" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="text" />
+	      	<input class="form-control" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
+	      	<input class="form-control" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />
 
 	      	<div class="well">
 	      	<!-- Time selector -->
@@ -46,10 +46,17 @@
 	                </button>
                 </span>
 	      	</div>
+			
+			  <pre>Selected Address: {{asyncSelected | json}}</pre>
+			    <input type="text" ng-model="asyncSelected" placeholder="Enter address here" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+			    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+			    <div ng-show="noResults">
+			      <i class="glyphicon glyphicon-remove"></i> No Results Found
+			    </div>
 
-	      	<input class="form-control" placeholder="Address" ng-model="gameAddress" type="text" />
+	      	<!-- <input class="form-control" placeholder="Address" ng-model="gameAddress" type="text" />
 	      	<input class="form-control" placeholder="Initial City" ng-model="gameCity" type="text" />
-	      	<input class="form-control" placeholder="Initial State" ng-model="gameState" type="text" />
+	      	<input class="form-control" placeholder="Initial State" ng-model="gameState" type="text" /> -->
 	      <div class="modal-footer">
 	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
 	      </div>
