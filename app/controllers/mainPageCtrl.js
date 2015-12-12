@@ -39,41 +39,76 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//create Game
 	$scope.createGame = function(){
+		var amOrPm
 		
 		//create Game in reference 
 
-		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress && $scope.gameState && $scope.gameCity){
+		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress //&& $scope.gameState && $scope.gameCity
+			){
 
-			ref.child("Games").push({
-				"sportTitle": $scope.gameTitle,
-				"maxPlayers": $scope.gameMaxPlayers,
-				"minPlayers": $scope.gameMinPlayers,
-				"currentPlayers": 1,
-				"time" : $scope.gameTime,
-				"address": $scope.gameAddress,
-				"city" : $scope.gameCity,
-				"state": $scope.gameState,
-				"date": $scope.gameDate,
-				"hostUser": generalVariables.getUid()
-			}, function(){
-				var gameArray = $firebaseArray(ref.child("Games"));
+		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
+			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
 
-				gameArray.$loaded()
-				.then(function(response){
-					console.log("response ", response);
+				if(splitTime[0] > 12){
+					splitTime[0] = splitTime[0] - 12
+						amOrPm = "p.m.";
+				} else if(splitTime[0] < 12)  {
+						amOrPm = "a.m.";
+				} else {
+						amOrPm = "p.m.";
+				}
 
-					var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
-					var objectToAdd = theOne[0];
+			var timeToPass = splitTime[0]+":"+splitTime[1]+" "+amOrPm;
 
-					//add host user to game created
-					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
-
-				})	
-			});
+		//fix entered date
 
 
-			//display success
-			$scope.gameCreationSuccess = "Game Creation Successful!";
+
+
+
+		console.log("sportTitle", $scope.gameTitle);
+		console.log("maxPlayers", $scope.gameMaxPlayers);
+		console.log("minPlayers", $scope.gameMinPlayers);
+		console.log("currentPlayers", 1);
+		console.log("time", timeToPass);
+		console.log("address", $scope.gameAddress);
+		console.log("city", $scope.gameCity);
+		console.log("state", $scope.gameState);
+		console.log("date", $scope.gameDate);
+
+
+
+		//un comment to push to firebase
+			// ref.child("Games").push({
+			// 	"sportTitle": $scope.gameTitle,
+			// 	"maxPlayers": $scope.gameMaxPlayers,
+			// 	"minPlayers": $scope.gameMinPlayers,
+			// 	"currentPlayers": 1,
+			// 	"time" : $scope.gameTime,
+			// 	"address": $scope.gameAddress,
+			// 	"city" : $scope.gameCity,
+			// 	"state": $scope.gameState,
+			// 	"date": $scope.gameDate,
+			// 	"hostUser": generalVariables.getUid()
+			// }, function(){
+			// 	var gameArray = $firebaseArray(ref.child("Games"));
+
+			// 	gameArray.$loaded()
+			// 	.then(function(response){
+			// 		console.log("response ", response);
+
+			// 		var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
+			// 		var objectToAdd = theOne[0];
+
+			// 		//add host user to game created
+			// 		ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
+
+			// 	})	
+			// });
+
+
+			// //display success
+			// $scope.gameCreationSuccess = "Game Creation Successful!";
 
 		} else {
 			console.log("you need to enter all fields");
