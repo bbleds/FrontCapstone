@@ -2,7 +2,7 @@
 var app = angular.module("MainApp", 
 
 	//deps
-	["firebase","ngRoute", 'ui.bootstrap']);
+	["firebase","ngRoute"]);
 
 
 //routes
