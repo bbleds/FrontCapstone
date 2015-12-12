@@ -31,13 +31,13 @@
 	      <!-- Sport selector -->
 	      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control">
 
-	      	 <!-- Address selector -->
-			  <pre>Selected Address: {{gameAddress | json}}</pre>
-			    <input type="text" ng-model="gameAddress" placeholder="Address, City, State" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-			    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-			    <div ng-show="noResults">
-			      <i class="glyphicon glyphicon-remove"></i> No Results Found
-			    </div>
+	      	 <input type="text" placeholder="Street address" ng-model="streetAddress" class="form-control"/>
+	      	<form class="form-inline">
+		      	 <input type="text" placeholder="City" ng-model="gameCity" class="form-control"/>
+		      	 <!-- State selector -->
+			    <input type="text" ng-model="gameState" placeholder="State" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+			</form>
+			 
 		
 	      	<input class="form-control" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
 	      	<input class="form-control" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />

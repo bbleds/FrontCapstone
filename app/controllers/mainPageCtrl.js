@@ -43,8 +43,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 		//create Game in reference 
 
-		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress && $scope.gameDate //&& $scope.gameState && $scope.gameCity
-			){
+		if($scope.gameState.length > 2){
+			console.log("Please only enter your state's abbreviation");
+
+		} else if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate ){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
 			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
@@ -58,59 +60,47 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						amOrPm = "p.m.";
 				}
 
-			var timeToPass = splitTime[0]+":"+splitTime[1]+" "+amOrPm;
+		var timeToPass = splitTime[0]+":"+splitTime[1]+" "+amOrPm;
 
 		//fix entered date to format -> dayofweek month day year
 		var splitDate = $scope.gameDate.toString().split(" ");
 		var dateToPass = splitDate[0]+" "+splitDate[1]+" "+splitDate[2]+" "+splitDate[3];
 
+		
+		console.log("ready to pass");
 
 
+		// un comment to push to firebase
+			ref.child("Games").push({
+				"sportTitle": $scope.gameTitle,
+				"maxPlayers": $scope.gameMaxPlayers,
+				"minPlayers": $scope.gameMinPlayers,
+				"currentPlayers": 1,
+				"time" : timeToPass,
+				"address": $scope.streetAddress,
+				"city" : $scope.gameCity,
+				"state": $scope.gameState,
+				"date": dateToPass,
+				"hostUser": generalVariables.getUid()
+			}, function(){
+				var gameArray = $firebaseArray(ref.child("Games"));
+
+				gameArray.$loaded()
+				.then(function(response){
+					console.log("response ", response);
+
+					var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
+					var objectToAdd = theOne[0];
+
+					//add host user to game created
+					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
+
+				})	
+			});
 
 
-		console.log("sportTitle", $scope.gameTitle);
-		console.log("maxPlayers", $scope.gameMaxPlayers);
-		console.log("minPlayers", $scope.gameMinPlayers);
-		console.log("currentPlayers", 1);
-		console.log("time", timeToPass);
-		console.log("address", $scope.gameAddress);
-		console.log("city", $scope.gameCity);
-		console.log("state", $scope.gameState);
-		console.log("date", dateToPass);
-
-
-
-		//un comment to push to firebase
-			// ref.child("Games").push({
-			// 	"sportTitle": $scope.gameTitle,
-			// 	"maxPlayers": $scope.gameMaxPlayers,
-			// 	"minPlayers": $scope.gameMinPlayers,
-			// 	"currentPlayers": 1,
-			// 	"time" : $scope.gameTime,
-			// 	"address": $scope.gameAddress,
-			// 	"city" : $scope.gameCity,
-			// 	"state": $scope.gameState,
-			// 	"date": $scope.gameDate,
-			// 	"hostUser": generalVariables.getUid()
-			// }, function(){
-			// 	var gameArray = $firebaseArray(ref.child("Games"));
-
-			// 	gameArray.$loaded()
-			// 	.then(function(response){
-			// 		console.log("response ", response);
-
-			// 		var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
-			// 		var objectToAdd = theOne[0];
-
-			// 		//add host user to game created
-			// 		ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
-
-			// 	})	
-			// });
-
-
-			// //display success
-			// $scope.gameCreationSuccess = "Game Creation Successful!";
+			//display success
+			$scope.gameCreationSuccess = "Game Creation Successful!";
 
 		} else {
 			console.log("you need to enter all fields");
@@ -120,6 +110,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//prelist of sports
 	$scope.sportArray = ["Abseiling","Aerobatics","Aikido","Air Racing","Airsoft","Aquathlon","Aquatics","Archery","Arm Wrestling","Artistic Billiards","Autocross","Autograss","Automobile Racing","Ba Game","Badminton","Bagatelle","Ballroom Dancing","Bando","Bandy","Base Jumping","Baseball","Basketball","Beach Volleyball","Biathlon","Bobsleigh","Bocce Ball","Body Building","Boomerang","Bowling","Boxing","Bull Fighting","Camping","Canoeing","Caving","Cheerleading","Chess","Classical Dance","Cricket","Cross Country Running","Cross Country Skiing","Curling","Cycling","Darts","Decathlon","Diving","Dog Sledding","Dog Training","Down Hill Skiing","Equestrianism","Falconry","Fencing","Figure Skating","Fishing","Flag Football","Foosball","Football","Fox Hunting","Golf","Gymnastics","Hand Ball","Hang Gliding","High Jump","Hiking","Hockey","Horseshoes","Hot Air Ballooning","Hunting","Ice Skating","Inline Skating","Jai Alai","Judo","Karate","Kayaking","Knee Boarding","Lacrosse","Land Sailing","Log Rolling","Long Jump","Luge","Modern Dance","Modern Pentathlon","Motorcycle Racing","Mountain Biking","Mountaineering","Netball","Paint Ball","Para Gliding","Parachuting","Petanque","Pool Playing","Power Walking","Ping Pong","Quad Biking","Racquetball","Remote Control Boating","River Rafting","Rock Climbing","Rodeo Riding","Roller Skating","Rowing","Rugby","Sailing","Scuba Diving","Shooting","Shot Put","Shuffleboard","Skateboarding","Skeet Shooting","Snooker","Snow Biking","Snow Boarding","Snow Shoeing","Snow Sledding","Soccer","Sombo","Speed Skating","Sport Fishing","Sport Guide","Sprint Running","Squash","Stunt Plane Flying","Sumo Wrestling","Surfing","Swimming","Synchronized Swimming","Table Tennis","Taekwondo","Tchoukball","Tennis","Track and Field","Trampolining","Triathlon","Tug of War","Volleyball","Water Polo","Water Skiing","Weight Lifting","Wheelchair Basketball","White Water Rafting","Wind Surfing","Wrestling","Wushu","Yachting","Yoga"];
+
+	//prelist of states
+	 $scope.states = ['AL','AK','AS','AZ','AR','CA','CO','CT','DE','DC','FM','FL','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MH','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','MP','OH','OK','OR','PW','PA','PR','RI','SC','SD','TN','TX','UT','VT','VI','VA','WA','WV','WI','WY'];
 
 
 	//time picker functions from angular bootstrap ui
@@ -235,8 +228,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		        sensor: false
 		      }
 		    }).then(function(response){
+		    	var hasStreetNumber = false;
+		    	var hasRoute = false;
+		    	var hasLocatlity = false;
+		    	var hasAdministrative_area = false;
+		    	var hasCountry = false;
+
 		      return response.data.results.map(function(item){
-		      	console.log("date", item);
+		      	console.log("Location ", item);
+		      	$scope.selectedAddress = item;
+
 		        return item.formatted_address;
 		      });
 		    });
