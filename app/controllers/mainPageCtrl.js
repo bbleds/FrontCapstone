@@ -41,7 +41,6 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 	$scope.createGame = function(){
 		
 		//create Game in reference 
-		console.log("appleSauce");
 
 		if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.gameAddress && $scope.gameState && $scope.gameCity){
 
@@ -54,8 +53,24 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 				"address": $scope.gameAddress,
 				"city" : $scope.gameCity,
 				"state": $scope.gameState,
-				"date": $scope.gameDate
+				"date": $scope.gameDate,
+				"hostUser": generalVariables.getUid()
+			}, function(){
+				var gameArray = $firebaseArray(ref.child("Games"));
+
+				gameArray.$loaded()
+				.then(function(response){
+					console.log("response ", response);
+
+					var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
+					var objectToAdd = theOne[0];
+
+					//add host user to game created
+					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
+
+				})	
 			});
+
 
 			//display success
 			$scope.gameCreationSuccess = "Game Creation Successful!";
@@ -107,56 +122,49 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 	//Join game
 	$scope.joinGame = function(selectedGame){
 
+		var userIsInGame = false;
 		console.log("selectedGame ", selectedGame.$id);
-
 		var currentUid = generalVariables.getUid();
 
 
-		var gameUsersArray = $firebaseArray(ref.child("GameUsers"));
+		var gameUsersArrayofCurrent = $firebaseArray(ref.child("GameUsers").child(selectedGame.$id));
+
+	//SHOW THIS TO RED
 
 		//if current user id doesnt exist in the game, then add game and update current players
-		gameUsersArray.$loaded()
+		gameUsersArrayofCurrent.$loaded()
 		.then(function(data){
-			var userHasBeenAdded = false;
+			console.log("data ", data);
 
-			var gameToGet = selectedGame.$id;
-			console.log("gameToGet", gameToGet.toString());
+			//pluck the uids stored
+			var uidArray = _.pluck(data, "$value");
+			console.log("uidArray ", uidArray);
 
-			console.log("game user data ", data);
-			_.filter(data, function(i){
+			//see if current uid of user exists
+			var uidIndex = uidArray.indexOf(generalVariables.getUid());
+			console.log("uid index is ", uidIndex);
 
-				console.log("current Game", i[gameToGet]);
+			//if uidIndex is -1 (doesnt exist)
+			if(uidIndex === -1){
 
-				//if index is on the current game id in the game users object, and the current user's login is connected with the game, tell user they already signed up for game
-				if(i[gameToGet] && i[gameToGet] === currentUid){
-					console.log("You are already registered For This Game");
+				//push user uid into this game in gameUsers object in  firebase
+				ref.child("GameUsers").child(selectedGame.$id).push(generalVariables.getUid());
 
-				//else if any current game value if not equal to currentUid of user
-				} else if( i[gameToGet] !== currentUid && userHasBeenAdded === false) {
-					userHasBeenAdded = true;
-
-					console.log("registering you for game");
-
-				// add current user into GameUsers, with game id as key and uid of user as value
-				ref.child("GameUsers").push({
-					[selectedGame.$id] : currentUid
+				//add transaction to current Players
+				ref.child("Games").child(selectedGame.$id).child("currentPlayers").transaction(function(currentPlayers){
+					return currentPlayers + 1;
 				});
 
-				var currentPlayersRef = ref.child("Games").child(selectedGame.$id+"/currentPlayers");
+			//if it doesnt exist
+			} else {
 
-				//update number of players in selected game in games object
-				currentPlayersRef.transaction(function(currentVal){
-					return (currentVal || 0) + 1;
-				});	
+				console.log("this user already exists in the game");
+			}
 
-				}
+		});
 
-			});
+			
+		}
 
-		})
-
-
-
-	}
 
 }]);

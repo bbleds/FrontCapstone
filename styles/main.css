@@ -1,4 +1,9 @@
 body {
   background: whitesmoke; }
 
+.singleGameFound {
+  width: 400px;
+  height: 200px;
+  border: 1px solid black; }
+
 /*# sourceMappingURL=main.css.map */
