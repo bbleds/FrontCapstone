@@ -7,6 +7,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 	generalVariables.checkUserLogin("mainPage");
+	
+	//be sure to clear out all games that are finished
+	generalVariables.checkFinishedGames();
 
 	//lodash
 		//how to pass this as depemdency in app.js
@@ -64,7 +67,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		//fix entered date to format -> dayofweek month day year
 		var splitDate = $scope.gameDate.toString().split(" ");
-		var dateToPass = splitDate[0]+", "+splitDate[1]+". "+splitDate[2]+", "+splitDate[3];
+		var dateToPass = splitDate[0]+", "+splitDate[1]+" "+splitDate[2]+", "+splitDate[3];
 
 		
 		console.log("ready to pass");
@@ -81,7 +84,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"city" : $scope.gameCity,
 				"state": $scope.gameState,
 				"date": dateToPass,
-				"hostUser": generalVariables.getUid()
+				"hostUser": generalVariables.getUid(),
+				"finished": false
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));
 
@@ -261,6 +265,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 			_.filter(data, function(n){
+
+				console.log("n is ", n);
+
+				//check to make sure date and time of games are in the future
 
 				//if state of game in array matches state entered
 				 if($scope.findCity && $scope.findState && n.state.toLowerCase() === $scope.findState.toLowerCase() && n.city.toLowerCase() === $scope.findCity.toLowerCase()  ){

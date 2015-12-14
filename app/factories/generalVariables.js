@@ -1,5 +1,5 @@
-app.factory("generalVariables", ["$q", "$http", "$location",
-  function($q, $http, $location) {
+app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
+  function($q, $http, $location, $firebaseArray) {
     
     //private variables
   	var userUid;
@@ -19,18 +19,64 @@ app.factory("generalVariables", ["$q", "$http", "$location",
       },
 
       checkUserLogin : function(pathName){
-      	ref.onAuth(function(authData) {
-	  if (authData) {
-	    console.log("Authenticated with uid:", authData.uid);
-      userUid = authData.uid;
-	    $location.path("/"+pathName);
-	   //if user is not logged in, redirect to login page
-	  } else {
-	    console.log("Client unauthenticated.");
-	    $location.path("/login");
-		 
-	  }
-	});
+          ref.onAuth(function(authData) {
+        	  if (authData) {
+        	    console.log("Authenticated with uid:", authData.uid);
+              userUid = authData.uid;
+        	    $location.path("/"+pathName);
+        	   //if user is not logged in, redirect to login page
+        	  } else {
+        	    console.log("Client unauthenticated.");
+        	    $location.path("/login");
+        		 
+        	  }
+        	});
+      },
+
+      checkFinishedGames : function(){
+        //get current date
+        var today = new Date();
+        var monthArray = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var splitToday = today.toString().split(" ");
+
+        //keep month
+        var month = splitToday[1];
+        var gameArray = $firebaseArray(ref.child("Games"));
+        gameArray.$loaded()
+        .then(function(data){
+
+          //loop through data and extract games that have dates before today
+          for(var i = 0; i < data.length; i++){
+
+            var splitDate = data[i].date.split(", ");
+            //index of month to compare
+            var monthAbrev = splitDate[1].split(" ")[0];
+            var dayAbrev = parseInt(splitDate[1].split(" ")[1]);
+            var yearToCompare = splitDate[2];
+            console.log("yearToCompare ", parseInt(yearToCompare));
+
+            //start with year
+            //if year of game is less than current year
+            if(yearToCompare < today.getFullYear()){
+              console.log("this game was in a past year");
+              ref.child("Games").child(data[i].$id).child("finished").set(true);
+
+              //check month
+            } else if(monthArray.indexOf(monthAbrev) < monthArray.indexOf(month)){
+              console.log("this game was in a past month");
+              ref.child("Games").child(data[i].$id).child("finished").set(true);
+
+              //check day
+            } else if(dayAbrev < today.getDate()){
+              console.log("this game was at a past day bruh bruh");
+              ref.child("Games").child(data[i].$id).child("finished").set(true);
+            } 
+            //after finished app, set it by time by hour
+          }
+
+        })
+
+
       }
   	}
 
