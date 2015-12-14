@@ -7,7 +7,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 	generalVariables.checkUserLogin("mainPage");
-	
+
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();
 
@@ -271,7 +271,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//check to make sure date and time of games are in the future
 
 				//if state of game in array matches state entered
-				 if($scope.findCity && $scope.findState && n.state.toLowerCase() === $scope.findState.toLowerCase() && n.city.toLowerCase() === $scope.findCity.toLowerCase()  ){
+				 if(n.finished !== true && $scope.findCity && $scope.findState && n.state.toLowerCase() === $scope.findState.toLowerCase() && n.city.toLowerCase() === $scope.findCity.toLowerCase()  ){
 
 				 	//push found games into output array
 				 	$scope.gamesFound.push(n);
