@@ -1,16 +1,16 @@
-app.controller("currentGamesCtrl", 
+app.controller("finishedGamesCtrl", 
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
 	//be sure to clear out all games that are finished
-	generalVariables.checkFinishedGames();
+	//generalVariables.checkFinishedGames();
 
 
 	_ = window._;
 
 //see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
-	generalVariables.checkUserLogin("currentGames");
+	generalVariables.checkUserLogin("finishedGames");
 
 //get current games in array 
 	var gameArray = $firebaseArray(ref.child("GameUsers"));
@@ -46,7 +46,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		}
 
 		//now get each game from firebase with id from foundArray
-		$scope.usersGames =[];
+		$scope.finishedGames =[];
 
 			var currentArray = $firebaseArray(ref.child("Games"));
 
@@ -54,18 +54,19 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			.then(function(data){
 				console.log("got data ", data);
 
-				//if id of game in foundArray matches id of game in Games array send object into usersGames
+			//if id of game in foundArray matches id of game in Games array send object into finishedGames
 				for(var i = 0; i < foundArray.length; i++){
 					for(var x = 0; x < data.length; x++){
-						if(foundArray[i].$id === data[x].$id){
+						if(foundArray[i].$id === data[x].$id  && data[x].finished === true){
 							console.log("matches");
-							$scope.usersGames.push(data[x]);
+							$scope.finishedGames.push(data[x]);
 
 						}
 					}
 				}
 
-				console.log("FINAL MATCHES ", $scope.usersGames);
+				console.log("FINAL MATCHES ", $scope.finishedGames);
+
 
 			})
 		
