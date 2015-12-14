@@ -30,11 +30,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		for(var i = 0; i < data.length; i++){
 			console.log("data[i] ", data[i]);
 
-			//for every key in data[i],
+			//for every item in data[i],
 			for(var key in data[i]){
 				console.log("data[i][key] ", data[i][key]);
 
-				//if a key matches current uid
+				//if an item matches current uid
 				if(data[i][key] === generalVariables.getUid()){
 					console.log("matches");
 					foundArray.push(data[i])
@@ -57,7 +57,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//if id of game in foundArray matches id of game in Games array send object into usersGames
 				for(var i = 0; i < foundArray.length; i++){
 					for(var x = 0; x < data.length; x++){
-						if(foundArray[i].$id === data[x].$id){
+						if(foundArray[i].$id === data[x].$id && data[x].finished !== true){
 							console.log("matches");
 							$scope.usersGames.push(data[x]);
 
