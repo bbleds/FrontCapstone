@@ -5,4 +5,8 @@ body {
   width: 400px;
   border: 1px solid black; }
 
+a {
+  color: inherit;
+  text-decoration: none; }
+
 /*# sourceMappingURL=main.css.map */

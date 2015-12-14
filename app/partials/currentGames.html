@@ -1,0 +1,13 @@
+<a href="#/mainPage"><button class="btn">Back to main</button></a>
+<p>List all current Games that user has registered For in a snippet like find games snippet</p>
+<div id="gameFound" ng-repeat="game in usersGames">
+	<div class="singleGameFound">
+		<h1>{{game.sportTitle}}</h1>
+		<h3>Time: {{game.time}}</h3>
+		<h3>Date: {{game.date}}</h3>
+		<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
+		<h3>current players: {{game.currentPlayers}}</h3>
+		<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+		<button class="btn" ng-click="joinGame(game)">Join</button>
+	</div>
+</div>

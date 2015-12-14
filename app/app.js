@@ -18,6 +18,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/mainPage.html",
 		controller: "mainPageCtrl"
 	})
+	.when("/currentGames",  {
+		templateUrl: "app/partials/currentGames.html",
+		controller: "currentGamesCtrl"
+	})
 	//default to login route
 	.otherwise("/login");
 }])

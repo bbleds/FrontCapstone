@@ -1,4 +1,4 @@
-//controller for main page, need to break it up some more
+//controller for main page, functionality for current games, . . . in other modules
 
 app.controller("mainPageCtrl", 
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
@@ -64,7 +64,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		//fix entered date to format -> dayofweek month day year
 		var splitDate = $scope.gameDate.toString().split(" ");
-		var dateToPass = splitDate[0]+" "+splitDate[1]+" "+splitDate[2]+" "+splitDate[3];
+		var dateToPass = splitDate[0]+", "+splitDate[1]+". "+splitDate[2]+", "+splitDate[3];
 
 		
 		console.log("ready to pass");
