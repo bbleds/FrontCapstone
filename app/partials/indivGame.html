@@ -1,0 +1,10 @@
+<a href="#/mainPage"><button class="btn">Back to main</button></a>
+<p>Individual Game</p>
+<div id="singleGame">
+	<h1>{{selectedGame.sportTitle}}</h1>
+	<h3>Time: {{selectedGame.time}}</h3>
+	<h3>Date: {{selectedGame.date}}</h3>
+	<h3>Location: {{selectedGame.address + " " + selectedGame.city + " " + selectedGame.state}}</h3>
+	<h3>current players: {{selectedGame.currentPlayers}}</h3>
+	<h3>Spots left: {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
+</div>

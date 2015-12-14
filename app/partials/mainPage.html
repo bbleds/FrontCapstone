@@ -8,7 +8,7 @@
 </div>
 
 <div id="gameFound" ng-repeat="game in gamesFound">
-	<div class="singleGameFound">
+	<a href="#/games/{{game.$id}}"><div class="singleGameFound">
 		<h1>{{game.sportTitle}}</h1>
 		<h3>Time: {{game.time}}</h3>
 		<h3>Date: {{game.date}}</h3>
@@ -16,7 +16,7 @@
 		<h3>current players: {{game.currentPlayers}}</h3>
 		<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
 		<button class="btn" ng-click="joinGame(game)">Join</button>
-	</div>
+	</div></a>
 </div>
 
 <!-- Game Creation Modal -->

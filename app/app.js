@@ -26,6 +26,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/finishedGames.html",
 		controller: "finishedGamesCtrl"
 	})
+	.when("/games/:individualGame",  {
+		templateUrl: "app/partials/indivGame.html",
+		controller: "indivGameCtrl"
+	})
 	//default to login route
 	.otherwise("/login");
 }])
