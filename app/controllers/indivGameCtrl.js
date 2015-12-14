@@ -19,7 +19,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			if(game.$id === objectName){
 				console.log("the game selected is ", game);
-				//set $scope.selectedGame = game
 				$scope.selectedGame = game;
 			}
 		})

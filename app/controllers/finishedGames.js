@@ -5,6 +5,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//be sure to clear out all games that are finished
 	//generalVariables.checkFinishedGames();
 
+	//collapse user toggle
+		$scope.isCollapsed = true;
 
 	_ = window._;
 

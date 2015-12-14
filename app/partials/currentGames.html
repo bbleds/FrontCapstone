@@ -2,12 +2,21 @@
 <p>Here are your currently registered games</p>
 <div id="gameFound" ng-repeat="game in usersGames">
 	<div class="singleGameFound">
+	<a href="#/games/{{game.$id}}">
 		<h1>{{game.sportTitle}}</h1>
 		<h3>Time: {{game.time}}</h3>
 		<h3>Date: {{game.date}}</h3>
 		<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
 		<h3>current players: {{game.currentPlayers}}</h3>
 		<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+	</a>
 		<button class="btn" ng-click="joinGame(game)">Join</button>
+		<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
+		<div uib-collapse="isCollapsed">
+			<!-- ng repeat below for usrs -->
+			<div class="well well-lg" ng-repeat="user in GameUsers">
+				<p>{{user.$id}}</p>
+			</div>
+		</div>
 	</div>
 </div>

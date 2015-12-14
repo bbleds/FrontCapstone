@@ -5,6 +5,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();
 
+	//collapse user toggle
+	$scope.isCollapsed = true;
+
 
 	_ = window._;
 
@@ -71,6 +74,23 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 
 	})
+
+
+		$scope.getGameUsers = function(gameId){
+			console.log("game searched for is ", gameId);
+        var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
+
+        gameUsersArray.$loaded()
+        .then(function(data){
+          //need to set a variable to data and return a promise or something  to give to other module
+          console.log("data ", data);
+          $scope.GameUsers = data;
+          
+        })
+
+
+		}
+
 
 
 }]);

@@ -33,6 +33,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         	});
       },
 
+      //checks games in firebase and compares to current date to change games that have already happened to finished = true
       checkFinishedGames : function(){
         //get current date
         var today = new Date();
@@ -78,6 +79,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
 
       }
+
   	}
 
   }]);
