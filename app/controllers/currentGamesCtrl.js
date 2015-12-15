@@ -91,15 +91,63 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		$scope.getGameUsers = function(gameId){
 			console.log("game searched for is ", gameId);
-        var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
+	        var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
 
-        gameUsersArray.$loaded()
-        .then(function(data){
-          //need to set a variable to data and return a promise or something  to give to other module
-          console.log("data ", data);
-          $scope.GameUsers = data;
-          
-        })
+	        gameUsersArray.$loaded()
+	        .then(function(data){
+	          //need to set a variable to data and return a promise or something  to give to other module
+	          console.log("data ", data);
+	          $scope.GameUsers = data;
+	          
+	        })
+		}
+
+		//functionlaity for user leaving game
+		$scope.leaveGame = function(game){
+			console.log("user wanst to leave game ", game);
+			//remove user from gameUsers
+			var usersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
+
+	        usersInGame.$loaded()
+	        .then(function(data){
+
+	          //loop over users in game and find current uid
+	          _.filter(data, function(index){
+	          	if(index.$value === generalVariables.getUid()){
+	          		console.log("this user should leave game now");
+
+	          		//removes user from GameUsers object
+	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
+
+	          		//does a transaction on firebase game to reduce number of current players
+	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
+					   
+					  return currentPlayers - 1;
+					});
+	          	}
+	          })
+	          
+	          
+	        })
+
+
+		}
+
+		//functionlaity for host user selecting game to cancell
+		$scope.setGameToCancel = function(game){
+			console.log("user wants to cancel game ", game);
+
+			//run this on modal click
+			$scope.gameToCancel = game;
+
+		}
+
+		//functionlaity for host user cancelling game
+		$scope.cancelGame = function(){
+			console.log("this game should now be removed");
+
+			//remove game from firebase
+			ref.child("Games").child($scope.gameToCancel.$id).remove();
 
 
 		}

@@ -18,7 +18,7 @@
 							<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
 						</a>
 							<!-- if user is host of game, load hostUser Settings -->
-							<div ng-include="hostedGames[game.$id] ? './app/partials/hostUser.html' : './app/partials/leaveGame.html'"></div>
+							<div ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>
 							<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
 							<div uib-collapse="isCollapsed">
 								<!-- ng repeat below for usrs -->
@@ -33,3 +33,25 @@
         </div>
         <!-- /#page-content-wrapper -->
 </div><!-- end wrapper -->
+
+<!--  confirm cancel Modal -->
+	<div id="confirmCancelModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Do you wish to cancel?</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<button ng-click="cancelGame()" data-dismiss="modal" class="btn">YAS</button>
+	      	<button class="btn" data-dismiss="modal">No</button>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
