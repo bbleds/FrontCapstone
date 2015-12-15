@@ -21,19 +21,19 @@
 								</select>
 								<input ng-model="modCity" placeHolder="City" class="form-control modify_search" />
 								<input ng-model="modSport" placeHolder="Sport" class="form-control modify_search" />
-								<button class="btn">Modify</button>
+								<button class="btn" ng-click="modifySearch()">Modify</button>
 							</div>
 						</div>
 
                     	<div id="gameFound" ng-repeat="game in gamesFound">
-							<div class="singleGameFound">
+							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
 								<h1>{{game.sportTitle}}</h1>
-								<h3>Time: {{game.time}}</h3>
-								<h3>Date: {{game.date}}</h3>
-								<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
-								<h3>current players: {{game.currentPlayers}}</h3>
-								<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+								<p>Time: {{game.time}}</p>
+								<p>Date: {{game.date}}</p>
+								<p>Location: {{game.address + " " + game.city + " " + game.state}}</p>
+								<p>current players: {{game.currentPlayers}}</p>
+								<p>Spots left: {{game.maxPlayers - game.currentPlayers }}</p>
 							</a>
 								<button class="btn" ng-click="joinGame(game)">Join</button>
 								<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
@@ -88,10 +88,6 @@
 	                </button>
                 </span>
 	      	</div>
-
-	      	<!-- <input class="form-control" placeholder="Address" ng-model="gameAddress" type="text" />
-	      	<input class="form-control" placeholder="Initial City" ng-model="gameCity" type="text" />
-	      	<input class="form-control" placeholder="Initial State" ng-model="gameState" type="text" /> -->
 	      <div class="modal-footer">
 	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
 	      </div>

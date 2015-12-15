@@ -310,6 +310,76 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		});
 	}
 
+
+	//modify search
+	$scope.modifySearch = function(){
+
+		//the following code will display all games that match criteria in firebase
+
+			//clear output array
+			$scope.gamesFound = [];
+
+			//get data from firebase
+			var gamesFromFirebase = $firebaseArray(ref.child("Games"));
+
+			gamesFromFirebase.$loaded()
+			.then(function(data){
+				console.log("games ", data);
+
+			//push matched games into an output array
+				_.filter(data, function(index){
+					//make sure game is not already finished
+					if(index.finished === true){
+						console.log("this game is finished");
+					} else {
+
+					//state must always be entered
+
+					//if all fields are entered, match each
+					if($scope.modState && 	$scope.modCity && 	$scope.modSport){
+						console.log("all fields entahed");
+						if(index.state.toLowerCase() ===  $scope.modState.toLowerCase() && index.city.toLowerCase() ===  $scope.modCity.toLowerCase() && index.sportTitle.toLowerCase() ===  $scope.modSport.toLowerCase()){
+							console.log("found some matches for all");
+							
+							//push found games into output array
+						 	$scope.gamesFound.push(index);
+
+
+						} else {
+							console.log("no reseults");
+						}
+
+						//if only city and state are entered
+						}else if($scope.modState && $scope.modCity){
+							console.log("city and state entered");
+							if(index.state.toLowerCase() ===  $scope.modState.toLowerCase() && index.city.toLowerCase() ===  $scope.modCity.toLowerCase()){
+								console.log("we have a city and state match");
+
+								//push found games into output array
+							 	$scope.gamesFound.push(index);
+
+							} else {
+								console.log("no results");
+							}
+
+					//if only state is entered match state
+					} else if(index.state.toLowerCase() ===  $scope.modState.toLowerCase()){
+					 	console.log("state match");
+
+					 	//push found games into output array
+						 $scope.gamesFound.push(index);
+
+					 }
+				  }
+				});
+
+			})
+
+
+	}
+
+
+
 	//join Game variables
 
 

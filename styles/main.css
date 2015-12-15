@@ -2,8 +2,11 @@ body {
   background: whitesmoke; }
 
 .singleGameFound {
-  width: 400px;
+  width: 50%;
+  margin-left: 25%;
   border: 1px solid black; }
+  .singleGameFound h1 {
+    font-size: 5rem; }
 
 a {
   color: inherit;
