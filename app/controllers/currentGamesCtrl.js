@@ -149,6 +149,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			//remove game from firebase
 			ref.child("Games").child($scope.gameToCancel.$id).remove();
 
+			//remove game from game users
+			ref.child("GameUsers").child($scope.gameToCancel.$id).remove();
+
 
 		}
 
