@@ -1,29 +1,29 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
+            
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#/mainPage">
-                        App Name
+                    <a href="#">
                     </a>
                 </li>
                 <li>
                 	<a href="#/mainPage" data-toggle="modal" data-target="#createGameModal">Create Game</a>
                 </li>
                 <li>
-                   <a href="#/mainPage" data-toggle="modal" data-target="#findGameModal">Find Game</a>
+                   <a href="#/mainPage" data-toggle="modal" data-target="#findGameModal" ng-click="searchOptions = !searchOptions">Find Game</a>
                 </li>
                 <li>
-                   <a href="#/currentGames">Current Games</a>
+                   <a href="#/currentGames" ng-click="searchOptions = !searchOptions">Current Games</a>
                 </li>
                 <li>
-                   <a href="#/finishedGames">Finished Games</a>
+                   <a href="#/finishedGames" ng-click="searchOptions = !searchOptions">Finished Games</a>
                 </li>
                 <li>
-                   <a href="#/mainPage">Notifications</a>
+                   <a href="#/mainPage" ng-click="searchOptions = !searchOptions">Notifications</a>
                 </li>
                 <li>
-                  <a href="#" ng-click="logOutUser()"> Log Out
+                  <a href="#" ng-click="logOutUser(); searchOptions = !searchOptions"> Log Out
                 </li>
             </ul>
         </div>

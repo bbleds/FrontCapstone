@@ -18,6 +18,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//collapse user toggle
 	$scope.isCollapsed = true;
 
+	//collapse find settings
+	$scope.searchOptions = true;
+
 	//logOut user
 	$scope.logOutUser = function(){
 
