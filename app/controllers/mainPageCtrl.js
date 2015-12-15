@@ -268,7 +268,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			_.filter(data, function(n){
 
-				console.log("n is ", n);
+				// console.log("n is ", n);
 
 				//check to make sure date and time of games are in the future
 
