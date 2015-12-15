@@ -8,7 +8,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//collapse user toggle
 	$scope.isCollapsed = true;
 
-
 	_ = window._;
 
 //see if user is logged in 
@@ -40,6 +39,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//if an item matches current uid
 				if(data[i][key] === generalVariables.getUid()){
 					console.log("matches");
+
 					foundArray.push(data[i])
 
 				}
@@ -48,7 +48,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		}
 
+		$scope.hostedGames={};
+
 		//now get each game from firebase with id from foundArray
+		//usersGames = is the array that is output on the page for a users games
 		$scope.usersGames =[];
 
 			var currentArray = $firebaseArray(ref.child("Games"));
@@ -62,6 +65,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					for(var x = 0; x < data.length; x++){
 						if(foundArray[i].$id === data[x].$id && data[x].finished !== true){
 							console.log("matches");
+
+							console.log("data[x].hostUser ", data[x].hostUser);
+
+							//if statement here will set the game in the hostedGames to true if current uid is host
+							if(data[x].hostUser === generalVariables.getUid()){
+								$scope.hostedGames[data[x].$id] = true;
+								//insted of one variable have a hosted Games object that holds all game ids so that if current uid is host id of game, that game id in hosted games has a value of true then user can delete games
+
+							}
+
 							$scope.usersGames.push(data[x]);
 
 						}

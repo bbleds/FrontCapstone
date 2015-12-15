@@ -1,13 +1,25 @@
-<a href="#/mainPage"><button class="btn">Back to main</button></a>
-<p>Here are your finished games</p>
-<div id="gameFound" ng-repeat="game in finishedGames">
-	<div class="singleGameFound">
-		<h1>{{game.sportTitle}}</h1>
-		<h3>Time: {{game.time}}</h3>
-		<h3>Date: {{game.date}}</h3>
-		<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
-		<h3>current players: {{game.currentPlayers}}</h3>
-		<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
-		<button class="btn" ng-click="joinGame(game)">Join</button>
-	</div>
-</div>
+<div ng-include="'./app/partials/sideBar.html'"></div>
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper"> 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+						<p>Here are your finished games</p>
+						<div id="gameFound" ng-repeat="game in finishedGames">
+							<div class="singleGameFound">
+								<h1>{{game.sportTitle}}</h1>
+								<h3>Time: {{game.time}}</h3>
+								<h3>Date: {{game.date}}</h3>
+								<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
+								<h3>current players: {{game.currentPlayers}}</h3>
+								<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+								<button class="btn" ng-click="joinGame(game)">Join</button>
+							</div>
+						</div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+</div><!-- end wrapper -->

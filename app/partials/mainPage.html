@@ -1,29 +1,37 @@
-<div id="sidebar">
-	<button ng-click="logOutUser()" class="btn"> Log Out</button>
-	<div><button data-toggle="modal" data-target="#createGameModal" class="btn">Create Game</button></div>
-	<div><button data-toggle="modal" data-target="#findGameModal" class="btn">Find Game</button></div>
-	<div><a href="#/currentGames"><button class="btn">Current Games</button></a></div>
-	<div><a href="#/finishedGames"><button class="btn">Finished Games</button></a></div>
-	<h1>{{gameCreationSuccess}}</h1>
-</div>
 
-<div id="gameFound" ng-repeat="game in gamesFound">
-	<div class="singleGameFound">
-	  <a href="#/games/{{game.$id}}">
-		<h1>{{game.sportTitle}}</h1>
-		<h3>Time: {{game.time}}</h3>
-		<h3>Date: {{game.date}}</h3>
-		<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
-		<h3>current players: {{game.currentPlayers}}</h3>
-		<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
-	</a>
-		<button class="btn" ng-click="joinGame(game)">Join</button>
-		<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
-		<div uib-collapse="isCollapsed">
-			<div ng-repeat="user in GameUsers" class="well well-lg"><p/>{{user.$id}}</p></div>
-		</div>
-	</div>
-</div>
+<div ng-include="'./app/partials/sideBar.html'"></div>
+
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper"> 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    	<div id="gameFound" ng-repeat="game in gamesFound">
+							<div class="singleGameFound">
+							  <a href="#/games/{{game.$id}}">
+								<h1>{{game.sportTitle}}</h1>
+								<h3>Time: {{game.time}}</h3>
+								<h3>Date: {{game.date}}</h3>
+								<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
+								<h3>current players: {{game.currentPlayers}}</h3>
+								<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+							</a>
+								<button class="btn" ng-click="joinGame(game)">Join</button>
+								<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
+								<div uib-collapse="isCollapsed">
+									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.$id}}</p></div>
+								</div>
+							</div>
+						</div>
+                      
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+</div><!-- end wrapper -->
 
 <!-- Game Creation Modal -->
 	<div id="createGameModal" class="modal fade" role="dialog">
