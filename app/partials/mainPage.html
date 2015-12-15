@@ -13,7 +13,16 @@
 
                     <!-- displays search options -->
                     	<div uib-collapse="searchOptions">
-							<div class="well well-lg">Some options</div>
+							<div class="well well-lg">
+							<!-- filter by state, then city and then optional sport -->
+								<select ng-model="modState" class="form-control modify_search">
+									<option>None</option>
+									<option ng-repeat="state in states">{{state}}</option>
+								</select>
+								<input ng-model="modCity" placeHolder="City" class="form-control modify_search" />
+								<input ng-model="modSport" placeHolder="Sport" class="form-control modify_search" />
+								<button class="btn">Modify</button>
+							</div>
 						</div>
 
                     	<div id="gameFound" ng-repeat="game in gamesFound">
@@ -84,7 +93,7 @@
 	      	<input class="form-control" placeholder="Initial City" ng-model="gameCity" type="text" />
 	      	<input class="form-control" placeholder="Initial State" ng-model="gameState" type="text" /> -->
 	      <div class="modal-footer">
-	        <button type="button" ng-click="createGame(); searchOptions = !searchOptions" class="btn btn-default" data-dismiss="modal">Create</button>
+	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
 	      </div>
 	    </div>
 
@@ -108,7 +117,7 @@
 	      	<input class="form-control" placeholder="State" ng-model="findState" type="text" />
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" ng-click="findGames(); searchOptions = !searchOptions" class="btn btn-default" data-dismiss="modal">Find</button>
+	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
 	      </div>
 	    </div>
 

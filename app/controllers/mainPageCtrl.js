@@ -48,6 +48,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//create Game
 	$scope.createGame = function(){
 		var amOrPm
+
+		//collapse search options
+		$scope.searchOptions = true;
+
 		
 		//create Game in reference 
 
@@ -259,9 +263,15 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.findState;
 	$scope.gamesFound=[];
 
+	//variables for modifying results after looking
+	$scope.modState;
+	$scope.modCity;
+	$scope.modSport;
+
 	//Find Game
 	$scope.findGames = function(){
 		$scope.gamesFound=[];
+
 		var games = $firebaseArray(ref.child("Games"));
 
 		games.$loaded()
@@ -278,8 +288,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//if state of game in array matches state entered
 				 if(n.finished !== true && $scope.findCity && $scope.findState && n.state.toLowerCase() === $scope.findState.toLowerCase() && n.city.toLowerCase() === $scope.findCity.toLowerCase()  ){
 
+				 	//set findCity and findState to have the ability to be changed later
+				 	$scope.modState = $scope.findState.toUpperCase();
+				 	$scope.modCity = $scope.findCity;
+
 				 	//push found games into output array
 				 	$scope.gamesFound.push(n);
+
+				 	//open find options
+				 	$scope.searchOptions = false;
+
 				 } else {
 				 	console.log(" Please Enter information");
 				 }

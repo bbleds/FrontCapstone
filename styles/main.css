@@ -109,10 +109,13 @@ a {
   #page-content-wrapper {
     padding: 20px;
     position: relative;
-    padding-top: 80px; }
+    padding-top: 60px; }
 
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0; } }
+.modify_search {
+  width: 25%;
+  display: inline-block; }
 
 /*# sourceMappingURL=main.css.map */
