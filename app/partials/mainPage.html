@@ -35,7 +35,8 @@
 								<p>current players: {{game.currentPlayers}}</p>
 								<p>Spots left: {{game.maxPlayers - game.currentPlayers }}</p>
 							</a>
-								<button class="btn" ng-click="joinGame(game)">Join</button>
+								<!-- if game is full, output disabled full btn, if not, output join btn -->
+								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
 								<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
 								<div uib-collapse="isCollapsed">
 									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.$id}}</p></div>
