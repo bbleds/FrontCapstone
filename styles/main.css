@@ -4,7 +4,8 @@ body {
 .singleGameFound {
   width: 50%;
   margin-left: 25%;
-  border: 1px solid black; }
+  border: 1px solid black;
+  position: relative; }
   .singleGameFound h1 {
     font-size: 5rem; }
 
@@ -120,5 +121,17 @@ a {
 .modify_search {
   width: 25%;
   display: inline-block; }
+
+.fixedBtn {
+  position: absolute;
+  bottom: 5px;
+  width: 100px;
+  left: 50%;
+  margin-left: -54px; }
+
+.userDisplay {
+  position: absolute;
+  right: 5px;
+  bottom: 5px; }
 
 /*# sourceMappingURL=main.css.map */

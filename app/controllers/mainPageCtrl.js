@@ -4,6 +4,9 @@ app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
+
+
+
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 	generalVariables.checkUserLogin("mainPage");
@@ -77,8 +80,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//fix entered date to format -> dayofweek month day year
 		var splitDate = $scope.gameDate.toString().split(" ");
 		var dateToPass = splitDate[0]+", "+splitDate[1]+" "+splitDate[2]+", "+splitDate[3];
-
-		
 		console.log("ready to pass");
 
 
@@ -94,6 +95,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"state": $scope.gameState,
 				"date": dateToPass,
 				"hostUser": generalVariables.getUid(),
+				"hostUserName": generalVariables.getCurrentUserName(),
 				"finished": false
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));

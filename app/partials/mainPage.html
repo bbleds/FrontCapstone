@@ -29,15 +29,15 @@
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
 								<h1>{{game.sportTitle}}</h1>
-								<p>Time: {{game.time}}</p>
-								<p>Date: {{game.date}}</p>
-								<p>Location: {{game.address + " " + game.city + " " + game.state}}</p>
-								<p>current players: {{game.currentPlayers}}</p>
-								<p>Spots left: {{game.maxPlayers - game.currentPlayers }}</p>
+								<p><strong>Date:</strong> {{game.date}}</p>
+								<p><strong>Time:</strong> {{game.time}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
+								<p><strong>current players:</strong> {{game.currentPlayers}}</p>
+								<p>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 							</a>
 								<!-- if game is full, output disabled full btn, if not, output join btn -->
 								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
-								<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
+								<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
 								<div uib-collapse="isCollapsed">
 									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.$id}}</p></div>
 								</div>

@@ -3,7 +3,8 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
     
     //private variables
   	var userUid;
-  	 var ref = new Firebase("https://frontcapstone.firebaseio.com");
+    var currentUserName;
+  	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 
   	return {
   		getUid : function(){
@@ -18,12 +19,29 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         ref.unauth(); 
       },
 
+      getCurrentUserName : function(){
+        return currentUserName;
+      },
+
       checkUserLogin : function(pathName){
           ref.onAuth(function(authData) {
         	  if (authData) {
         	    console.log("Authenticated with uid:", authData.uid);
               userUid = authData.uid;
         	    $location.path("/"+pathName);
+
+              //setUsername for later access
+              //get username
+              var arrayOfName = $firebaseArray(ref.child("Users").child(authData.uid));
+
+              arrayOfName.$loaded()
+              .then(function(data){
+                console.log("user ", data[1].$value);
+
+                //set current username
+                currentUserName = data[1].$value
+              })
+
         	   //if user is not logged in, redirect to login page
         	  } else {
         	    console.log("Client unauthenticated.");
