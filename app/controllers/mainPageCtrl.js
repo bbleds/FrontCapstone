@@ -7,6 +7,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//show and close alerts
 		$scope.show = false;
 		$scope.showAlert = function(object) {
+			//object should have two keys 1)"type" (equal to: 'success' or 'danger'), and 2) "body" (equal to: message we want to display)
+
 			$scope.alertMessage = object;
 		    $scope.show = true;
 		};
@@ -15,14 +17,15 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		    $scope.show = false;
 		};
 
+		//show main default for logging in
+		$scope.showMainDefault = function(){
+			console.log("should now show main defualt on main Page");
+			//shows main default display
+			angular.element("#defaultContent").addClass("show");
 
-	//array to hold message you want to output
-
-	//object that holds message that goes into alert box in nav bar
-		//type for displaying successful/unsuccessful message
-		//body for displaying content message
-		//when you want to display something
-			// $scope.alertMessage= {type:"success", body:"example"};
+			//hides the find modifier
+			$scope.searchOptions = true;
+		}
 
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
@@ -290,6 +293,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 				 	//open find options
 				 	$scope.searchOptions = false;
+
+				 	//hide defualt content
+				 	angular.element("#defaultContent").addClass("hide");
+
 
 				 } else {
 				 	console.log(" Please Enter information");

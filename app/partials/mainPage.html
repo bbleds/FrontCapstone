@@ -25,6 +25,9 @@
 							</div>
 						</div>
 
+						<!-- display default -->
+						<div ng-include="'./app/partials/mainPageDefault.html'"></div>
+
                     	<div id="gameFound" ng-repeat="game in gamesFound">
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">

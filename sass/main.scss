@@ -183,3 +183,26 @@ a{
     }
 
 }
+
+#userAvatar{
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    left: 50%;
+    margin-left: -150px;
+    position: relative;
+    margin-top: 50px;
+}
+
+.welcomeText{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
