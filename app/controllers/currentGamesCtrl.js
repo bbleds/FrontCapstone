@@ -5,6 +5,17 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();
 
+		//show and close alerts
+		$scope.show = false;
+		$scope.showAlert = function(object) {
+			$scope.alertMessage = object;
+		    $scope.show = true;
+		};
+
+		$scope.closeAlert = function(index) {
+		    $scope.show = false;
+		};
+
 	//collapse user toggle
 	$scope.isCollapsed = true;
 

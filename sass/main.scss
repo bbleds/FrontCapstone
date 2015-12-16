@@ -169,3 +169,17 @@ a{
     right: 5px;
     bottom: 5px;
 }
+
+
+.navNotif{
+    position: absolute;
+    top: 10px;
+    width: 30%;
+    left: 50%;
+    margin-left: -15%;
+    
+    span {
+        padding-right: 20px;
+    }
+
+}

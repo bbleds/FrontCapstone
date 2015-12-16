@@ -11,6 +11,14 @@
       <a class="navbar-brand" href="#">My App</a>
     </div>
 
+    <!-- notification center -->
+    
+      <uib-alert class="navNotif" type="{{alertMessage.type}}" ng-if="show"  close="closeAlert($index)"><span class="glyphicon glyphicon-ok"></span>{{alertMessage.body}}</uib-alert>
+    
+  
+   <!-- <uib-alert class="navNotif" type="danger" dismiss-on-timeout="3000" ng-if="show"  close="closeAlert($index)"><span class="glyphicon glyphicon-remove"></span>Some unsuccessful alert!</uib-alert>
+ -->
+   
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">

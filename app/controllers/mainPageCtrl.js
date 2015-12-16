@@ -4,8 +4,25 @@ app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
+	//show and close alerts
+		$scope.show = false;
+		$scope.showAlert = function(object) {
+			$scope.alertMessage = object;
+		    $scope.show = true;
+		};
+
+		$scope.closeAlert = function(index) {
+		    $scope.show = false;
+		};
 
 
+	//array to hold message you want to output
+
+	//object that holds message that goes into alert box in nav bar
+		//type for displaying successful/unsuccessful message
+		//body for displaying content message
+		//when you want to display something
+			// $scope.alertMessage= {type:"success", body:"example"};
 
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
@@ -114,8 +131,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			});
 
 
-			//display success
-			$scope.gameCreationSuccess = "Game Creation Successful!";
+			//display success message through nav notification bar
+			$scope.showAlert({type:"success", body:"Game creation successful!"});
 
 		} else {
 			console.log("you need to enter all fields");

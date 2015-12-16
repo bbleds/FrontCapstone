@@ -9,6 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12">
 					<p>Here are your currently registered games</p>
+					<!--  track by $index to handle duplicates?-->
 					<div id="gameFound" ng-repeat="game in usersGames">
 						<div class="singleGameFound">
 						<a href="#/games/{{game.$id}}">
