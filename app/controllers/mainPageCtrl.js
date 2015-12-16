@@ -412,10 +412,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					return currentPlayers + 1;
 				});
 
+				//display success message through nav notification bar
+				$scope.showAlert({type:"success", body:"Awesome! Joined game successfully!"});
+
 			//if it doesnt exist
 			} else {
 
-				console.log("this user already exists in the game");
+				$scope.showAlert({type:"danger", body:"You have already joined this game!"});
 			}
 
 		});

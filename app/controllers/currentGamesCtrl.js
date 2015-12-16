@@ -115,7 +115,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		//functionlaity for user leaving game
 		$scope.leaveGame = function(game){
-			console.log("user wanst to leave game ", game);
+			console.log("user wants to leave game ", game);
 			//remove user from gameUsers
 			var usersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
 
@@ -129,6 +129,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	          		//removes user from GameUsers object
 	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
+
+	          		$scope.showAlert({type:"success",body:"You left the game!"});
 
 	          		//does a transaction on firebase game to reduce number of current players
 	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
@@ -162,6 +164,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			//remove game from game users
 			ref.child("GameUsers").child($scope.gameToCancel.$id).remove();
+
+			//give feedback to say game was cancelled
+			$scope.showAlert({type:"success",body:"Game successfully cancelled!"});
 
 
 		}
