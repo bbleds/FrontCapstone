@@ -159,6 +159,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		$scope.cancelGame = function(){
 			console.log("this game should now be removed");
 
+			// usersGames.array.indexOf();
+			//remove something from array with index of
+
 			//remove game from firebase
 			ref.child("Games").child($scope.gameToCancel.$id).remove();
 

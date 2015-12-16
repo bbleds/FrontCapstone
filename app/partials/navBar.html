@@ -13,7 +13,7 @@
 
     <!-- notification center -->
     
-      <uib-alert class="navNotif" type="{{alertMessage.type}}" ng-if="show"  close="closeAlert($index)"><span class="glyphicon glyphicon-ok"></span>{{alertMessage.body}}</uib-alert>
+      <uib-alert class="navNotif" type="{{alertMessage.type}}" dismiss-on-timeout="3000" ng-if="show"  close="closeAlert($index)"><span class="glyphicon glyphicon-ok"></span>{{alertMessage.body}}</uib-alert>
     
   
    <!-- <uib-alert class="navNotif" type="danger" dismiss-on-timeout="3000" ng-if="show"  close="closeAlert($index)"><span class="glyphicon glyphicon-remove"></span>Some unsuccessful alert!</uib-alert>
