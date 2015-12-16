@@ -234,32 +234,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			    return '';
 			  };
-
-		//typeahead for states
-		  $scope.getLocation = function(val) {
-		    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
-		      params: {
-		        address: val,
-		        sensor: false
-		      }
-		    }).then(function(response){
-		    	var hasStreetNumber = false;
-		    	var hasRoute = false;
-		    	var hasLocatlity = false;
-		    	var hasAdministrative_area = false;
-		    	var hasCountry = false;
-
-		      return response.data.results.map(function(item){
-		      	console.log("Location ", item);
-		      	$scope.selectedAddress = item;
-
-		        return item.formatted_address;
-		      });
-		    });
-		  };
-
-
-
 	//find variables
 	$scope.findCity;
 	$scope.findState;
