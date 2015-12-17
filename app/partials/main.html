@@ -1,0 +1,124 @@
+<div ng-include="'./app/partials/sideBar.html'"></div>
+
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper"> 
+            <div class="container-fluid">
+		            <!-- navbar -->
+			        <div ng-include="'./app/partials/navBar.html'"></div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    <!-- displays search options -->
+                    	<div uib-collapse="searchOptions">
+							<div class="well well-lg">
+							<!-- filter by state, then city and then optional sport -->
+								<select ng-model="modState" class="form-control modify_search">
+									<option>None</option>
+									<option ng-repeat="state in states">{{state}}</option>
+								</select>
+								<input ng-model="modCity" placeHolder="City" class="form-control modify_search" />
+								<input ng-model="modSport" placeHolder="Sport" class="form-control modify_search" />
+								<button class="btn" ng-click="modifySearch()">Modify</button>
+							</div>
+						</div>
+
+						<!-- display default -->
+						<div ng-include="'./app/partials/mainPageDefault.html'"></div>
+
+                    	<div id="gameFound" ng-repeat="game in gamesFound">
+							<div class="jumbotron singleGameFound">
+							  <a href="#/games/{{game.$id}}">
+								<h1>{{game.sportTitle}}</h1>
+								<p><strong>Date:</strong> {{game.date}}</p>
+								<p><strong>Time:</strong> {{game.time}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
+								<p><strong>current players:</strong> {{game.currentPlayers}}</p>
+								<p>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
+							</a>
+								<!-- if game is full, output disabled full btn, if not, output join btn -->
+								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
+								<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
+								<div uib-collapse="isCollapsed">
+									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.$id}}</p></div>
+								</div>
+							</div>
+						</div>
+                      
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+</div><!-- end wrapper -->
+
+<!-- Game Creation Modal -->
+	<div id="createGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Create A Game</h4>
+	      </div>
+	      <div class="modal-body">
+	      <!-- Sport selector -->
+	      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control">
+
+	      	 <input type="text" placeholder="Street address" ng-model="streetAddress" class="form-control"/>
+	      	<form class="form-inline">
+		      	 <input type="text" placeholder="City" ng-model="gameCity" class="form-control"/>
+		      	 <!-- State selector -->
+			    <input type="text" ng-model="gameState" placeholder="State" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+			</form>
+			 
+		
+	      	<input class="form-control" min="1" max="50" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
+	      	<input class="form-control" min="1" max="25" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />
+
+	      	<div class="well">
+	      	<!-- Time selector -->
+		      	<pre class="alert alert-info">Time Selected: {{gameTime | date:'shortTime' }}</pre>
+			    <uib-timepicker ng-model="gameTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+
+			<!-- Date selector -->
+		      	<pre class="alert alert-info">Date Selected: {{gameDate}}</pre>
+		      	 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="gameDate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+		      	 <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event)">
+	                	<i class="glyphicon glyphicon-calendar"></i>
+	                </button>
+                </span>
+	      	</div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+  </div>
+
+
+<!-- Find Games Modal -->
+	<div id="findGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Find Games</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input class="form-control" placeholder="City" ng-model="findCity" type="text" />
+	      	<input class="form-control" placeholder="State" ng-model="findState" type="text" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>

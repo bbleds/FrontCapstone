@@ -29,7 +29,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
-	generalVariables.checkUserLogin("mainPage");
+	generalVariables.checkUserLogin("main");
 
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();

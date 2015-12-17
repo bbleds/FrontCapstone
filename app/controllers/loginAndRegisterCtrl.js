@@ -17,7 +17,7 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 	var appRef = new Firebase("https://frontcapstone.firebaseio.com");
 
 	//see if user is logged in, and if so, redirect to main page
-	generalVariables.checkUserLogin("mainPage");
+	generalVariables.checkUserLogin("main");
 
 	//registration info
 	$scope.registerEmail;
@@ -112,7 +112,7 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		    //new path to go to 
 		     $rootScope.$apply(function() {
 
-		       $location.path("/mainPage");
+		       $location.path("/main");
 		        console.log($location.path());
 		      });
 		  }
