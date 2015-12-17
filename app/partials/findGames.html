@@ -39,7 +39,7 @@
 								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
 								<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
 								<div uib-collapse="isCollapsed">
-									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.$id}}</p></div>
+									<div ng-repeat="user in GameUsers" class="well well-lg"><p>{{user.username}}</p></div>
 								</div>
 							</div>
 						</div>

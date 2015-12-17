@@ -30,6 +30,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/finishedGames.html",
 		controller: "finishedGamesCtrl"
 	})
+	.when("/notifications",  {
+		templateUrl: "app/partials/notifications.html",
+		controller: "notificationCtrl"
+	})
 	.when("/games/:individualGame",  {
 		templateUrl: "app/partials/indivGame.html",
 		controller: "indivGameCtrl"

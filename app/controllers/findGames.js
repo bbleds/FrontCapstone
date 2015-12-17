@@ -237,7 +237,32 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         .then(function(data){
           //need to set a variable to data and return a promise or something  to give to other module
           console.log("data ", data);
-          $scope.GameUsers = data;
+
+          	//array to hold filtered user objects
+          	var matchedUsersInGame = []
+
+
+          	//go into firebase users object
+          		$firebaseArray(ref.child("Users")).$loaded()
+
+          		//when all users in firebase are loaded
+          		.then(function(usersInFirebase){
+          			console.log("users in firebase ", usersInFirebase);
+
+          			//for each user in data
+          			for (var i = 0; i < data.length; i++){
+          				console.log("data[i] ", data[i]);
+
+	          			//filter users in firebase users object by 'id's and match to ids of users in current game (data[i])
+	          			_.filter(usersInFirebase, function(userIndex){
+	          				if(data[i].$value === userIndex.$id){
+	          					matchedUsersInGame.push(userIndex);
+	          				}
+	          			})
+	          		}
+	          		
+		          $scope.GameUsers = matchedUsersInGame;
+          		})
           
         })
 
