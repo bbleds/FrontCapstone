@@ -4,6 +4,8 @@ app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
+
+
 	//show and close alerts
 		$scope.show = false;
 		$scope.showAlert = function(object) {
