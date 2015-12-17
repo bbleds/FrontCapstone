@@ -87,10 +87,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 				 } else {
-				 	$scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+				 	console.log("no matches found for this index");
 				 }
 
 				});
+
+				if($scope.gamesFound.length == 0){
+					$scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+				}
 
 
 			// $scope.gamesFound = data;
