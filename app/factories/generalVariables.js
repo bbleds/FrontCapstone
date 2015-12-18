@@ -5,6 +5,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
   	var userUid;
     var currentUserName;
   	var ref = new Firebase("https://frontcapstone.firebaseio.com");
+    var noteNumber;
 
   	return {
   		getUid : function(){
@@ -96,6 +97,49 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         })
 
 
+      },
+
+      setUnreadNotifications : function(){
+          //set promise
+          var deffered = $q.defer();
+
+        var unreadArray = []
+
+        //go into firebase
+        //go into current user's uid
+
+        var allNotifs = $firebaseArray(ref.child("Users").child(userUid).child("notifications"));
+        
+        //get notifcations
+        allNotifs.$loaded()
+        .then(function(noteResponse){
+
+
+          _.filter(noteResponse, function(note){
+            console.log("note ", note);
+
+            if(note.read === "false"){
+              //push all notifications where read = false into array
+              console.log("this hasnt been read yet");
+              unreadArray.push(note)
+            }
+          })
+
+          //set length of that array to noteNumber
+          noteNumber = unreadArray.length;
+          console.log("noteNumber ", noteNumber);
+
+          deffered.resolve(noteNumber);
+
+        })
+
+        return deffered.promise;
+
+
+      },
+
+      getUnreadNotifications: function(){
+        return noteNumber
       }
 
   	}

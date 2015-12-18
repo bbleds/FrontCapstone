@@ -5,7 +5,6 @@ app.controller("mainPageCtrl",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
 
-
 	//show and close alerts
 		$scope.show = false;
 		$scope.showAlert = function(object) {
@@ -35,6 +34,17 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();
+
+	//get notification promise from generalVariables
+	$scope.noteNumber = generalVariables.setUnreadNotifications()
+
+	//when promise is returned
+	.then(function(response){
+		console.log("got it back ", response);
+
+		//set response equal to noteNumber on scope
+		$scope.noteNumber = response;
+	});
 
 	//lodash
 		//how to pass this as depemdency in app.js

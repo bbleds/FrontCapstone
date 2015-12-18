@@ -127,16 +127,46 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	          	if(index.$value === generalVariables.getUid()){
 	          		console.log("this user should leave game now");
 
-	          		//removes user from GameUsers object
-	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
-
-	          		$scope.showAlert({type:"success",body:"You left the game!"});
-
 	          		//does a transaction on firebase game to reduce number of current players
 	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
 					   
 					  return currentPlayers - 1;
 					});
+
+					//send notification
+
+					//get uids of other players in game
+					var playersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
+
+					playersInGame.$loaded(function(data){
+						console.log("data ", data);
+
+						var sendUidArray = []
+
+						//go into usersobject in firebase to each of other players,
+						for(var i =0; i < data.length; i++){
+							console.log("data[i] ", data[i]);
+
+							//if data[i] is not equal to current user logged in
+							if(data[i].$value !== generalVariables.getUid()){
+								sendUidArray.push(data[i].$value)
+							}
+						}
+
+						//send notifications
+						for(var x = 0; x < sendUidArray.length; x++){
+							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
+								"body" : "someone left a game of yours: "+game.$id,
+								"read" : "false"
+							})
+						}
+						
+					})
+
+					//removes user from GameUsers object
+	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
+
+	          		$scope.showAlert({type:"success",body:"You left the game!"});
 	          	}
 	          })
 	          
@@ -158,6 +188,37 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//functionlaity for host user cancelling game
 		$scope.cancelGame = function(){
 			console.log("this game should now be removed");
+
+			//send notifications for cancelling
+
+					//get uids of other players in game
+					var playersInGame = $firebaseArray(ref.child("GameUsers").child($scope.gameToCancel.$id));
+
+					playersInGame.$loaded(function(data){
+						console.log("data ", data);
+
+						var sendUidArray = []
+
+						//go into usersobject in firebase to each of other players,
+						for(var i =0; i < data.length; i++){
+							console.log("data[i] ", data[i]);
+
+							//if data[i] is not equal to current user logged in
+							if(data[i].$value !== generalVariables.getUid()){
+								sendUidArray.push(data[i].$value)
+							}
+						}
+
+						//send notifications
+						for(var x = 0; x < sendUidArray.length; x++){
+							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
+								"body" : "someone cancelled a game you were in: "+$scope.gameToCancel.$id,
+								"read" : "false"
+							})
+						}
+						
+					})
+
 
 			// usersGames.array.indexOf();
 			//remove something from array with index of
