@@ -72,7 +72,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//create Game
 	$scope.createGame = function(){
-		var amOrPm
+		var amOrPm;
 
 		//collapse search options
 		$scope.searchOptions = true;
@@ -126,8 +126,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				.then(function(response){
 					console.log("response ", response);
 
-					var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle});
+					var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle, "city": $scope.gameCity, "address": $scope.streetAddress, "maxPlayers": $scope.gameMaxPlayers,
+				"minPlayers": $scope.gameMinPlayers, "time" : timeToPass, "date": dateToPass, "state": $scope.gameState});
 					var objectToAdd = theOne[0];
+
+					console.log("theOne ", theOne);
 
 					//add host user to game created
 					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
