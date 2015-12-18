@@ -217,6 +217,37 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//display success message through nav notification bar
 				$scope.showAlert({type:"success", body:"Awesome! Joined game successfully!"});
 
+				//send notification to other players
+
+					//get uids of other players in game
+					var playersInGame = $firebaseArray(ref.child("GameUsers").child(selectedGame.$id));
+
+					playersInGame.$loaded(function(data){
+						console.log("data ", data);
+
+						var sendUidArray = []
+
+						//go into usersobject in firebase to each of other players,
+						for(var i =0; i < data.length; i++){
+							console.log("data[i] ", data[i]);
+
+							//if data[i] is not equal to current user logged in
+							if(data[i].$value !== generalVariables.getUid()){
+								sendUidArray.push(data[i].$value)
+							}
+						}
+
+						//send notifications
+						for(var x = 0; x < sendUidArray.length; x++){
+							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
+								"body" : "someone joined a game of yours: "+selectedGame.$id,
+								"read" : "false"
+							})
+						}
+						
+					})
+
+
 			//if it doesnt exist
 			} else {
 
