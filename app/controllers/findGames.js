@@ -13,8 +13,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//how to pass this as depemdency in app.js
 	_ = window._;
 
-	console.log("poopshoot -------------------------->>>>");
-
 	//collapse user toggle
 	$scope.isCollapsed = true;
 
