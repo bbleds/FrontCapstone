@@ -4,7 +4,18 @@ app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-		//show main default for logging in
+	//see if user is logged in 
+	var ref = new Firebase("https://frontcapstone.firebaseio.com");
+	// generalVariables.checkUserLogin("main");
+
+	ref.onAuth(function(authdata){
+		console.log("authdata ", authdata);
+		if(authdata === null){
+			  console.log("Client unauthenticated.");
+        	    $location.path("/login");
+        	}  else {
+
+        			//show main default for logging in
 		$scope.showMainDefault = function(){
 			console.log("should now show main defualt on main Page");
 			//shows main default display
@@ -14,9 +25,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			$scope.searchOptions = true;
 		}
 
-	//see if user is logged in 
-	var ref = new Firebase("https://frontcapstone.firebaseio.com");
-	generalVariables.checkUserLogin("main");
 
 	//be sure to clear out all games that are finished
 	generalVariables.checkFinishedGames();
@@ -260,5 +268,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			    return '';
 			  };
+
+
+        	}
+
+        });
+
 
 	}]);

@@ -55,6 +55,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								//push new object into notifications array
 								$scope.notificationsArray.push(newNotificationObject);
 
+								//tell user something happened
+									$.notify({
+									//icon and message
+									icon: 'glyphicon glyphicon-ok',
+									message: "You have a new notification"
+								},{
+									// settings
+									type: 'success'
+								});
+
 							})
 
 						} else if(event.event === "child_removed"){
