@@ -1,0 +1,47 @@
+<!-- Game Creation Modal -->
+	<div id="createGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Create A Game</h4>
+	      </div>
+	      <div class="modal-body">
+	      <!-- Sport selector -->
+	      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control">
+
+	      	 <input type="text" placeholder="Street address" ng-model="streetAddress" class="form-control"/>
+	      	<form class="form-inline">
+		      	 <input type="text" placeholder="City" ng-model="gameCity" class="form-control"/>
+		      	 <!-- State selector -->
+			    <input type="text" ng-model="gameState" placeholder="State" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+			</form>
+			 
+		
+	      	<input class="form-control" min="1" max="50" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
+	      	<input class="form-control" min="1" max="25" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />
+
+	      	<div class="well">
+	      	<!-- Time selector -->
+		      	<pre class="alert alert-info">Time Selected: {{gameTime | date:'shortTime' }}</pre>
+			    <uib-timepicker ng-model="gameTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+
+			<!-- Date selector -->
+		      	<pre class="alert alert-info">Date Selected: {{gameDate}}</pre>
+		      	 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="gameDate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+		      	 <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="open($event)">
+	                	<i class="glyphicon glyphicon-calendar"></i>
+	                </button>
+                </span>
+	      	</div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+  </div>

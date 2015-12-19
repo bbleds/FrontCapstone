@@ -32,6 +32,9 @@
 	                    </div>
 	                </li>
 	                <li>
+	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> Profile</a>
+	                </li>
+	                <li>
 	                   <a id="notificationsSide" href="#/notifications" ng-click="searchOptions = true">Notifications <span class="glyphicon glyphicon-comment">{{noteNumber}}</span></a>
 	                </li>
 	                <li>
@@ -50,6 +53,10 @@
 		
 	</div>
 
+	<!-- game creation modal -->
+	<div ng-include="'./app/partials/gameCreationModal.html'"></div>
+	<!-- find games modal -->
+	<div ng-include="'./app/partials/findGamesModal.html'"></div>
 	
 	
 	
