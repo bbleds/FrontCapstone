@@ -13,6 +13,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//how to pass this as depemdency in app.js
 	_ = window._;
 
+
+	//show and close alerts
+		$scope.show = false;
+		$scope.showAlert = function(object) {
+			//object should have two keys 1)"type" (equal to: 'success' or 'danger'), and 2) "body" (equal to: message we want to display)
+
+			$scope.alertMessage = object;
+		    $scope.show = true;
+		};
+
 	//collapse user toggle
 	$scope.isCollapsed = true;
 
