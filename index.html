@@ -7,6 +7,40 @@
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body ng-app="MainApp">
+
+	<div id="navAndSidebar">
+		 <!-- navbar -->
+				<div ng-include="'./app/partials/navBar.html'"></div>
+		
+	        <!-- Sidebar -->
+	        <div id="sidebar-wrapper">
+	            
+	            <ul class="sidebar-nav">
+	                <li class="sidebar-brand">
+	                    <a href="#">
+	                    </a>
+	                </li>
+	                <li>
+	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Games</a>
+	                    <div class="collapse" id="collapseExample">
+	                      <div class="well">
+	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">Create Game</a>
+	                        <a href="#/findGames" data-toggle="modal" data-target="#findGameModal">Find Game</a>
+	                        <a href="#/currentGames" ng-click="searchOptions = true">Current Games</a>
+	                        <a href="#/finishedGames" ng-click="searchOptions = true">Finished Games</a>
+	                      </div>
+	                    </div>
+	                </li>
+	                <li>
+	                   <a id="notificationsSide" href="#/notifications" ng-click="searchOptions = true">Notifications <span class="glyphicon glyphicon-comment">{{noteNumber}}</span></a>
+	                </li>
+	                <li>
+	                  <a href="#/login" ng-click="logOutUser(); searchOptions = true"> Log Out</a>
+	                </li>
+	            </ul>
+	        </div>
+	        <!-- /#sidebar-wrapper -->
+	</div>
 	
 
 	<div id="mainContainer" ng-view>

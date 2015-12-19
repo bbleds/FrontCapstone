@@ -166,4 +166,7 @@ a {
   color: whitesmoke;
   font-size: 2.5rem; }
 
+#navAndSidebar {
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */

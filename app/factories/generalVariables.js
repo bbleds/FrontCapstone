@@ -41,6 +41,9 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
                 //set current username
                 currentUserName = data[1].$value
+
+                //show sidebar options
+                angular.element("#navAndSidebar").css({"display":"block"})
               })
 
         	   //if user is not logged in, redirect to login page
