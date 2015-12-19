@@ -4,20 +4,6 @@ app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-
-	//show and close alerts
-		$scope.show = false;
-		$scope.showAlert = function(object) {
-			//object should have two keys 1)"type" (equal to: 'success' or 'danger'), and 2) "body" (equal to: message we want to display)
-
-			$scope.alertMessage = object;
-		    $scope.show = true;
-		};
-
-		$scope.closeAlert = function(index) {
-		    $scope.show = false;
-		};
-
 		//show main default for logging in
 		$scope.showMainDefault = function(){
 			console.log("should now show main defualt on main Page");
@@ -145,12 +131,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					//add host user to game created
 					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
 
+					//display success message through nav notification bar
+					generalVariables.generateAlert("success", "Game created successfully");
+
+					console.log("below show alert call");
+
 				})	
 			});
 
-
-			//display success message through nav notification bar
-			$scope.showAlert({type:"success", body:"Game creation successful!"});
 
 		} else {
 			console.log("you need to enter all fields");
@@ -206,11 +194,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			  $scope.clear = function () {
 			    $scope.gameDate = null;
 			  };
-
-			  // Disable weekend selection
-			  // $scope.disabled = function(date, mode) {
-			  //   return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-			  // };
 
 			  $scope.toggleMin = function() {
 			    $scope.minDate = $scope.minDate ? null : new Date();

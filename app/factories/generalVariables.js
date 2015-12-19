@@ -24,6 +24,15 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         return currentUserName;
       },
 
+      generateAlert : function(type,message){
+
+        angular.element("#mainNotification").addClass("alert-"+type);
+        angular.element("#mainNotification").html(message);
+        $("#mainNotification").fadeIn(1000);
+
+
+      },
+
       checkUserLogin : function(pathName){
           ref.onAuth(function(authData) {
         	  if (authData) {

@@ -169,4 +169,11 @@ a {
 #navAndSidebar {
   display: none; }
 
+#mainNotification {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  margin-left: -200px;
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */
