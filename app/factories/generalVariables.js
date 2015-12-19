@@ -50,6 +50,9 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
               //get username
               var arrayOfName = $firebaseArray(ref.child("Users").child(authData.uid));
 
+              //connect controller for notifications
+              angular.element("#notificationsSide").attr("ng-controller", "notificationCtrl")
+
               arrayOfName.$loaded()
               .then(function(data){
                 console.log("data ", data);

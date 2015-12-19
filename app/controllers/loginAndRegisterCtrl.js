@@ -3,11 +3,11 @@ app.controller("loginAndRegisterCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "generalVariables",
 
 function($firebaseArray, $scope, $location, $rootScope, generalVariables){
+	console.log("oooo mah ");
 
 	//lodash
 		//how to pass this as depemdency in app.js
 	_ = window._;
-
 
 	//Information For Login
 	$scope.loginEmail;
