@@ -2,19 +2,6 @@ app.controller("findGamesCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-	//show and close alerts
-		$scope.show = false;
-		$scope.showAlert = function(object) {
-			//object should have two keys 1)"type" (equal to: 'success' or 'danger'), and 2) "body" (equal to: message we want to display)
-
-			$scope.alertMessage = object;
-		    $scope.show = true;
-		};
-
-		$scope.closeAlert = function(index) {
-		    $scope.show = false;
-		};
-
 	//see if user is logged in 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 	generalVariables.checkUserLogin("findGames");
@@ -25,6 +12,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//lodash
 		//how to pass this as depemdency in app.js
 	_ = window._;
+
+	console.log("poopshoot -------------------------->>>>");
 
 	//collapse user toggle
 	$scope.isCollapsed = true;
@@ -92,8 +81,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 				});
 
+				console.log("gamesFound ", $scope.gamesFound);
+
 				if($scope.gamesFound.length == 0){
-					$scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+					// $scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
 				}
 
 

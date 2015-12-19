@@ -4,7 +4,7 @@
         <div id="page-content-wrapper"> 
             <div class="container-fluid">		            
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12">                    
 						
                     <!-- displays search options -->
                     	<div uib-collapse="searchOptions">
@@ -45,3 +45,25 @@
         </div>
         <!-- /#page-content-wrapper -->
 </div><!-- end wrapper -->
+
+<!-- Find Games Modal -->
+	<div id="findGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Find Games</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input class="form-control" placeholder="City" ng-model="findCity" type="text" />
+	      	<input class="form-control" placeholder="State" ng-model="findState" type="text" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>

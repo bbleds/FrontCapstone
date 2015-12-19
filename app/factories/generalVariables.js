@@ -20,6 +20,8 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         ref.unauth(); 
       },
 
+
+
       getCurrentUserName : function(){
         return currentUserName;
       },
@@ -46,10 +48,11 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
               arrayOfName.$loaded()
               .then(function(data){
-                console.log("user ", data[1].$value);
+                console.log("data ", data);
+                console.log("user ", data[2].$value);
 
                 //set current username
-                currentUserName = data[1].$value
+                currentUserName = data[2].$value
 
                 //show sidebar options
                 angular.element("#navAndSidebar").css({"display":"block"})
