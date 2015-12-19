@@ -44,6 +44,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//logOut user
 	$scope.logOutUser = function(){
+		console.log("log out bruh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		//unauth ref
 		ref.unauth();
@@ -131,8 +132,15 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					//add host user to game created
 					ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid())
 
-					//display success message through nav notification bar
-					generalVariables.generateAlert("success", "Game created successfully");
+					//display success message through notification
+							$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-ok',
+								message: "Game created successfully!"
+							},{
+								// settings
+								type: 'success'
+							});
 
 					console.log("below show alert call");
 

@@ -4,6 +4,7 @@
 	<title>GameItUp</title>
 	<link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<link rel="stylesheet" type="text/css" href="styles/animate.css">
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body ng-app="MainApp">
@@ -38,7 +39,7 @@
 	                   <a id="notificationsSide" href="#/notifications" ng-click="searchOptions = true">Notifications <span class="glyphicon glyphicon-comment">{{noteNumber}}</span></a>
 	                </li>
 	                <li>
-	                  <a href="#/login" ng-click="logOutUser(); searchOptions = true"> Log Out</a>
+	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> Log Out</a>
 	                </li>
 	            </ul>
 	        </div>
@@ -57,6 +58,7 @@
 		
 	<script type="text/javascript" src="lib/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/lodash/dist/lodash.min.js"></script>
 
 	<!-- angular links -->
@@ -76,6 +78,7 @@
 	<script type="text/javascript" src="app/controllers/finishedGames.js"></script>
 	<script type="text/javascript" src="app/controllers/indivGameCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/notificationsCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/logOutCtrl.js"></script>
 
 </body>
 </html>

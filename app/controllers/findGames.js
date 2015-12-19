@@ -29,16 +29,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//collapse find settings
 	$scope.searchOptions = true;
 
-	//logOut user
-	$scope.logOutUser = function(){
-
-		//unauth ref
-		ref.unauth();
-
-		//navigate back to main
-		$location.path("/login");
-	}
-
 	//prelist of states
 	 $scope.states = ['AL','AK','AS','AZ','AR','CA','CO','CT','DE','DC','FM','FL','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MH','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','MP','OH','OK','OR','PW','PA','PR','RI','SC','SD','TN','TX','UT','VT','VI','VA','WA','WV','WI','WY'];
 
@@ -214,7 +204,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				});
 
 				//display success message through nav notification bar
-				$scope.showAlert({type:"success", body:"Awesome! Joined game successfully!"});
+					$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-ok',
+								message: "Joined Game Successfully!"
+							},{
+								// settings
+								type: 'success'
+							});
 
 				//send notification to other players
 
@@ -249,8 +246,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			//if it doesnt exist
 			} else {
-
-				$scope.showAlert({type:"danger", body:"You have already joined this game!"});
+			$.notify({
+						//icon and message
+						icon: 'glyphicon glyphicon-remove',
+						message: "You have already joined this game!"
+					},{
+						// settings
+						type: 'danger'
+					});
 			}
 
 		});

@@ -17,10 +17,14 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
   		},
 
       logOutUser : function(){
-        ref.unauth(); 
+
+          //unauth ref
+          ref.unauth();
+
+          //navigate back to main
+          $location.path("/login");
+          
       },
-
-
 
       getCurrentUserName : function(){
         return currentUserName;
