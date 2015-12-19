@@ -2,6 +2,8 @@ app.controller("notificationCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
+	$scope.noteNumber = "5";
+
 	//reference to database
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 

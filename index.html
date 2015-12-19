@@ -36,7 +36,7 @@
 	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> Profile</a>
 	                </li>
 	                <li>
-	                   <a id="notificationsSide" href="#/notifications" ng-click="searchOptions = true">Notifications <span class="glyphicon glyphicon-comment">{{noteNumber}}</span></a>
+	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">Notifications <span>{{noteNumber}}</span></a>
 	                </li>
 	                <li>
 	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> Log Out</a>
