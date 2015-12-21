@@ -28,6 +28,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 				dbNotifications.$loaded()
 				.then(function(data){
+
+					//WHY IS THIS RUNNING TWICE???????????????????
+					console.log("RUNNING >>>>>>>>>>>>>>>>>>>");
 					console.log("data ", data);
 
 					for(var i = 0; i < data.length; i++){
@@ -60,7 +63,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									$.notify({
 									//icon and message
 									icon: 'glyphicon glyphicon-ok',
-									message: "You have a new notification"
+									message: newNote[0].$value
 								},{
 									// settings
 									type: 'success'
