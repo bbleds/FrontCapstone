@@ -117,7 +117,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		$scope.leaveGame = function(game){
 			console.log("user wants to leave game ", game);
 
-			//remove from DOM
+			//remove game from DOM
 			for(var i = 0; i < $scope.usersGames.length; i++){
 				console.log("usersGames[i] ", $scope.usersGames[i]);
 
@@ -211,6 +211,18 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//functionlaity for host user cancelling game
 		$scope.cancelGame = function(){
 			console.log("this game should now be removed");
+
+			//remove game from DOM
+			for(var i = 0; i < $scope.usersGames.length; i++){
+				console.log("usersGames[i] ", $scope.usersGames[i]);
+
+				if($scope.usersGames[i].$id === $scope.gameToCancel.$id){
+					console.log("this should be removed (from cancel request)", $scope.usersGames[i].$id);
+
+					//splice item out of $scope.usersGames, which is output array to remove from DOM
+					$scope.usersGames.splice(i,1);
+				}
+			}
 
 			//send notifications for cancelling
 
