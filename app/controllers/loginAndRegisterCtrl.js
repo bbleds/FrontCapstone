@@ -80,8 +80,8 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 							    appRef.child("Users").child(userData.uid).set({
 							    		username : $scope.registerUserName,
 							    		uid: userData.uid,						    		
-							    		//pic is null until user uploads
-							    		profilePic: false,
+							    		//pic is null until user uploads, this is default profile pic
+							    		profilePic: "http://icreatived.com/wp-content/uploads/2014/10/Interesting-Creative-Facebook-Profile-Picture-Ideas-5.jpg",
 							    		//profile tagline
 							    		zTagline: false	
 							    });
