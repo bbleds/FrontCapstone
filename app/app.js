@@ -30,6 +30,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/finishedGames.html",
 		controller: "finishedGamesCtrl"
 	})
+	.when("/profile",  {
+		templateUrl: "app/partials/userProfile.html",
+		controller: "userProfileCtrl"
+	})
 
 	//do not attach controller here, attached controller in sidebar, otherwise controller is digested twice, resulting in odd bugs
 	.when("/notifications",  {

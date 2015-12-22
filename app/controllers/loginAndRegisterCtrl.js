@@ -75,10 +75,22 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 						    console.log("Successfully created user account with uid:", userData.uid);
 
 						    //set user details
-						    appRef.child("Users").child(userData.uid).set({
-						    		username : $scope.registerUserName,
-						    		uid: userData.uid
-						    });
+
+							    //set up username, pass and profile pic
+							    appRef.child("Users").child(userData.uid).set({
+							    		username : $scope.registerUserName,
+							    		uid: userData.uid,						    		
+							    		//pic is null until user uploads
+							    		profilePic: null
+							    });
+
+							    //set up notifications
+							    appRef.child("Users").child(userData.uid).child("notifications").push({
+							    	body : "This is where you will see all activity!",
+							    	read: false,
+							    	archived: false
+							    })
+
 
 						    //log user in
 
