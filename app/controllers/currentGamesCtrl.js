@@ -209,7 +209,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							}
 						}
 
-						//send notifications
+						//send notifications/feedback to other users who were in the game
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : "someone cancelled a game you were in: "+$scope.gameToCancel.$id,
@@ -220,8 +220,19 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					})
 
 
-			// usersGames.array.indexOf();
-			//remove something from array with index of
+			//give feedback to say game was cancelled
+				//feedback to user who cancelled
+				$.notify({
+						//icon and message
+						icon: 'glyphicon glyphicon-ok',
+						message: "Game: "+$scope.gameToCancel.sportTitle+" cancelled successfully"
+					},{
+						// settings
+						type: 'warning'
+					});
+				
+
+
 
 			//remove game from firebase
 			ref.child("Games").child($scope.gameToCancel.$id).remove();
@@ -229,8 +240,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			//remove game from game users
 			ref.child("GameUsers").child($scope.gameToCancel.$id).remove();
 
-			//give feedback to say game was cancelled
-			$scope.showAlert({type:"success",body:"Game successfully cancelled!"});
 
 
 		}

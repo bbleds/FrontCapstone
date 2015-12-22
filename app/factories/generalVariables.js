@@ -51,15 +51,15 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
               var arrayOfName = $firebaseArray(ref.child("Users").child(authData.uid));
 
               //connect controller for notifications
-              angular.element("#notificationsSide").attr("ng-controller", "notificationCtrl")
+              // angular.element("#notificationsSide").attr("ng-controller", "notificationCtrl")
 
               arrayOfName.$loaded()
               .then(function(data){
                 console.log("data ", data);
-                console.log("user ", data[2].$value);
+                console.log("user ", data[1].$value);
 
                 //set current username
-                currentUserName = data[2].$value
+                currentUserName = data[1].$value
 
                 //show sidebar options
                 angular.element("#navAndSidebar").css({"display":"block"})
