@@ -73,6 +73,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//function that handles removing notifications
 				$rootScope.removeNote = function(notificationClicked){
 						console.log(notificationClicked.$id +" should now be removed");
+						
+						//remove clicked notification from user's firebase
+					ref.child("Users").child(generalVariables.getUid()).child("notifications").child(notificationClicked.$id).remove()
 
 				}
 
