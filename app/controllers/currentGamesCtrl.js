@@ -156,8 +156,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						//send notifications
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
-								"body" : "someone left a game of yours: "+game.sportTitle,
-								"read" : false
+								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
+								"read" : false,
+								"archived" : false
 							})
 						}
 						
@@ -219,8 +220,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						//send notifications/feedback to other users who were in the game
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
-								"body" : "someone cancelled a game you were in: "+$scope.gameToCancel.sportTitle,
-								"read" : false
+								"body" : generalVariables.getCurrentUserName()+" cancelled a game you were in: "+$scope.gameToCancel.sportTitle,
+								"read" : false,
+								"archived" : false
 							})
 						}
 						

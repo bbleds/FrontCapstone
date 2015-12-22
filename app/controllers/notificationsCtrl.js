@@ -27,7 +27,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					$rootScope.notes = data;
 
 					//show number of unread notifications by setting this initial variable equal to the length of an array of all notifications in which the "read" key is false, 
-					var unreadNotes = _.filter(data, {"read": false})
+					var unreadNotes = _.filter(data, {"read": false, "archived": false})
 					$scope.newNotes = unreadNotes.length;				
 
 					//watch for changes to notification array, this is applied to rootscope not scope
@@ -48,7 +48,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									$.notify({
 									//icon and message
 									icon: 'glyphicon glyphicon-ok',
-									message: newNote[0].$value
+									message: newNote[1].$value
 								},{
 									// settings
 									type: 'success'
@@ -70,12 +70,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 				}
 
-				//function that handles removing notifications
+				//function that handles archiving notifications
 				$rootScope.removeNote = function(notificationClicked){
 						console.log(notificationClicked.$id +" should now be removed");
 						
 						//remove clicked notification from user's firebase
-					ref.child("Users").child(generalVariables.getUid()).child("notifications").child(notificationClicked.$id).remove()
+					ref.child("Users").child(generalVariables.getUid()).child("notifications").child(notificationClicked.$id).child("archived").set(true);
 
 				}
 

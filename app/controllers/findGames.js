@@ -236,8 +236,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						//send notifications
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
-								"body" : "someone joined a game of yours: "+selectedGame.sportTitle,
-								"read" : false
+								"body" : generalVariables.getCurrentUserName()+" joined a game of yours: "+selectedGame.sportTitle,
+								"read" : false,
+								"archived" : false
 							})
 						}
 						
