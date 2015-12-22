@@ -116,8 +116,23 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//functionlaity for user leaving game
 		$scope.leaveGame = function(game){
 			console.log("user wants to leave game ", game);
+
+			//remove from DOM
+			for(var i = 0; i < $scope.usersGames.length; i++){
+				console.log("usersGames[i] ", $scope.usersGames[i]);
+
+				if($scope.usersGames[i].$id === game.$id){
+					console.log("this should be removed ", $scope.usersGames[i].$id);
+
+					//splice item out of $scope.usersGames, which is output array to remove from DOM
+					$scope.usersGames.splice(i,1);
+				}
+			}
+
 			//remove user from gameUsers
 			var usersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
+
+
 
 	        usersInGame.$loaded()
 	        .then(function(data){
