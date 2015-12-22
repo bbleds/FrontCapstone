@@ -18,6 +18,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				//check if authdata/session exists, and if so, load notifications.html
 				generalVariables.checkUserLogin("notifications");
 
+				//holds number of new notifications
+				$scope.newNotes = 5;
+
 				var dbNotifications = $firebaseArray(ref.child("Users").child(generalVariables.getUid()).child("notifications"));
 
 				console.log("dbNotifications ", dbNotifications);
