@@ -16,6 +16,7 @@
 							<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
 							<h3>current players: {{game.currentPlayers}}</h3>
 							<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
+							<h3>Host: @{{game.hostUserName}} <img class="picThumb" src="{{game.hostUserPic}}"</h3>
 						</a>
 							<!-- if user is host of game, load hostUser Settings -->
 							<div ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>

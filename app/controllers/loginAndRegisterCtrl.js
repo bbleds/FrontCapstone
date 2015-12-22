@@ -81,14 +81,16 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 							    		username : $scope.registerUserName,
 							    		uid: userData.uid,						    		
 							    		//pic is null until user uploads
-							    		profilePic: null
+							    		profilePic: false,
+							    		//profile tagline
+							    		zTagline: false	
 							    });
 
 							    //set up notifications
 							    appRef.child("Users").child(userData.uid).child("notifications").push({
 							    	body : "This is where you will see all activity!",
 							    	read: false,
-							    	archived: false
+							    	archived: false							    							    	
 							    })
 
 

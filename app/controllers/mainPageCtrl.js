@@ -21,8 +21,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	//store current username in variable
         	$scope.currentUsername = generalVariables.getCurrentUserName();
 
-        	// variable to holder user profile picture
-        	$scope.profilePic = null;
+        	
+        	//get profile picture 
+        	$firebaseArray(ref.child("Users").child(generalVariables.getUid())).$loaded()
+        		.then(function(userData){        	
+        			$scope.profilePic = userData[1].$value;
+
+        		});        	
 
 
 	//be sure to clear out all games that are finished
@@ -122,6 +127,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"date": dateToPass,
 				"hostUser": generalVariables.getUid(),
 				"hostUserName": generalVariables.getCurrentUserName(),
+				"hostUserPic" : $scope.profilePic,
 				"finished": false
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));

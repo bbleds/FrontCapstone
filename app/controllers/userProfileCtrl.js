@@ -15,6 +15,53 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	    $location.path("/login");
         	}  else {
 
+        		//variables to hold any info from user requesting to edit profile
+        		$scope.profilePicEntered;
+        		$scope.taglineEntered;
+
+        		//set username
+        		$scope.userName = generalVariables.getCurrentUserName();
+
+        		//get profile picture and profile tagline from firebase and set to $scope.profilePic & $scope.profileTag variable
+        		$firebaseArray(ref.child("Users").child(generalVariables.getUid())).$loaded()
+        		.then(function(userData){
+        			// console.log("userData ", userData);
+        			$scope.profilePic = userData[1].$value;
+
+        			$scope.profileTag = userData[4].$value;
+
+        		});
+
+        		//function to change profile picture
+        		$scope.editUserDetails = function(){
+
+        			//if new profil pic enetered
+        			if($scope.profilePicEntered){
+        				console.log("we should now change the pic");
+        			//set profile picture to new picture given by user
+        			ref.child("Users").child(generalVariables.getUid()).child("profilePic").set($scope.profilePicEntered);
+
+        			//change profile pic to what user entered
+        			$scope.profilePic = $scope.profilePicEntered;
+        			}
+        			if($scope.taglineEntered){
+        				console.log("we should now change tagline");
+
+        				//set profile tagline to new tagline given by user
+        			ref.child("Users").child(generalVariables.getUid()).child("zTagline").set($scope.taglineEntered);
+
+        			//change profile tagline to what user entered
+        			$scope.profileTag = $scope.taglineEntered
+
+        			}
+
+        			else {
+        				console.log("you need to enter someting bruh");
+        			}
+        		}
+
+
+
         	}
         });
 }]);

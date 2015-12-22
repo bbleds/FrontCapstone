@@ -6,8 +6,59 @@
                 <div class="row">
                     <div class="col-lg-12">                    
 						
-                  	<p>Poop</p>
+                      <!-- if there is a profile pic -->
+                      <div id="profile_current_pic" ng-if="profilePic !== false" class="user_profile_pic" style="background-image: url({{profilePic}})">
+                      </div>
 
+                      <!-- if there is no profile pic -->
+                      <div id="profile_current_pic" ng-if="profilePic === false" class="user_profile_pic">
+                          <span class="glyphicon glyphicon-king"></span>
+                      </div>
+                        
+
+
+                        <p class="userNameDisplay">@{{userName}}</p>
+
+                    <div id="profile_tagline">
+                        <!-- if there is a profile tagline -->
+                        <div ng-if="profileTag !== false" class="user_profile_tag">
+                            <p>{{profileTag}}</p>
+                        </div>
+
+                        <!-- if there is no profile tagline -->
+                        <div ng-if="profileTag === false" class="user_profile_tag">
+                            <p>No tagline entered</p>
+                        </div>
+                        
+                    </div>
+
+                    <button id="editProfileBtn" class="btn" data-toggle="modal" data-target="#editProfileModal">Edit Profile</button>
+
+    <!-- edit profile modal -->
+            <div id="editProfileModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3>Edit Profile</h3>                
+                  </div>
+                  <div class="modal-body">
+
+                    <h5>Profile Picture</h5>
+                       <input class="form-control" ng-model="profilePicEntered" placeholder="Change profile picture: (URL of image)" type="text" />
+
+                        <h5>Profile Discription</h5>
+                        <textarea class="form-control" ng-model="taglineEntered" rows="5" placeholder="my tagline"></textarea>
+                   
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="editUserDetails()" data-dismiss="modal">Save</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
                     
                       
                 </div>
@@ -15,5 +66,7 @@
         </div>
         <!-- /#page-content-wrapper -->
 </div><!-- end wrapper -->
+
+
 
 

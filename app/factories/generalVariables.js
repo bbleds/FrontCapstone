@@ -6,6 +6,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
     var currentUserName;
   	var ref = new Firebase("https://frontcapstone.firebaseio.com");
     var noteNumber;
+    var generalProfilePic;
 
   	return {
   		getUid : function(){
@@ -58,10 +59,10 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
                 console.log("data ", data);
 
                 //data[index] will change if notifcations key is deleted on a user
-                console.log("user ", data[2].$value);
+                console.log("user ", data[3].$value);
 
                 //set current username
-                currentUserName = data[2].$value
+                currentUserName = data[3].$value
 
                 //show sidebar options
                 angular.element("#navAndSidebar").css({"display":"block"})

@@ -151,8 +151,9 @@ a {
   position: relative;
   margin-top: 50px;
   text-align: center;
-  background-color: rebeccapurple;
-  border-radius: 5px; }
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center center; }
   #userAvatar span {
     font-size: 7rem;
     margin-top: 40px;
@@ -184,5 +185,37 @@ a {
 
 .note {
   cursor: pointer; }
+
+#profile_current_pic {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  text-align: center;
+  background-color: tomato;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center center; }
+  #profile_current_pic span {
+    font-size: 7rem;
+    margin-top: 40px;
+    color: white; }
+
+.userNameDisplay {
+  text-align: center;
+  font-size: 2rem; }
+
+#profile_tagline {
+  text-align: center; }
+
+#editProfileBtn {
+  width: 100px;
+  left: 50%;
+  position: relative;
+  margin-left: -50px; }
+
+.picThumb {
+  width: 50px;
+  border-radius: 3px;
+  margin-right: 10px; }
 
 /*# sourceMappingURL=main.css.map */

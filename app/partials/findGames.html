@@ -29,7 +29,7 @@
 								<p><strong>Time:</strong> {{game.time}}</p>
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
 								<p><strong>current players:</strong> {{game.currentPlayers}}</p>
-								<p>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
+								<p><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 							</a>
 								<!-- if game is full, output disabled full btn, if not, output join btn -->
 								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
