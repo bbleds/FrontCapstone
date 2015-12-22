@@ -157,7 +157,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : "someone left a game of yours: "+game.$id,
-								"read" : "false"
+								"read" : false
 							})
 						}
 						
@@ -213,7 +213,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : "someone cancelled a game you were in: "+$scope.gameToCancel.$id,
-								"read" : "false"
+								"read" : false
 							})
 						}
 						

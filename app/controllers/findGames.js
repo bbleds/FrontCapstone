@@ -237,7 +237,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						for(var x = 0; x < sendUidArray.length; x++){
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : "someone joined a game of yours: "+selectedGame.$id,
-								"read" : "false"
+								"read" : false
 							})
 						}
 						

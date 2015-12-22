@@ -176,4 +176,7 @@ a {
   margin-left: -200px;
   display: none; }
 
+.note {
+  cursor: pointer; }
+
 /*# sourceMappingURL=main.css.map */

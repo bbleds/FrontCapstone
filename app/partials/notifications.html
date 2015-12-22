@@ -5,8 +5,9 @@
             <div class="container-fluid">		            
                 <div class="row">
                     <div class="col-lg-12">
-                        <div ng-repeat="notification in notes">
-							<p>Notification: {{notification.body}}</p>
+                        <div ng-repeat="notification in notes | orderBy:'-read':true">
+							<p ng-if="notification.read !== true" ng-click="changeRead(notification)">Notification: {{notification.body}} <span class="note glyphicon glyphicon-ok"></span></p>
+                            <p ng-if="notification.read === true" ng-click="removeNote(notification)">Notification: {{notification.body}} <span class="note glyphicon glyphicon-remove"></span></p>
 						</div>
                       
                 </div>
