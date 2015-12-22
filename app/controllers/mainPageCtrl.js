@@ -17,15 +17,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	    $location.path("/login");
         	}  else {
 
-        			//show main default for logging in
-		$scope.showMainDefault = function(){
-			console.log("should now show main defualt on main Page");
-			//shows main default display
-			angular.element("#defaultContent").addClass("show");
+        
+        	//store current username in variable
+        	$scope.currentUsername = generalVariables.getCurrentUserName();
 
-			//hides the find modifier
-			$scope.searchOptions = true;
-		}
+        	// variable to holder user profile picture
+        	$scope.profilePic = null;
 
 
 	//be sure to clear out all games that are finished

@@ -185,13 +185,21 @@ a{
 }
 
 #userAvatar{
-    width: 300px;
-    height: 300px;
-    border: 1px solid black;
+    width: 150px;
+    height: 150px;
     left: 50%;
-    margin-left: -150px;
+    margin-left: -75px;
     position: relative;
     margin-top: 50px;
+    text-align: center;
+    background-color: rebeccapurple;
+    border-radius: 5px;
+
+    span{
+        font-size: 7rem;
+        margin-top: 40px;
+        color: white;
+    }
 }
 
 .welcomeText{

@@ -1,9 +1,11 @@
 
 <div id="defaultContent">
 	<div id="userAvatar">
+		<div ng-if="profilePic !== null">Pic Here</div>
+		<div ng-if="profilePic === null"><span class="glyphicon glyphicon-king"></span></div>
 	</div>
 
 	<div class="welcomeText">
-		<h1>Welcome scrappy, glad to see ya.</h1>
+		<h1>Welcome {{currentUsername}}, glad to see ya.</h1>
 	</div>
 </div>
