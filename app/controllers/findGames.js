@@ -289,11 +289,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	          			//filter users in firebase users object by 'id's and match to ids of users in current game (data[i])
 	          			_.filter(usersInFirebase, function(userIndex){
+	          				
 	          				if(data[i].$value === userIndex.$id){
 	          					matchedUsersInGame.push(userIndex);
 	          				}
 	          			})
-	          		}
+	          		}	          		
 	          		
 		          $scope.GameUsers = matchedUsersInGame;
           		})
