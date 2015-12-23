@@ -76,6 +76,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.gameCity;
 	$scope.gameDate;
 	$scope.skillLevel;
+	$scope.gameDescription;
 
 	//creation success variable
 	$scope.gameCreationSuccess;
@@ -130,7 +131,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"hostUserName": generalVariables.getCurrentUserName(),
 				"hostUserPic" : $scope.profilePic,
 				"finished": false,
-				"skillLevel" : $scope.skillLevel
+				"skillLevel" : $scope.skillLevel,
+				"gameDescription" : $scope.gameDescription
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));
 

@@ -16,6 +16,8 @@
 							<h3>current players: {{selectedGame.currentPlayers}}</h3>
 							<h3>Spots left: {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
 						</div>
+						<h4 ng-if="selectedGame.gameDescription">Description: {{selectedGame.gameDescription}}</h4>
+						<h4 ng-if="!selectedGame.gameDescription">no desciption entered</h4>
     	         </div>
             </div>
         </div>
