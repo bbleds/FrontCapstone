@@ -11,6 +11,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	var objectFromFirebase = $firebaseArray(ref.child("Games"));
 
+	//get game selected by user
 	objectFromFirebase.$loaded()
 	.then(function(data){
 		console.log("data ", data)
@@ -24,6 +25,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		})
 
 	})
+
+	//functionality for comments
 
 	
 }]);

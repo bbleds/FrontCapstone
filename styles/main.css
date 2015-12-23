@@ -218,4 +218,16 @@ a {
   border-radius: 3px;
   margin-right: 10px; }
 
+#commentBox {
+  width: 100%;
+  border-top: 1px solid black; }
+  #commentBox .indivComment {
+    width: 90%;
+    border-bottom: 1px solid black;
+    margin-left: 5%;
+    margin-bottom: 20px; }
+  #commentBox .addComment {
+    width: 90%;
+    margin-left: 5%; }
+
 /*# sourceMappingURL=main.css.map */
