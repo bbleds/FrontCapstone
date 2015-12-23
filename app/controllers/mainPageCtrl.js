@@ -75,6 +75,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.gameState;
 	$scope.gameCity;
 	$scope.gameDate;
+	$scope.skillLevel;
 
 	//creation success variable
 	$scope.gameCreationSuccess;
@@ -92,7 +93,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		if($scope.gameState.length > 2){
 			console.log("Please only enter your state's abbreviation");
 
-		} else if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate ){
+		} else if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
 			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
@@ -128,7 +129,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"hostUser": generalVariables.getUid(),
 				"hostUserName": generalVariables.getCurrentUserName(),
 				"hostUserPic" : $scope.profilePic,
-				"finished": false
+				"finished": false,
+				"skillLevel" : $scope.skillLevel
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));
 

@@ -22,6 +22,12 @@
 		
 	      	<input class="form-control" min="1" max="50" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
 	      	<input class="form-control" min="1" max="25" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />
+	      	<select class="form-control" ng-model="skillLevel">
+		      <option value="" selected>Select Skill Level</option>
+			  <option value="Beginner/Casual" selected>Beginner/Casual</option>			  
+      		  <option value="Intermediate">Intermediate</option>
+      		  <option value="Advanced">Advanced</option>			 
+			</select>
 
 	      	<div class="well">
 	      	<!-- Time selector -->

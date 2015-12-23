@@ -28,6 +28,7 @@
 								<p><strong>Date:</strong> {{game.date}}</p>
 								<p><strong>Time:</strong> {{game.time}}</p>
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
+								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
 								<p><strong>current players:</strong> {{game.currentPlayers}}</p>
 								<!-- an ng-if should fix error that originates here -->
 								<p><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
