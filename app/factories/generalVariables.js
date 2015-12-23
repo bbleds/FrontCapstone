@@ -5,8 +5,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
   	var userUid;
     var currentUserName;
   	var ref = new Firebase("https://frontcapstone.firebaseio.com");
-    var noteNumber;
-    var generalProfilePic;
+    var userProfilePic;
 
   	return {
   		getUid : function(){
@@ -16,6 +15,14 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
   		setUid : function(value){
   			userUid = value;
   		},
+
+      getUserPic : function(){
+        return userProfilePic;
+      },
+
+      setUserPic : function(value){
+        userProfilePic = value;
+      },
 
       logOutUser : function(){
 

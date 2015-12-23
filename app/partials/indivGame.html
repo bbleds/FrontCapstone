@@ -17,12 +17,12 @@
 						<h4 ng-if="selectedGame.gameDescription">Description: {{selectedGame.gameDescription}}</h4>
 						<h4 ng-if="!selectedGame.gameDescription">no desciption entered</h4>
 						<div id="commentBox">
-							<div class="indivComment">
-								<p><img class="picThumb"/> Comment body</p>
+							<div ng-repeat="comment in fireComments" class="indivComment">
+								<p><img class="picThumb" src="{{comment.commentUserPic}}"/> {{comment.commentBody}}</p>								
 							</div>
 							<div class="addComment">
-									<textarea class="form-control"></textarea>
-									<button class="btn">Comment</button>
+									<textarea id="theCommentBody" class="form-control" ng-model="commentBody"></textarea>
+									<button ng-click="postComment()" class="btn">Comment</button>
 							</div>
 							
 						</div>
