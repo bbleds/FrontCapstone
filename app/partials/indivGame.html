@@ -18,8 +18,8 @@
 						<h4 ng-if="!selectedGame.gameDescription">no desciption entered</h4>
 
 						<!-- join and leave functionality -->
-						<button class="btn" ng-click="joinGame(selectedGame)">Join</button>
-						<button class="btn" ng-click="leaveGame(selectedGame)">Leave</button>
+						<button class="btn" ng-if="userIsInGame === false" ng-click="joinGame(selectedGame)">Join</button>
+						<button class="btn" ng-if="userIsInGame === true" ng-click="leaveGame(selectedGame)">Leave</button>
 
 						<!-- comments -->
 						<div id="commentBox">

@@ -18,6 +18,40 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//reference to games object in firebase
 	var objectFromFirebase = $firebaseArray(ref.child("Games"));
 
+	$scope.userIsInGame;
+
+	//variable set to true if user has joined the game already and false if user has not joined the game already
+		console.log("selectedGame ", objectName);
+		var currentUid = generalVariables.getUid();
+
+		//get all users in the current game by looking at uids in GameUsers object in firebase
+		var gameUsersArrayofCurrent = $firebaseArray(ref.child("GameUsers").child(objectName));
+
+		//if current user id doesnt exist in the game, then add game and update current players
+		gameUsersArrayofCurrent.$loaded()
+		.then(function(data){
+			console.log("data ", data);
+
+			//pluck the uids stored
+			var uidArray = _.pluck(data, "$value");
+			console.log("uidArray ", uidArray);
+
+			//see if current uid of user exists
+			var uidIndex = uidArray.indexOf(generalVariables.getUid());
+			console.log("uid index is ", uidIndex);
+
+			//if uidIndex is -1 (doesnt exist)
+			if(uidIndex === -1){
+
+				$scope.userIsInGame = false;
+
+			  } else {
+
+			  	$scope.userIsInGame = true;
+			  }
+		  })
+
+
 	//get game selected by user
 	objectFromFirebase.$loaded()
 	.then(function(data){
@@ -109,29 +143,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//funtionality for joining and leaving games
 		//Joining game
 	$scope.joinGame = function(selectedGame){
-
-		var userIsInGame = false;
-		console.log("selectedGame ", selectedGame.$id);
-		var currentUid = generalVariables.getUid();
-
-		//get all users in the current game by looking at uids in GameUsers object in firebase
-		var gameUsersArrayofCurrent = $firebaseArray(ref.child("GameUsers").child(selectedGame.$id));
-
-		//if current user id doesnt exist in the game, then add game and update current players
-		gameUsersArrayofCurrent.$loaded()
-		.then(function(data){
-			console.log("data ", data);
-
-			//pluck the uids stored
-			var uidArray = _.pluck(data, "$value");
-			console.log("uidArray ", uidArray);
-
-			//see if current uid of user exists
-			var uidIndex = uidArray.indexOf(generalVariables.getUid());
-			console.log("uid index is ", uidIndex);
-
-			//if uidIndex is -1 (doesnt exist)
-			if(uidIndex === -1){
+		
+		
+			//if user is not in game
+			if($scope.userIsInGame === false){
 
 				//push user uid into this game in gameUsers object in  firebase
 				ref.child("GameUsers").child(selectedGame.$id).push(generalVariables.getUid());
@@ -150,6 +165,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								// settings
 								type: 'success'
 							});
+
+				//set $scope.userIsInGame to false so DOM updates leave/join button to leave
+	          		$scope.userIsInGame = true;
 
 				//send notification to other players
 
@@ -184,8 +202,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			  } else {
 			  	console.log("you already joined it bruh");
 			  }
-		  });
-	    }
+		  }
+	    
 
 	    //leaving games
 	    $scope.leaveGame = function(game){
@@ -245,6 +263,10 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					//removes user from GameUsers object
 	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
 
+	          		//set $scope.userIsInGame to false so DOM updates leave/join button to join
+	          		$scope.userIsInGame = false;
+
+	          		//send alert to current user
 	          		$.notify({
 									//icon and message
 									icon: 'glyphicon glyphicon-ok',
