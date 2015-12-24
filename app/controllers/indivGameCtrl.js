@@ -36,6 +36,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	})
 
 	//functionality for posting comments
+	console.log("username is ", generalVariables.getCurrentUserName());
 		
 		//holds body of comment
 		$scope.commentBody;
@@ -50,7 +51,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				ref.child("Games").child($scope.selectedGame.$id).child("comments").push({
 					"commentBody" : $scope.commentBody,
 					"commentUser" : generalVariables.getUid(),
-					"commentUserPic" : $scope.picReturned
+					"commentUserPic" : $scope.picReturned,
+					"userName" : generalVariables.getCurrentUserName()
 				});
 
 				//clear inner html of comment element
@@ -66,7 +68,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								type: 'success'
 							});
 
-				//notify other users in game of new comment post
+			   //notify other users in game of new comment post
 				//get uids of other players in game
 					var playersInGame = $firebaseArray(ref.child("GameUsers").child($scope.selectedGame.$id));
 

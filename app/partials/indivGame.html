@@ -18,7 +18,7 @@
 						<h4 ng-if="!selectedGame.gameDescription">no desciption entered</h4>
 						<div id="commentBox">
 							<div ng-repeat="comment in fireComments" class="indivComment">
-								<p><img class="picThumb" src="{{comment.commentUserPic}}"/> {{comment.commentBody}}</p>								
+								<p><img class="picThumb" src="{{comment.commentUserPic}}"/>{{comment.userName}} :  {{comment.commentBody}}</p>								
 							</div>
 							<div class="addComment">
 									<textarea id="theCommentBody" class="form-control" ng-model="commentBody"></textarea>
