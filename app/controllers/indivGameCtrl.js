@@ -107,7 +107,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			}
 
 	//funtionality for joining and leaving games
-		//Join game
+		//Joining game
 	$scope.joinGame = function(selectedGame){
 
 		var userIsInGame = false;
@@ -186,6 +186,81 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			  }
 		  });
 	    }
+
+	    //leaving games
+	    $scope.leaveGame = function(game){
+			console.log("user wants to leave game ", game);
+
+
+			//remove user from gameUsers
+			var usersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
+
+
+
+	        usersInGame.$loaded()
+	        .then(function(data){
+
+	          //loop over users in game and find current uid
+	          _.filter(data, function(index){
+	          	if(index.$value === generalVariables.getUid()){
+	          		console.log("this user should leave game now");
+
+	          		//does a transaction on firebase game to reduce number of current players
+	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
+					   
+					  return currentPlayers - 1;
+					});
+
+					//send notification
+
+					//get uids of other players in game
+					var playersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
+
+					playersInGame.$loaded(function(data){
+						console.log("data ", data);
+
+						var sendUidArray = []
+
+						//go into usersobject in firebase to each of other players,
+						for(var i =0; i < data.length; i++){
+							console.log("data[i] ", data[i]);
+
+							//if data[i] is not equal to current user logged in
+							if(data[i].$value !== generalVariables.getUid()){
+								sendUidArray.push(data[i].$value)
+							}
+						}
+
+						//send notifications
+						for(var x = 0; x < sendUidArray.length; x++){
+							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
+								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
+								"read" : false,
+								"archived" : false
+							})
+						}
+						
+					})
+
+					//removes user from GameUsers object
+	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
+
+	          		$.notify({
+									//icon and message
+									icon: 'glyphicon glyphicon-ok',
+									message: "Left game successfully"
+								},{
+									// settings
+									type: 'warning'
+								});
+	          	}
+	          })
+	          
+	          
+	        })
+
+
+		}
 
 
 	
