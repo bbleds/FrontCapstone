@@ -28,6 +28,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 //get current games in array 
 	var gameArray = $firebaseArray(ref.child("GameUsers"));
 
+//set current uid on scope, this allows host user kick options
+$scope.hostUid = generalVariables.getUid();
+
 
 
 	gameArray.$loaded()
@@ -99,18 +102,47 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	})
 
-
+		
+		//matches users in the current game, and gives back an array of objects where every user is an object in the array
 		$scope.getGameUsers = function(gameId){
 			console.log("game searched for is ", gameId);
-	        var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
+        var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
 
-	        gameUsersArray.$loaded()
-	        .then(function(data){
-	          //need to set a variable to data and return a promise or something  to give to other module
-	          console.log("data ", data);
-	          $scope.GameUsers = data;
-	          
-	        })
+        gameUsersArray.$loaded()
+        .then(function(data){
+          //need to set a variable to data and return a promise or something  to give to other module
+          console.log("data ", data);
+
+          	//array to hold filtered user objects
+          	var matchedUsersInGame = []
+
+
+          	//go into firebase users object
+          		$firebaseArray(ref.child("Users")).$loaded()
+
+          		//when all users in firebase are loaded
+          		.then(function(usersInFirebase){
+          			console.log("users in firebase ", usersInFirebase);
+
+          			//for each user in data
+          			for (var i = 0; i < data.length; i++){
+          				console.log("data[i] ", data[i]);
+
+	          			//filter users in firebase users object by 'id's and match to ids of users in current game (data[i])
+	          			_.filter(usersInFirebase, function(userIndex){
+	          				
+	          				if(data[i].$value === userIndex.$id){
+	          					matchedUsersInGame.push(userIndex);
+	          				}
+	          			})
+	          		}	          		
+	          		
+		          $scope.GameUsers = matchedUsersInGame;
+          		})
+          
+        })
+
+
 		}
 
 		//functionlaity for user leaving game
@@ -199,7 +231,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		}
 
-		//functionlaity for host user selecting game to cancell
+		//functionlaity for host user selecting game to cancel
 		$scope.setGameToCancel = function(game){
 			console.log("user wants to cancel game ", game);
 
@@ -276,9 +308,79 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			//remove game from game users
 			ref.child("GameUsers").child($scope.gameToCancel.$id).remove();
 
-
-
 		}
+
+
+		// Options for host user to kick players
+
+			// set user to kick, sets the user that you want to click and stores the game you want to remove them from
+			$scope.setUserToKick = function(user, game){
+				$scope.userSelectedToKick = user;
+				$scope.gameToKickFrom = game;
+			}
+
+			//kick user by removing user from game users in firebase and then removing from DOM
+			$scope.kickSelectedUser = function(user){
+
+				console.log("user to kick", $scope.userSelectedToKick);
+				console.log("game to kick from", $scope.gameToKickFrom);
+
+					//remove user from gameUsers
+			var usersInGame = $firebaseArray(ref.child("GameUsers").child($scope.gameToKickFrom.$id));
+
+
+
+	        usersInGame.$loaded()
+	        .then(function(data){
+
+	          //loop over users in game and find current uid
+	          _.filter(data, function(index){
+	          	if(index.$value === $scope.userSelectedToKick.$id){
+	          		console.log("user should now be kicked");
+
+	          		// does a transaction on firebase game to reduce number of current players
+	          		ref.child("Games").child($scope.gameToKickFrom.$id).child("currentPlayers").transaction(function(currentPlayers) {
+					   
+					  return currentPlayers - 1;
+					});
+
+	          		//remove from DOM
+	          		for(var i = 0; i < $scope.GameUsers.length; i++){
+	          			if($scope.GameUsers[i].$id === $scope.userSelectedToKick.$id){
+	          				
+	          				//remove from GameUsers array
+	          				$scope.GameUsers.splice(i,1);
+	          			}
+	          		}
+
+
+					//removes user from GameUsers object
+	          		ref.child("GameUsers").child($scope.gameToKickFrom.$id).child(index.$id).remove();
+					
+					//send notification to kicked user
+					ref.child("Users").child($scope.userSelectedToKick.$id).child("notifications").push({
+								"body" : generalVariables.getCurrentUserName()+" kicked you from a game: "+ $scope.gameToKickFrom.sportTitle,
+								"read" : false,
+								"archived" : false
+							})
+
+
+	          		$.notify({
+									//icon and message
+									icon: 'glyphicon glyphicon-ok',
+									message: "Kicked user from game"
+								},{
+									// settings
+									type: 'warning'
+								});
+	          	}
+	          })
+	          
+	          
+	        })
+
+			}
+
 
 
 
