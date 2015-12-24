@@ -66,6 +66,36 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								type: 'success'
 							});
 
+				//notify other users in game of new comment post
+				//get uids of other players in game
+					var playersInGame = $firebaseArray(ref.child("GameUsers").child($scope.selectedGame.$id));
+
+					playersInGame.$loaded(function(data){
+						console.log("data ", data);
+
+						var sendUidArray = []
+
+						//go into usersobject in firebase to each of other players,
+						for(var i =0; i < data.length; i++){
+							console.log("data[i] ", data[i]);
+
+							//if data[i] is not equal to current user logged in
+							if(data[i].$value !== generalVariables.getUid()){
+								sendUidArray.push(data[i].$value)
+							}
+						}
+
+						//send notifications
+						for(var x = 0; x < sendUidArray.length; x++){
+							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
+								"body" : generalVariables.getCurrentUserName()+" commented on a game you are in: "+$scope.selectedGame.sportTitle,
+								"read" : false,
+								"archived" : false
+							})
+						}
+						
+					})
+
 
 			} else {
 				console.log("You must actually eneter a comment to post");
