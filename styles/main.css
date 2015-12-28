@@ -99,7 +99,7 @@ a {
 
 .sidebar-nav li a {
   display: block;
-  padding-top: 5%;
+  padding-top: 7%;
   text-decoration: none;
   color: white;
   height: 100%; }
@@ -265,5 +265,8 @@ a {
 .inline_input {
   width: 49%;
   display: inline; }
+
+#gameSpacer {
+  height: 0px; }
 
 /*# sourceMappingURL=main.css.map */
