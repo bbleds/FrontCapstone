@@ -128,7 +128,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 									"body" : generalVariables.getCurrentUserName()+" commented on a game you are in: "+$scope.selectedGame.sportTitle,
 									"read" : false,
-									"archived" : false
+									"archived" : false,
+									"zLink" : $scope.selectedGame.$id
 								})
 							}
 							

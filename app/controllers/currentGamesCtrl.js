@@ -205,7 +205,8 @@ $scope.hostUid = generalVariables.getUid();
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
 								"read" : false,
-								"archived" : false
+								"archived" : false,
+								"zLink" : game.$id
 							})
 						}
 						
