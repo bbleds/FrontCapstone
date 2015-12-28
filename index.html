@@ -4,6 +4,7 @@
 	<title>GameItUp</title>
 	<link rel="stylesheet" type="text/css" href="lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="styles/animate.css">
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
@@ -22,7 +23,10 @@
 	                    </a>
 	                </li>
 	                <li>
-	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Games</a>
+	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+							<span class="glyphicon glyphicon-knight"></span>
+	                    	Games
+	                    </a>
 	                    <div class="collapse" id="collapseExample">
 	                      <div class="well">
 	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">Create Game</a>
@@ -33,13 +37,22 @@
 	                    </div>
 	                </li>
 	                <li>
-	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> Profile</a>
+	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> 
+	                  	<span class="glyphicon glyphicon-user"></span>
+	                  	Profile
+	                  </a>
 	                </li>
 	                <li>
-	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">Notifications <span ng-if="newNotes">{{newNotes}}</span></a>
+	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">
+	                   <span class="glyphicon glyphicon-envelope"></span>
+	                   Notifications <span ng-if="newNotes">{{newNotes}}</span>
+	                   </a>
 	                </li>
-	                <li>
-	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> Log Out</a>
+	                <li>	      
+	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> 
+	                  	<span id="logoutGly" class="glyphicon glyphicon-sunglasses"></span>
+	                  	Log Out
+	                  </a>
 	                </li>
 	            </ul>
 	        </div>
