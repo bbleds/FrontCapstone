@@ -91,10 +91,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 		//create Game in reference 
 
-		if($scope.gameState.length > 2){
-			console.log("Please only enter your state's abbreviation");
-
-		} else if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
+	 if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
 			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
@@ -115,8 +112,25 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		var dateToPass = splitDate[0]+", "+splitDate[1]+" "+splitDate[2]+", "+splitDate[3];
 		console.log("ready to pass");
 
+		if($scope.gameDescription === "" || $scope.gameDescription === null || $scope.gameDescription === undefined){
+			$scope.gameDescription = false;
+		}
 
-		// un comment to push to firebase
+		//Tell user that state length is two long if full state name is entered
+		if($scope.gameState.length > 2){
+			$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-remove',
+								message: "Please only enter your state's abbreviation"
+							},{
+								// settings
+								type: 'warning'
+							});
+
+		}
+
+
+		// push object to firebase
 			ref.child("Games").push({
 				"sportTitle": $scope.gameTitle,
 				"maxPlayers": $scope.gameMaxPlayers,
@@ -166,7 +180,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 		} else {
-			console.log("you need to enter all fields");
+			$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-remove',
+								message: "Please enter all required fields"
+							},{
+								// settings
+								type: 'warning'
+							});
 		}
 
 	}
