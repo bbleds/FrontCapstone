@@ -28,7 +28,15 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 					//show number of unread notifications by setting this initial variable equal to the length of an array of all notifications in which the "read" key is false, 
 					var unreadNotes = _.filter(data, {"read": false, "archived": false})
-					$scope.newNotes = unreadNotes.length;				
+					$scope.newNotes = unreadNotes.length;
+
+					//check if there are no new notifications and if all current notes are archived, if so set variable to true
+					var unarchievedReadNotes = _.filter(data, {"read": true, "archived": false});
+					
+					//if there are no notifications that are not archieved and read
+					if(unarchievedReadNotes.length === 0){
+						$rootScope.noNotes = true;
+					}
 
 					//watch for changes to notification array, this is applied to rootscope not scope
 					$rootScope.notes.$watch(function(event){
