@@ -43,11 +43,34 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			//if uidIndex is -1 (doesnt exist)
 			if(uidIndex === -1){
 
-				$scope.userIsInGame = false;
+				$scope.userIsInGame = "not in game";
+				console.log("user is not in game");
 
 			  } else {
 
-			  	$scope.userIsInGame = true;
+			  	objectFromFirebase.$loaded()
+				.then(function(data){
+					console.log("data ", data)
+
+					_.filter(data, function(game){
+
+						//if host user of game clicked on the individual game, dont display join or leave buttons
+						if(game.hostUser === generalVariables.getUid()){
+							$scope.hostIsHere = true;
+							console.log("host is hur");
+						}
+					})
+				  	// if user user is host of game
+				  	if($scope.hostIsHere){
+				  		$scope.userIsInGame = "host of game";
+
+				  	} else {
+
+					  	//if user is a member of game
+					  	$scope.userIsInGame = "in game";
+				  	}
+				})
+
 			  }
 		  })
 
@@ -59,6 +82,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		_.filter(data, function(game){
 
+			//reference all data from individal game selected
 			if(game.$id === objectName){
 				console.log("the game selected is ", game);
 				$scope.selectedGame = game;
@@ -147,7 +171,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 		
 			//if user is not in game
-			if($scope.userIsInGame === false){
+			if($scope.userIsInGame = "not in game"){
 
 				//push user uid into this game in gameUsers object in  firebase
 				ref.child("GameUsers").child(selectedGame.$id).push(generalVariables.getUid());
@@ -168,7 +192,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							});
 
 				//set $scope.userIsInGame to false so DOM updates leave/join button to leave
-	          		$scope.userIsInGame = true;
+	          		$scope.userIsInGame = "in game";
 
 				//send notification to other players
 
@@ -267,7 +291,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	          		ref.child("GameUsers").child(game.$id).child(index.$id).remove();
 
 	          		//set $scope.userIsInGame to false so DOM updates leave/join button to join
-	          		$scope.userIsInGame = false;
+	          		$scope.userIsInGame = "not in game";
 
 	          		//send alert to current user
 	          		$.notify({
