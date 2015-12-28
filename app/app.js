@@ -47,15 +47,6 @@ app.config(["$routeProvider", function($routeProvider){
 	.otherwise("/login");
 }])
 
-//hide and show game options
-$("#gameSelector").click(function(){
-
-	if($("#gameSpacer").height()< 5){
-		$("#gameSpacer").animate({"height":"204px"}, 200);
-	} else if ($("#gameSpacer").height() >5){
-		$("#gameSpacer").animate({"height":"0px"}, 300);
-	}
-});
 
 
 

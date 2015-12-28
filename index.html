@@ -25,34 +25,42 @@
 	                <li id="gameSelector">
 	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 							<span class="glyphicon glyphicon-knight"></span>
-	                    	Games
+	                    	<p>Games</p>
 	                    </a>
 	                    <div class="collapse" id="collapseExample">
-	                      <div class="well">
-	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">Create Game</a>
-	                        <a href="#/findGames" data-toggle="modal" data-target="#findGameModal">Find Game</a>
-	                        <a href="#/currentGames" ng-click="searchOptions = true">Current Games</a>
-	                        <a href="#/finishedGames" ng-click="searchOptions = true">Finished Games</a>
+	                      <div id="gameOptionsWell" class="well">
+	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">
+		                        Create Game
+	                        </a>
+	                        <a href="#/findGames" data-toggle="modal" data-target="#findGameModal">
+		                        Find Game
+	                        </a>
+	                        <a href="#/currentGames" ng-click="searchOptions = true">
+		                        Current Games
+	                        </a>
+	                        <a href="#/finishedGames" ng-click="searchOptions = true">
+		                        Finished Games
+		                    </a>
 	                      </div>
 	                    </div>
 	                </li>
-	                <li id="gameSpacer"></li>
+	                
 	                <li>
 	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> 
 	                  	<span class="glyphicon glyphicon-user"></span>
-	                  	Profile
+	                  		<p>Profile</p>
 	                  </a>
 	                </li>
 	                <li>
 	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">
 	                   <span class="glyphicon glyphicon-envelope"></span>
-	                   Notifications <span ng-if="newNotes">{{newNotes}}</span>
+	                   <p>Notifications</p> <span ng-if="newNotes">{{newNotes}}</span>
 	                   </a>
 	                </li>
 	                <li>	      
 	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> 
 	                  	<span id="logoutGly" class="glyphicon glyphicon-sunglasses"></span>
-	                  	Log Out
+	                  	<p>Log Out</p>
 	                  </a>
 	                </li>
 	            </ul>
