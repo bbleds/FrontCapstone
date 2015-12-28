@@ -3,7 +3,7 @@ app.controller("findGamesCtrl",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
 	//see if user is logged in 
-	var ref = new Firebase("https://frontcapstone.firebaseio.com");
+	var ref = new Firebase("https://frontcapstone.firebaseio.com"); 
 	generalVariables.checkUserLogin("findGames");
 
 	//be sure to clear out all games that are finished
@@ -55,8 +55,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 			_.filter(data, function(n){
 
-				// console.log("n is ", n);
-
 				//check to make sure date and time of games are in the future
 
 				//if state of game in array matches state entered
@@ -82,7 +80,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				console.log("gamesFound ", $scope.gamesFound);
 
 				if($scope.gamesFound.length == 0){
-					// $scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+					$.notify({
+						//icon and message
+						icon: 'glyphicon glyphicon-remove',
+						message: "There were no games found that match criteria entered. <br>Please try again"
+					},{
+						// settings
+						type: 'warning'
+					});
 				}
 
 
@@ -127,8 +132,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 						} else {
-							// $scope.showAlert({type:"danger", body:"Sorry, no results found"});
-							//log something
+							$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-remove',
+								message: "Sorry no results found, please try again!"
+							},{
+								// settings
+								type: 'warning'
+							});
 						}
 
 						//if only city and state are entered
@@ -141,7 +152,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							 	$scope.gamesFound.push(index);
 
 							} else {
-								$scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+														$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-remove',
+								message: "Sorry no results found, please try again!"
+							},{
+								// settings
+								type: 'warning'
+							});
 							}
 
 					//if only state is entered match state
@@ -152,7 +170,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						 $scope.gamesFound.push(index);
 
 					 } else {
-					 	$scope.showAlert({type:"danger", body:"Sorry, couldn't find any matches for that"});
+					 		$.notify({
+								//icon and message
+								icon: 'glyphicon glyphicon-remove',
+								message: "Sorry no results found, please try again!"
+							},{
+								// settings
+								type: 'warning'
+							});
 					 }
 				  }
 				});
