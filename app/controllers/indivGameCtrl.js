@@ -195,7 +195,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : generalVariables.getCurrentUserName()+" joined a game of yours: "+selectedGame.sportTitle,
 								"read" : false,
-								"archived" : false
+								"archived" : false,
+								"zLink" : selectedGame.$id
 							})
 						}
 						
@@ -255,7 +256,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							ref.child("Users").child(sendUidArray[x]).child("notifications").push({
 								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
 								"read" : false,
-								"archived" : false
+								"archived" : false,
+								"zLink" : game.$id
 							})
 						}
 						
