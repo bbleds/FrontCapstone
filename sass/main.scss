@@ -12,17 +12,6 @@ body{
 	background: whitesmoke;
 }
 
-.singleGameFound{
-	width: 50%;
-    margin-left: 25%;
-	border: 1px solid black;
-    position: relative;
-
-    h1{
-        font-size: 5rem;
-    }
-}
-
 a{
 	color: inherit;
 	text-decoration: none;
@@ -384,8 +373,9 @@ a{
     }
 
     #creationActivities,#creationLocation,#creationPlayersAndSkill,#creationTimeAndDate{
-        margin-bottom: 20px;
+        margin-bottom: 0px;
         color: gray;
+        padding: 0px 50px;
     }
 
     #creationLocation{
@@ -495,6 +485,91 @@ a{
     }
 }
 
+#gameFound{
+    
+    overflow: hidden;
+    margin-top: 60px;
+
+    .jumbotron{
+        padding: 0px;
+        padding-bottom: 48px;
+        background-color: white;
+    }
+}
+
+.singleGameFound{
+    width: 50%;
+    margin-left: 25%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 3px 6px rgba(128, 128, 128, 0.31);
+
+    h1{
+        font-size: 3.7rem;
+        position: relative;
+        margin: 0px;
+        padding: 20px; 
+        background-color: $greenEmph;
+        color: white;
+
+    }
+
+    p{
+        padding-left: 20px;
+
+        &:first-of-type{
+            margin-top: 20px;
+        }
+
+        strong{
+            color: $darkHighlight;
+        }
+    }
+
+    .indivImgP{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .joinGameBtn{
+        background-color: $redEmph;
+        width: 100px;
+        color: white;
+        margin: 20px 0px 15px;
+        margin-left: -50px;
+    }
+
+    .userDisplay{
+        margin: 20px 10px 15px 0px; 
+        background-color: $darkHighlight;
+        color: white;
+    }
+
+    .well, .well-lg{
+        border-radius: 0px;
+        padding: 7px 0px 0px;
+        border: 0px;
+        border-bottom: 1px solid #e3e3e3;
+        background-color: rgba(52, 66, 90, 0.64);
+        color: white;
+
+    }
+
+    .well{
+        p{
+            margin: 5px 0px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.29);
+
+            &:last-of-type{
+                border-bottom: none;
+                padding-bottom: 0px;
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+}
 
 
 

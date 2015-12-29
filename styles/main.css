@@ -1,14 +1,6 @@
 body {
   background: whitesmoke; }
 
-.singleGameFound {
-  width: 50%;
-  margin-left: 25%;
-  border: 1px solid black;
-  position: relative; }
-  .singleGameFound h1 {
-    font-size: 5rem; }
-
 a {
   color: inherit;
   text-decoration: none; }
@@ -278,8 +270,9 @@ a {
   #createGameModal h3:nth-of-type(4) {
     color: #F6D433; }
 #createGameModal #creationActivities, #createGameModal #creationLocation, #createGameModal #creationPlayersAndSkill, #createGameModal #creationTimeAndDate {
-  margin-bottom: 20px;
-  color: gray; }
+  margin-bottom: 0px;
+  color: gray;
+  padding: 0px 50px; }
 #createGameModal #creationLocation input {
   vertical-align: top; }
   #createGameModal #creationLocation input:first-of-type {
@@ -344,5 +337,61 @@ a {
   background-color: #34425A;
   border: none;
   color: white; }
+
+#gameFound {
+  overflow: hidden;
+  margin-top: 60px; }
+  #gameFound .jumbotron {
+    padding: 0px;
+    padding-bottom: 48px;
+    background-color: white; }
+
+.singleGameFound {
+  width: 50%;
+  margin-left: 25%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 3px 6px rgba(128, 128, 128, 0.31); }
+  .singleGameFound h1 {
+    font-size: 3.7rem;
+    position: relative;
+    margin: 0px;
+    padding: 20px;
+    background-color: #22BAA0;
+    color: white; }
+  .singleGameFound p {
+    padding-left: 20px; }
+    .singleGameFound p:first-of-type {
+      margin-top: 20px; }
+    .singleGameFound p strong {
+      color: #34425A; }
+  .singleGameFound .indivImgP {
+    text-align: center;
+    margin-bottom: 30px; }
+  .singleGameFound .joinGameBtn {
+    background-color: #F25656;
+    width: 100px;
+    color: white;
+    margin: 20px 0px 15px;
+    margin-left: -50px; }
+  .singleGameFound .userDisplay {
+    margin: 20px 10px 15px 0px;
+    background-color: #34425A;
+    color: white; }
+  .singleGameFound .well, .singleGameFound .well-lg {
+    border-radius: 0px;
+    padding: 7px 0px 0px;
+    border: 0px;
+    border-bottom: 1px solid #e3e3e3;
+    background-color: rgba(52, 66, 90, 0.64);
+    color: white; }
+  .singleGameFound .well p {
+    margin: 5px 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.29); }
+    .singleGameFound .well p:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0px;
+      margin-bottom: 6px; }
 
 /*# sourceMappingURL=main.css.map */
