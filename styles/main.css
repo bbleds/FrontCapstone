@@ -254,6 +254,7 @@ a {
 .kickUser {
   cursor: pointer; }
 
+/* ========= MAIN PAGE STYLES ========== */
 .inline_input {
   width: 24%;
   display: inline; }
@@ -285,6 +286,12 @@ a {
     margin-bottom: 10px; }
 #createGameModal .modal-body {
   margin-top: -25px; }
+#createGameModal .modal-footer {
+  text-align: center; }
+#createGameModal #creationButton {
+  width: 100px;
+  background-color: #34425A;
+  border: none; }
 
 #createForm {
   text-align: center; }
@@ -325,5 +332,7 @@ a {
   top: 30px;
   font-size: 2.3rem;
   margin-top: 0px; }
+
+/* ========= FIND GAME STYLES ========== */
 
 /*# sourceMappingURL=main.css.map */
