@@ -7,7 +7,7 @@
                     <div class="col-lg-12">                    
 						
                     <!-- displays search options -->
-                    	<div uib-collapse="searchOptions">
+                    	<div id="modSearch" uib-collapse="searchOptions">
 							<div class="well well-lg">
 							<!-- filter by state, then city and then optional sport -->
 								<select ng-model="modState" class="form-control modify_search">
@@ -21,7 +21,7 @@
 						</div>
 
 
-                    	<div id="gameFound" ng-repeat="game in gamesFound">
+                    	<div class="gameFound" ng-repeat="game in gamesFound">
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
 								<h1>{{game.sportTitle}}</h1>
@@ -29,7 +29,7 @@
 								<p><strong>Time:</strong> {{game.time}}</p>
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
 								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
-								<p><strong>current players:</strong> {{game.currentPlayers}}</p>
+								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
 								<!-- an ng-if should fix error that originates here -->
 								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 							</a>

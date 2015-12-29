@@ -464,6 +464,8 @@ a{
 
 
 /* ========= FIND GAME STYLES ========== */
+
+
 #findGameModal{
 
     .modal-footer{
@@ -485,7 +487,7 @@ a{
     }
 }
 
-#gameFound{
+.gameFound{
     
     overflow: hidden;
     margin-top: 60px;
@@ -494,6 +496,30 @@ a{
         padding: 0px;
         padding-bottom: 48px;
         background-color: white;
+    }
+
+    &:nth-of-type(2n+1){
+        .singleGameFound{
+            h1{
+                background-color: $lightBlueEmph; 
+            }
+        }
+    }
+
+      &:nth-of-type(4n){
+        .singleGameFound{
+            h1{
+                background-color: $greenEmph; 
+            }
+        }
+    }
+
+      &:nth-of-type(3n+1){
+        .singleGameFound{
+            h1{
+                background-color: $redEmph; 
+            }
+        }
     }
 }
 
@@ -523,6 +549,7 @@ a{
 
         strong{
             color: $darkHighlight;
+            margin-right: 10px;
         }
     }
 
@@ -569,6 +596,14 @@ a{
         }
     }
 
+}
+
+#modSearch{
+    button{
+        background-color: $darkHighlight;
+        color: white;
+        margin-left: 20px; 
+    }
 }
 
 
