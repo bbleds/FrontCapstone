@@ -474,3 +474,27 @@ a{
 
 
 /* ========= FIND GAME STYLES ========== */
+#findGameModal{
+
+    .modal-footer{
+        text-align: center;
+    }
+
+    .modal-body{
+        input{
+            display: inline-block;
+            width: 49%;
+        }
+    }
+
+    #findGamesButton{
+        width: 100px;
+        background-color: $darkHighlight;
+        border: none; 
+        color: white;       
+    }
+}
+
+
+
+

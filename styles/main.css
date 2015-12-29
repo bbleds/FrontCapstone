@@ -334,5 +334,15 @@ a {
   margin-top: 0px; }
 
 /* ========= FIND GAME STYLES ========== */
+#findGameModal .modal-footer {
+  text-align: center; }
+#findGameModal .modal-body input {
+  display: inline-block;
+  width: 49%; }
+#findGameModal #findGamesButton {
+  width: 100px;
+  background-color: #34425A;
+  border: none;
+  color: white; }
 
 /*# sourceMappingURL=main.css.map */
