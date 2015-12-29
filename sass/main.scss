@@ -348,7 +348,7 @@ a{
 }
 
 .inline_input{
-    width: 49%;
+    width: 24%;
     display: inline;
 }
 
@@ -357,4 +357,103 @@ a{
 
 }
 
+.modal-title{
+    color: $redEmph;
+}
 
+#createGameModal {
+    h3{
+        color: $greenEmph;
+        font-size: 2.1rem;
+        background-color: #FFFFFF;
+        width: 30%;
+        margin-left: 35%;
+
+        &:nth-of-type(2){
+            color: $lightBlueEmph;
+        } 
+         &:nth-of-type(3){
+            color: rgba(102, 51, 153, 0.74);
+        }
+         &:nth-of-type(4){
+            color: $yellowEmph;
+        }
+    }
+
+    #creationActivities,#creationLocation,#creationPlayersAndSkill,#creationTimeAndDate{
+        margin-bottom: 20px;
+        color: gray;
+    }
+
+    #creationLocation{
+
+        input{
+            vertical-align: top;
+
+            &:first-of-type{
+                margin-bottom: 10px;
+            }  
+        }      
+    }
+
+   .modal-body{
+        margin-top: -25px;
+    }
+}
+
+#createForm{
+    text-align: center;
+}
+#creationSelect{
+    width: 50%;
+    color: gray;
+}
+
+#creationTimeHolder{
+
+    table {
+       display: inline-block; 
+       margin-top: -15px;       
+
+       input, button{
+        color: gray;
+       }
+        
+        .glyphicon{
+            color: #565555
+        }
+
+    }
+    p {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 23px;
+        margin-left: 20px;
+        font-size: 1.7rem;
+        color: gray;
+    }
+}
+
+#creationDateHolder{
+    input, span, p {
+        display: inline-block;
+        color: gray;
+    }
+    p {
+        font-size: 1.7rem;
+        margin-left: 53px;
+        color: gray;
+    }
+}
+
+#selectDate{
+    width: 29%;
+}
+
+.dividerHeader{
+    text-align: center;
+    position: relative;
+    top: 30px;
+    font-size: 2.3rem;
+    margin-top: 0px;
+}

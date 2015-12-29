@@ -255,10 +255,75 @@ a {
   cursor: pointer; }
 
 .inline_input {
-  width: 49%;
+  width: 24%;
   display: inline; }
 
 #gameSpacer {
   height: 0px; }
+
+.modal-title {
+  color: #F25656; }
+
+#createGameModal h3 {
+  color: #22BAA0;
+  font-size: 2.1rem;
+  background-color: #FFFFFF;
+  width: 30%;
+  margin-left: 35%; }
+  #createGameModal h3:nth-of-type(2) {
+    color: #12AFCB; }
+  #createGameModal h3:nth-of-type(3) {
+    color: rgba(102, 51, 153, 0.74); }
+  #createGameModal h3:nth-of-type(4) {
+    color: #F6D433; }
+#createGameModal #creationActivities, #createGameModal #creationLocation, #createGameModal #creationPlayersAndSkill, #createGameModal #creationTimeAndDate {
+  margin-bottom: 20px;
+  color: gray; }
+#createGameModal #creationLocation input {
+  vertical-align: top; }
+  #createGameModal #creationLocation input:first-of-type {
+    margin-bottom: 10px; }
+#createGameModal .modal-body {
+  margin-top: -25px; }
+
+#createForm {
+  text-align: center; }
+
+#creationSelect {
+  width: 50%;
+  color: gray; }
+
+#creationTimeHolder table {
+  display: inline-block;
+  margin-top: -15px; }
+  #creationTimeHolder table input, #creationTimeHolder table button {
+    color: gray; }
+  #creationTimeHolder table .glyphicon {
+    color: #565555; }
+#creationTimeHolder p {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 23px;
+  margin-left: 20px;
+  font-size: 1.7rem;
+  color: gray; }
+
+#creationDateHolder input, #creationDateHolder span, #creationDateHolder p {
+  display: inline-block;
+  color: gray; }
+#creationDateHolder p {
+  font-size: 1.7rem;
+  margin-left: 53px;
+  color: gray; }
+
+#selectDate {
+  width: 29%; }
+
+.dividerHeader {
+  text-align: center;
+  position: relative;
+  top: 30px;
+  font-size: 2.3rem;
+  margin-top: 0px; }
 
 /*# sourceMappingURL=main.css.map */

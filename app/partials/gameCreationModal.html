@@ -6,44 +6,67 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Create A Game</h4>
+	        <h4 class="modal-title">Create Game</h4>
 	      </div>
 	      <div class="modal-body">
 	      <!-- Sport selector -->
-	      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control">
+	      		<h3 class="dividerHeader">Sport/Activity</h3>
+	      		<hr/><!-- divider -->
+			<div id="creationActivities">
+		      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control creationSpace">
+			</div>
 
-	      	 <input type="text" placeholder="Street address" ng-model="streetAddress" class="form-control"/>
-	      	<form class="form-inline">
-		      	 <input type="text" placeholder="City" ng-model="gameCity" class="form-control"/>
-		      	 <!-- State selector -->
-			    <input type="text" ng-model="gameState" placeholder="State" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
-			</form>
-			 
-		
-	      	<input class="form-control inline_input" min="1" max="25" placeholder="Maximum number of players" ng-model="gameMaxPlayers" type="number" />
-	      	<input class="form-control inline_input" min="1" max="25" placeholder="Minimum number of players" ng-model="gameMinPlayers" type="number" />
-	      	<select class="form-control" ng-model="skillLevel">
-		      <option value="" selected>Select Skill Level</option>
-			  <option value="Beginner/Casual" selected>Beginner/Casual</option>			  
-      		  <option value="Intermediate">Intermediate</option>
-      		  <option value="Advanced">Advanced</option>			 
-			</select>
+	      	 <h3 class="dividerHeader">Location</h3>
+	      	 <hr/><!-- divider -->
+			<div id="creationLocation">
+		      	 <input type="text" placeholder="Street address" ng-model="streetAddress" class="form-control creationSpace"/>
+		      	<form id="createForm" class="form-inline">
+			      	 <input type="text" placeholder="City" ng-model="gameCity" class="form-control creationSpace"/>
+			      	 <!-- State selector -->
+				    <input type="text" ng-model="gameState" placeholder="State" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control creationSpace">
+				</form>
+			</div>
 
-	      	<div class="well">
+			<h3 class="dividerHeader">Players &amp; Skill</h3>
+	      	 <hr/><!-- divider -->
+			<div id="creationPlayersAndSkill">
+		      	<select id="creationSelect" class="form-control inline_input" ng-model="skillLevel">
+			      <option value="" selected>Select Skill Level</option>
+				  <option value="Beginner/Casual" selected>Beginner/Casual</option>			  
+	      		  <option value="Intermediate">Intermediate</option>
+	      		  <option value="Advanced">Advanced</option>			 
+				</select>
+		      	<input class="form-control inline_input" min="1" max="25" placeholder="Max players" ng-model="gameMaxPlayers" type="number" />
+		      	<input class="form-control inline_input" min="1" max="25" placeholder="Min players" ng-model="gameMinPlayers" type="number" />
+			</div>
+
+			<h3 class="dividerHeader">Time &amp; Date</h3>
+			<hr/><!-- divider -->
+	      	
+	      	<div id="creationTimeAndDate">
 	      	<!-- Time selector -->
-		      	<pre class="alert alert-info">Time Selected: {{gameTime | date:'shortTime' }}</pre>
-			    <uib-timepicker ng-model="gameTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+		      
+		      	<div id="creationTimeHolder">
+				    <uib-timepicker ng-model="gameTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+				    <p>Time Selected: {{gameTime | date:'shortTime' }}</p>
+			    </div>
 
 			<!-- Date selector -->
-		      	<pre class="alert alert-info">Date Selected: {{gameDate}}</pre>
-		      	 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="gameDate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-		      	 <span class="input-group-btn">
-	                <button type="button" class="btn btn-default" ng-click="open($event)">
-	                	<i class="glyphicon glyphicon-calendar"></i>
-	                </button>
-                </span>
-	      	</div>
-	      	<textarea class="form-control" ng-model="gameDescription" placeholder="(Optional) game description here"></textarea>
+		      	
+		      	<div id="creationDateHolder">
+			      	 <input id="selectDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="gameDate" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+			      	 <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="open($event)">
+		                	<i class="glyphicon glyphicon-calendar"></i>
+		                </button>		                
+	                </span>
+	                <p>Date Selected : {{gameDate | date: "shortDate"}}</p>
+                </div>
+            </div>
+	      	
+	      	<h3 class="dividerHeader">Description</h3>
+			<hr/><!-- divider -->
+	      	<textarea  maxlength="300" class="form-control" ng-model="gameDescription" placeholder="(Optional) game description here"></textarea>
 	      <div class="modal-footer">
 	        <button type="button" ng-click="createGame()" class="btn btn-default" data-dismiss="modal">Create</button>
 	      </div>
