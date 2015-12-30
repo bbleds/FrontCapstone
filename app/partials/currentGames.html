@@ -18,18 +18,14 @@
 								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 						</a>
 							<!-- if user is host of game, load hostUser Settings -->
-							<div ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>
-							<button class="btn" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)">Users</button>
-							<div uib-collapse="isCollapsed">
-								<!-- ng repeat below for usrs -->
-								<div class="well well-lg" ng-repeat="user in GameUsers">
-									<p>
-										<img class="picThumb" src="{{user.profilePic}}"/> 
-										{{user.username}} 
-										<!-- if uid of current user is hostId of game, display kick options for all other users in game -->
+							<div id="leaveOrCancel" ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>
+							<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
+								<div uib-collapse="isCollapsed">
+									<div class="well well-lg">
+										<p ng-repeat="user in GameUsers"><img class="picThumb" src="{{user.profilePic}}"/> {{user.username}}
 										<span ng-if="game.hostUser === hostUid && user.$id !== hostUid" class="kickUser glyphicon glyphicon-remove" data-toggle="modal" data-target="#kickUserModal" ng-click="setUserToKick(user, game)"></span>
-									</p>
-								</div>
+										</p>
+									</div>						
 							</div>
 						</div>
 					</div>
@@ -47,14 +43,14 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Do you wish to cancel?</h4>
+	        <h4 class="modal-title">Cancel Game</h4>
 	      </div>
 	      <div class="modal-body">
-	      	<button ng-click="cancelGame()" data-dismiss="modal" class="btn">Yes</button>
-	      	<button class="btn" data-dismiss="modal">No</button>
+	      	<h2>Are you sure you wish to cancel this game?</h2>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	        <button ng-click="cancelGame()" data-dismiss="modal" class="btn">Yes</button>
+	      	<button class="btn" data-dismiss="modal">No</button>
 	      </div>
 	    </div>
 

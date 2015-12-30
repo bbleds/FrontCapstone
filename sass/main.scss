@@ -357,10 +357,6 @@ a{
 }
 
 
-.kickUser{
-    cursor: pointer;
-}
-
 /* ========= MAIN PAGE STYLES ========== */
 
 .inline_input{
@@ -641,7 +637,43 @@ a{
     }
 }
 
+#leaveOrCancel{
+    text-align: center;
 
+.cancelBtn{
+        background-color: $redEmph;    
+        color: white;
+        margin: 20px 0px 15px;
+        position: absolute;
+        width: 130px;
+        left: 50%;
+        margin-left: -65px;
+        bottom: 5px;
+    }
+
+}
+
+.kickUser{
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+#kickUserModal, #confirmCancelModal{
+
+    h2{
+        font-size: 2rem;
+    }
+
+    .modal-footer{
+        text-align: center;
+
+        button{
+            background-color: $darkHighlight;
+            color: white;
+        }
+    }
+
+}
 
 
 

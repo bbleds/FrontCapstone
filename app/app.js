@@ -26,10 +26,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/currentGames.html",
 		controller: "currentGamesCtrl"
 	})
-	.when("/finishedGames",  {
-		templateUrl: "app/partials/finishedGames.html",
-		controller: "finishedGamesCtrl"
-	})
+	// .when("/finishedGames",  {
+	// 	templateUrl: "app/partials/finishedGames.html",
+	// 	controller: "finishedGamesCtrl"
+	// })
 	.when("/profile",  {
 		templateUrl: "app/partials/userProfile.html",
 		controller: "userProfileCtrl"
