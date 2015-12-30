@@ -247,18 +247,6 @@ a {
   border-radius: 3px;
   margin-right: 10px; }
 
-#commentBox {
-  width: 100%;
-  border-top: 1px solid black; }
-  #commentBox .indivComment {
-    width: 90%;
-    border-bottom: 1px solid black;
-    margin-left: 5%;
-    margin-bottom: 20px; }
-  #commentBox .addComment {
-    width: 90%;
-    margin-left: 5%; }
-
 /* ========= MAIN PAGE STYLES ========== */
 .inline_input {
   width: 24%;
@@ -413,6 +401,7 @@ a {
   color: white;
   margin-left: 20px; }
 
+/*============= STYLES FOR CURRENT GAMES PAGE ==============*/
 .currentGameFound {
   margin-top: 80px; }
   .currentGameFound:first-of-type {
@@ -440,6 +429,51 @@ a {
   text-align: center; }
   #kickUserModal .modal-footer button, #confirmCancelModal .modal-footer button {
     background-color: #34425A;
+    color: white; }
+
+/*============= STYLES FOR INDIVIDUAL GAME PAGES ==============*/
+#singleGame {
+  text-align: center; }
+  #singleGame h1 {
+    color: #F25656; }
+  #singleGame h2 {
+    color: rgba(0, 0, 0, 0.71);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.4rem; }
+    #singleGame h2 strong {
+      font-family: 'Open Sans', sans-serif; }
+
+.noDesc {
+  color: gray;
+  font-family: 'Open Sans', sans-serif;
+  margin: 20px 0px 60px 0px; }
+
+.descOutput {
+  color: gray;
+  font-family: 'Open Sans', sans-serif; }
+
+.gameDisc {
+  color: #22BAA0;
+  text-align: center; }
+
+#commentBox {
+  width: 100%;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: white; }
+  #commentBox .indivComment {
+    width: 90%;
+    margin-left: 5%; }
+  #commentBox .addComment {
+    width: 70%;
+    margin-left: 15%; }
+  #commentBox button {
+    margin-top: 10px;
+    width: 100px;
+    position: relative;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #22BAA0;
     color: white; }
 
 /*# sourceMappingURL=main.css.map */

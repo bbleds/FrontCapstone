@@ -8,14 +8,15 @@
                     <div class="col-lg-12">
 						<div id="singleGame">
 							<h1>{{selectedGame.sportTitle}}</h1>
-							<h3>Time: {{selectedGame.time}}</h3>
-							<h3>Date: {{selectedGame.date}}</h3>
-							<h3>Location: {{selectedGame.address + " " + selectedGame.city + " " + selectedGame.state}}</h3>
-							<h3>current players: {{selectedGame.currentPlayers}}</h3>
-							<h3>Spots left: {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
+							<h3><strong>Time:</strong> {{selectedGame.time}}</h3>
+							<h3><strong>Date:</strong> {{selectedGame.date}}</h3>
+							<h3><strong>Location:</strong> {{selectedGame.address + " " + selectedGame.city + " " + selectedGame.state}}</h3>
+							<h3><strong>Current Players:</strong> {{selectedGame.currentPlayers}}</h3>
+							<h3><strong>Spots Left:</strong> {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
+
 						</div>
-						<h4 ng-if="selectedGame.gameDescription">Description: {{selectedGame.gameDescription}}</h4>
-						<h4 ng-if="!selectedGame.gameDescription">no desciption entered</h4>
+						<h4 class="descOutput" ng-if="selectedGame.gameDescription">Description: {{selectedGame.gameDescription}}</h4>
+						<h4 class="noDesc" ng-if="!selectedGame.gameDescription">No desciption entered</h4>
 
 						<!-- join and leave functionality -->
 						<!-- display join if user is not in game -->
@@ -24,11 +25,14 @@
 						<button class="btn" ng-if="userIsInGame === 'in game'" ng-click="leaveGame(selectedGame)">Leave</button>
 						<!-- display neither if it is a host user -->
 
-
+						<hr/>
 						<!-- comments -->
 						<div id="commentBox">
+						<h2 class="gameDisc">Discussion</h2>
+						<hr/>
 							<div ng-repeat="comment in fireComments" class="indivComment">
-								<p><img class="picThumb" src="{{comment.commentUserPic}}"/>{{comment.userName}} :  {{comment.commentBody}}</p>								
+								<p><img class="picThumb" src="{{comment.commentUserPic}}"/>{{comment.userName}} :  {{comment.commentBody}}</p>
+								<hr/>								
 							</div>
 							<div class="addComment">
 									<textarea id="theCommentBody" class="form-control" ng-model="commentBody"></textarea>

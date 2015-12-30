@@ -339,23 +339,6 @@ a{
     margin-right: 10px;
 }
 
-#commentBox{
-    width: 100%;
-    border-top: 1px solid black;
-
-    .indivComment{
-        width: 90%;
-        border-bottom: 1px solid black;
-        margin-left:  5%;
-        margin-bottom: 20px;
-    }
-
-    .addComment{
-        width: 90%;
-        margin-left: 5%;
-    }
-}
-
 
 /* ========= MAIN PAGE STYLES ========== */
 
@@ -618,7 +601,7 @@ a{
 
 
 
-// STYLES FOR CURRENT GAMES PAGE
+/*============= STYLES FOR CURRENT GAMES PAGE ==============*/
 .currentGameFound{
     margin-top: 80px;
 
@@ -666,4 +649,66 @@ a{
 }
 
 
+/*============= STYLES FOR INDIVIDUAL GAME PAGES ==============*/
+#singleGame{
+    text-align: center;
+
+    h1{
+        color: $redEmph;
+    }
+
+    h2{
+        color: rgba(0, 0, 0, 0.71);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.4rem;
+
+        strong{
+            font-family: 'Open Sans', sans-serif;
+        }
+    }
+}
+
+.noDesc{
+    color: gray;
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px 0px 60px 0px; 
+}
+
+.descOutput{
+     color: gray;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.gameDisc{
+    color: $greenEmph;
+    text-align: center;
+}
+
+
+#commentBox{
+    width: 100%;
+    padding: 25px;
+    border-radius: 10px;
+    background-color: white;
+
+    .indivComment{
+        width: 90%;
+        margin-left:  5%;
+    }
+
+    .addComment{
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    button{
+        margin-top: 10px;
+        width: 100px;
+        position: relative;
+        left: 50%;
+        margin-left: -50px;
+        background-color: $greenEmph;
+        color: white;
+    }
+}
 
