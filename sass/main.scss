@@ -270,6 +270,30 @@ a{
     display: none;
 }
 
+#notificationHolder{
+    position: relative;
+
+    #newNotesNumber, #newNotesColor{
+        position: absolute;
+    }
+    
+    #newNotesNumber{
+        top: -39px;
+        left: 53.3%;
+        font-size: 2rem;
+    }
+
+    #newNotesColor{
+        height: 30px;
+        width: 30px;
+        background-color: red;
+        border-radius: 50%;
+        top: 0px;
+        left: 50%;
+    }
+
+}
+
 .note{
     cursor: pointer;
 }

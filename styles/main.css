@@ -196,6 +196,22 @@ a {
   margin-left: -200px;
   display: none; }
 
+#notificationHolder {
+  position: relative; }
+  #notificationHolder #newNotesNumber, #notificationHolder #newNotesColor {
+    position: absolute; }
+  #notificationHolder #newNotesNumber {
+    top: -39px;
+    left: 53.3%;
+    font-size: 2rem; }
+  #notificationHolder #newNotesColor {
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    border-radius: 50%;
+    top: 0px;
+    left: 50%; }
+
 .note {
   cursor: pointer; }
 

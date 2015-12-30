@@ -51,10 +51,14 @@
 	                  		<p>Profile</p>
 	                  </a>
 	                </li>
-	                <li>
+	                <li id="notificationHolder">
 	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">
 	                   <span class="glyphicon glyphicon-envelope"></span>
-	                   <p>Notifications</p> <span ng-if="newNotes">{{newNotes}}</span>
+	                   <p>Notifications</p> 
+	                   <div id="newNotesStyling">
+		                   <span id="newNotesColor" ng-if="newNotes"></span>
+		                   <span id="newNotesNumber" ng-if="newNotes">{{newNotes}}</span>
+	                   </div>
 	                   </a>
 	                </li>
 	                <li>	      
