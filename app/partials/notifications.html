@@ -6,15 +6,17 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- if no notifications exist -->
-                        <p ng-if="noNotes === true">There are no notifications for you at this time</p>
-
-                        <!-- if notifications exist -->
-                        <div ng-repeat="notification in notes | orderBy:'-read':true | filter:{ archived: 'false'}">
-							<p ng-if="notification.read !== true" ng-click="changeRead(notification)">
-                            <a href="#/games/{{notification.zLink}}">
-                            Notification: {{notification.body}}</a> <span class="note glyphicon glyphicon-ok"></span></p>
-                            <p ng-if="notification.read === true" ng-click="removeNote(notification)"><a href="#/games/{{notification.zLink}}">Notification: {{notification.body}} </a><span class="note glyphicon glyphicon-remove"></span></p>
-						</div>
+                        <!-- <p ng-if="noNotes === true">There are no notifications for you at this time</p> -->
+                        
+                        <div id="allNotesHolder">
+                            <!-- if notifications exist -->
+                            <div class="indivNote" ng-repeat="notification in notes | orderBy:'-read':true | filter:{ archived: 'false'}">
+    							<p class="readNote jumbotron" ng-if="notification.read !== true" ng-click="changeRead(notification)">
+                                <a href="#/games/{{notification.zLink}}">
+                                Notification: {{notification.body}}</a> <span class="note glyphicon glyphicon-ok"></span></p>
+                                <p class="jumbotron" ng-if="notification.read === true" ng-click="removeNote(notification)"><a href="#/games/{{notification.zLink}}">Notification: {{notification.body}} </a><span class="note glyphicon glyphicon-remove"></span></p>
+    						</div>
+                        </div>
                       
                 </div>
             </div>

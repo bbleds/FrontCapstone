@@ -486,4 +486,22 @@ a {
     background-color: #F25656;
     color: white; }
 
+/*============= STYLES FOR NOTIFICATIONS ==============*/
+#allNotesHolder {
+  margin-top: 30px;
+  width: 80%; }
+  #allNotesHolder .jumbotron {
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative; }
+    #allNotesHolder .jumbotron p {
+      font-size: 1.7rem;
+      margin-bottom: 0px; }
+    #allNotesHolder .jumbotron span {
+      position: absolute;
+      right: 10px;
+      top: 13px; }
+  #allNotesHolder .readNote {
+    background-color: white; }
+
 /*# sourceMappingURL=main.css.map */

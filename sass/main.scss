@@ -729,3 +729,33 @@ a{
         }
     }
 }
+
+
+/*============= STYLES FOR NOTIFICATIONS ==============*/
+
+#allNotesHolder{
+    margin-top: 30px;
+    width: 80%;
+
+    .jumbotron{
+        padding: 10px;
+        margin-bottom: 20px;
+        position: relative;
+
+        p{
+            font-size: 1.7rem;
+            margin-bottom: 0px; 
+        }
+
+        span{
+            position: absolute;
+            right: 10px;
+            top: 13px;
+        }
+
+    }
+
+     .readNote{
+            background-color: white;
+            }
+}
