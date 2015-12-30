@@ -42,59 +42,67 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.modCity;
 	$scope.modSport;
 
-	//Find Game
-	$scope.findGames = function(){
+	//Find Game  REFACTORED, now runs immediately
 		$scope.gamesFound=[];
 
-		var games = $firebaseArray(ref.child("Games"));
+		//store user groups in $scope.userGroups variable
+			$scope.userGroups = [];
 
-		games.$loaded()
-		.then(function(data){
-			console.log("data ", data);
+		//store a groups games
+			$scope.groupGames;
 
+			//List groups in firebase
+			$firebaseArray(ref.child("Groups")).$loaded()
+			.then(function(groups){
+				console.log("groups ", groups);
 
-			_.filter(data, function(n){
+				//loop through groups in firebase
+				for(var i = 0; i < groups.length; i++){
+					console.log("groups[i]", groups[i]);
+					
+					//see if user uid exists in object
+					// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);					
+					//if user uid is in group
+					if(groups[i].users[generalVariables.getUid()] !== undefined){							
+						//push group object into usersGroups
+						$scope.userGroups.push(groups[i]);
 
-				//check to make sure date and time of games are in the future
-
-				//if state of game in array matches state entered
-				 if(n.finished !== true && $scope.findCity && $scope.findState && n.state.toLowerCase() === $scope.findState.toLowerCase() && n.city.toLowerCase() === $scope.findCity.toLowerCase()  ){
-
-				 	//set findCity and findState to have the ability to be changed later
-				 	$scope.modState = $scope.findState.toUpperCase();
-				 	$scope.modCity = $scope.findCity;
-
-				 	//push found games into output array
-				 	$scope.gamesFound.push(n);
-
-				 	//open find options
-				 	$scope.searchOptions = false;
-
-
-				 } else {
-				 	console.log("no matches found for this index");
-				 }
-
-				});
-
-				console.log("gamesFound ", $scope.gamesFound);
-
-				if($scope.gamesFound.length == 0){
-					$.notify({
-						//icon and message
-						icon: 'glyphicon glyphicon-remove',
-						message: "There were no games found that match criteria entered. <br>Please try again"
-					},{
-						// settings
-						type: 'warning'
-					});
+					} else {
+						console.log("user isnt there");
+					}						
 				}
 
+				console.log("$scope.userGroups ", $scope.userGroups);
+					
 
-			// $scope.gamesFound = data;
+			});
 
-		});
-	}
+		//get games that match users selected group search
+		$scope.findGames = function(groupName){
+			console.log("groupName ", groupName);
+
+			//clear group array
+			$scope.groupGames = [];
+
+			//if all groups is selected, display all groups
+
+			//if only one group is selected, display activities from that group
+			 $firebaseArray(ref.child("Games")).$loaded()
+                   .then(function(games){
+                        console.log("games ", games);
+                       var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": groupName});                
+
+                       //for each item in filter groups, push item into groupGames array
+                       for(var x = 0; x < filteredGroups.length; x++){
+                            //push into groupGames Array
+                            $scope.groupGames.push(filteredGroups[x]);
+                       }
+
+                   });
+
+		}
+
+	
 
 
 	//modify search

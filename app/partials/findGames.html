@@ -4,24 +4,19 @@
         <div id="page-content-wrapper"> 
             <div class="container-fluid">		            
                 <div class="row">
-                    <div class="col-lg-12">                    
-						
-                    <!-- displays search options -->
-                    	<div id="modSearch" uib-collapse="searchOptions">
-							<div class="well well-lg">
-							<!-- filter by state, then city and then optional sport -->
-								<select ng-model="modState" class="form-control modify_search">
-									<option>None</option>
-									<option ng-repeat="state in states">{{state}}</option>
-								</select>
-								<input ng-model="modCity" placeHolder="City" class="form-control modify_search" />
-								<input ng-model="modSport" placeHolder="Sport" class="form-control modify_search" />
-								<button class="btn" ng-click="modifySearch()">Modify</button>
-							</div>
-						</div>
+                    <div class="col-lg-12"> 
 
+                    <!-- displays Group Options -->
+                    <div id="modifyGroupSearch">  
+                    	<h1>Select Group</h1>
+						<select id="selectedGroup" class="form-control" ng-model="groupSelected" ng-change="findGames(groupSelected)">
+							<option>All My Groups</option>
+							<option ng-repeat="group in userGroups">{{group.groupName}}</option>
+						</select>
+						<hr/>
+                    </div>                       
 
-                    	<div class="gameFound" ng-repeat="game in gamesFound">
+                    	<div class="gameFound" ng-repeat="game in groupGames">
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
 								<h1>{{game.sportTitle}}</h1>
@@ -50,10 +45,10 @@
 </div><!-- end wrapper -->
 
 <!-- Find Games Modal -->
-	<div id="findGameModal" class="modal fade" role="dialog">
+<!-- 	<div id="findGameModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
-	    <!-- Modal content-->
+	    <!-- Modal content
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -69,4 +64,4 @@
 	    </div>
 
 	  </div>
-	</div>
+	</div> -->
