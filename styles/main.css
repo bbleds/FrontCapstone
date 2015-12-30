@@ -215,32 +215,12 @@ a {
 .note {
   cursor: pointer; }
 
-#profile_current_pic {
-  width: 150px;
-  height: 150px;
-  margin: auto;
-  text-align: center;
-  background-color: tomato;
-  border-radius: 5px;
-  background-size: cover;
-  background-position: center center; }
-  #profile_current_pic span {
-    font-size: 7rem;
-    margin-top: 40px;
-    color: white; }
-
 .userNameDisplay {
   text-align: center;
   font-size: 2rem; }
 
 #profile_tagline {
   text-align: center; }
-
-#editProfileBtn {
-  width: 100px;
-  left: 50%;
-  position: relative;
-  margin-left: -50px; }
 
 .picThumb {
   width: 50px;
@@ -474,6 +454,36 @@ a {
     left: 50%;
     margin-left: -50px;
     background-color: #22BAA0;
+    color: white; }
+
+/*============= STYLES FOR PROFILE ==============*/
+#profile_current_pic {
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  margin-top: 60px;
+  text-align: center;
+  background-color: tomato;
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center center; }
+  #profile_current_pic span {
+    font-size: 7rem;
+    margin-top: 40px;
+    color: white; }
+
+#editProfileBtn {
+  width: 100px;
+  left: 50%;
+  position: relative;
+  margin-left: -50px;
+  background-color: #F25656;
+  color: white; }
+
+#editProfileModal .modal-footer {
+  text-align: center; }
+  #editProfileModal .modal-footer button {
+    background-color: #F25656;
     color: white; }
 
 /*# sourceMappingURL=main.css.map */
