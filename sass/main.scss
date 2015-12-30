@@ -375,21 +375,11 @@ a{
 
 #createGameModal {
     h3{
-        color: $greenEmph;
+        color: $lightBlueEmph;
         font-size: 2.1rem;
         background-color: #FFFFFF;
         width: 30%;
         margin-left: 35%;
-
-        &:nth-of-type(2){
-            color: $lightBlueEmph;
-        } 
-         &:nth-of-type(3){
-            color: rgba(102, 51, 153, 0.74);
-        }
-         &:nth-of-type(4){
-            color: $yellowEmph;
-        }
     }
 
     #creationActivities,#creationLocation,#creationPlayersAndSkill,#creationTimeAndDate{

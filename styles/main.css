@@ -271,17 +271,11 @@ a {
   color: #F25656; }
 
 #createGameModal h3 {
-  color: #22BAA0;
+  color: #12AFCB;
   font-size: 2.1rem;
   background-color: #FFFFFF;
   width: 30%;
   margin-left: 35%; }
-  #createGameModal h3:nth-of-type(2) {
-    color: #12AFCB; }
-  #createGameModal h3:nth-of-type(3) {
-    color: rgba(102, 51, 153, 0.74); }
-  #createGameModal h3:nth-of-type(4) {
-    color: #F6D433; }
 #createGameModal #creationActivities, #createGameModal #creationLocation, #createGameModal #creationPlayersAndSkill, #createGameModal #creationTimeAndDate {
   margin-bottom: 0px;
   color: gray;
