@@ -4,20 +4,18 @@
         <div id="page-content-wrapper"> 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-					<p>Here are your currently registered games</p>
-					<!--  track by $index to handle duplicates?-->
-					<div id="gameFound" ng-repeat="game in usersGames">
-						<div class="singleGameFound">
+                    <div class="col-lg-12">					
+					
+					<div class="gameFound" ng-repeat="game in usersGames">
+						<div class="jumbotron singleGameFound">
 						<a href="#/games/{{game.$id}}">
 							<h1>{{game.sportTitle}}</h1>
-							<h3>Time: {{game.time}}</h3>
-							<h3>Date: {{game.date}}</h3>
-							<h3>Location: {{game.address + " " + game.city + " " + game.state}}</h3>
-							<h3>Skill Level: {{game.skillLevel}}</h3>
-							<h3>current players: {{game.currentPlayers}}</h3>
-							<h3>Spots left: {{game.maxPlayers - game.currentPlayers }}</h3>
-							<h3>Host: @{{game.hostUserName}} <img class="picThumb" src="{{game.hostUserPic}}"</h3>
+								<p><strong>Date:</strong> {{game.date}}</p>
+								<p><strong>Time:</strong> {{game.time}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
+								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
+								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
+								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 						</a>
 							<!-- if user is host of game, load hostUser Settings -->
 							<div ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>

@@ -30,7 +30,6 @@
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
 								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
 								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
-								<!-- an ng-if should fix error that originates here -->
 								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 							</a>
 								<!-- if game is full, output disabled full btn, if not, output join btn -->

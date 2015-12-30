@@ -422,4 +422,9 @@ a {
   color: white;
   margin-left: 20px; }
 
+.currentGameFound {
+  margin-top: 80px; }
+  .currentGameFound:first-of-type {
+    margin-top: 40px; }
+
 /*# sourceMappingURL=main.css.map */
