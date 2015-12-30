@@ -13,30 +13,50 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	    $location.path("/login");
         	} else {
 
-        		//get group object from url
-        		var objectName = $location.$$path.split("/")[2];  
+		//get group object from url
+		var objectName = $location.$$path.split("/")[2];  
 
-        		$scope.groupSelected;  
+		$scope.groupSelected;
+                $scope.groupGames = [];  
 
-        		//get group from firebase
-        		$firebaseArray(ref.child("Groups")).$loaded()
-        		.then(function(groups){
+		//get group from firebase
+		$firebaseArray(ref.child("Groups")).$loaded()
+		.then(function(groups){
 
-        			console.log("group ", groups);
-        			//loop through groups to find group selected, and store group object in $scope.groupSelected
-        			for(var i = 0; i < groups.length; i++){
-        				// console.log(groups[i]);
+			console.log("group ", groups);
+			//loop through groups to find group selected, and store group object in $scope.groupSelected
+			for(var i = 0; i < groups.length; i++){
+				// console.log(groups[i]);
 
-        				//if group id matches id of current group 
-        				if(groups[i].$id === objectName){
-        					//store group in $scope.groupSelected variable
-        					$scope.groupSelected = groups[i];
-        				}
-        			}
+				//if group id matches id of current group 
+				if(groups[i].$id === objectName){
+					//store group in $scope.groupSelected variable
+					$scope.groupSelected = groups[i];
+				}
+			}
 
-        			console.log("groupSelected ", $scope.groupSelected);
-        			
-        		});
+			console.log("groupSelected ", $scope.groupSelected);
+			
+		});
+
+                //get all games from group
+                   // get games
+                   $firebaseArray(ref.child("Games")).$loaded()
+                   .then(function(games){
+                        console.log("games ", games);
+                       var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": $scope.groupSelected.groupName});                
+
+                       //for each item in filter groups, push item into groupGames array
+                       for(var x = 0; x < filteredGroups.length; x++){
+                            //push into groupGames Array
+                            $scope.groupGames.push(filteredGroups[x]);
+                       }
+
+                   });
+                        
+
+
+
         	}
         });
 }]);

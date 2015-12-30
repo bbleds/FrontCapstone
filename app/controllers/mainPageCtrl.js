@@ -35,7 +35,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//get notification promise from generalVariables
 	$scope.noteNumber = generalVariables.setUnreadNotifications()
-
 	//when promise is returned
 	.then(function(response){
 		console.log("got it back ", response);
@@ -56,7 +55,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	//logOut user
 	$scope.logOutUser = function(){
-		console.log("log out bruh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		// console.log("log out bruh>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
 		//unauth ref
 		ref.unauth();
@@ -64,6 +63,36 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//navigate back to main
 		$location.path("/login");
 	}
+
+	//store current groups
+
+			$scope.userGroups = [];
+
+				//List groups in firebase
+				$firebaseArray(ref.child("Groups")).$loaded()
+				.then(function(groups){
+					console.log("groups ", groups);
+
+					//loop through groups in firebase
+					for(var i = 0; i < groups.length; i++){
+						console.log("groups[i]", groups[i]);
+						
+						//see if user uid exists in object
+						// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);					
+						//if user uid is in group
+						if(groups[i].users[generalVariables.getUid()] !== undefined){							
+							//push group object into usersGroups
+							$scope.userGroups.push(groups[i]);
+
+						} else {
+							console.log("user isnt there");
+						}						
+					}
+
+					console.log("$scope.userGroups ", $scope.userGroups);
+						
+
+				});
 
 
 	//game variables
@@ -76,6 +105,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.gameCity;
 	$scope.gameDate;
 	$scope.skillLevel;
+	$scope.gameGroup;
 	$scope.gameDescription;
 
 	//creation success variable
@@ -91,7 +121,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		
 		//create Game in reference 
 
-	 if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
+	 if( $scope.gameTitle && $scope.gameGroup && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
 			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
@@ -146,7 +176,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				"hostUserPic" : $scope.profilePic,
 				"finished": false,
 				"skillLevel" : $scope.skillLevel,
-				"gameDescription" : $scope.gameDescription
+				"gameDescription" : $scope.gameDescription,
+				"gameGroup": $scope.gameGroup
 			}, function(){
 				var gameArray = $firebaseArray(ref.child("Games"));
 

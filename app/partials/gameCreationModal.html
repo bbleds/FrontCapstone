@@ -15,6 +15,15 @@
 			<div id="creationActivities">
 		      	 <input type="text" placeholder="Sport/Activity" ng-model="gameTitle" uib-typeahead="sport for sport in sportArray | filter:$viewValue | limitTo:8" class="form-control creationSpace">
 			</div>
+			
+			<h3 class="dividerHeader">Group</h3>
+	      	 <hr/><!-- divider -->
+	      	 <div id="creationGroup">
+		      	 <select ng-model="gameGroup" class="form-control creationSpace">
+		      	 	<option ng-repeat="group in userGroups">{{group.groupName}}</option>
+		      	 </select>
+			</div>
+			
 
 	      	 <h3 class="dividerHeader">Location</h3>
 	      	 <hr/><!-- divider -->

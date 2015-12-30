@@ -64,7 +64,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					}
 				}
 
-				$scope.userGroups = []
+				$scope.userGroups = [];
 
 				//List groups in firebase
 				$firebaseArray(ref.child("Groups")).$loaded()

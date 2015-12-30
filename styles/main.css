@@ -247,7 +247,7 @@ a {
   background-color: #FFFFFF;
   width: 30%;
   margin-left: 35%; }
-#createGameModal #creationActivities, #createGameModal #creationLocation, #createGameModal #creationPlayersAndSkill, #createGameModal #creationTimeAndDate {
+#createGameModal #creationActivities, #createGameModal #creationLocation, #createGameModal #creationPlayersAndSkill, #createGameModal #creationTimeAndDate, #createGameModal #creationGroup {
   margin-bottom: 0px;
   color: gray;
   padding: 0px 50px; }
