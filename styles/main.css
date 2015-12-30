@@ -228,6 +228,9 @@ a {
   margin-right: 10px; }
 
 /* ========= MAIN PAGE STYLES ========== */
+#gameSelector {
+  cursor: pointer; }
+
 .inline_input {
   width: 24%;
   display: inline; }
@@ -503,5 +506,20 @@ a {
       top: 13px; }
   #allNotesHolder .readNote {
     background-color: white; }
+
+/* ========= Group Page Styles ========== */
+#createGroup, #myGroups {
+  text-align: center; }
+
+#createGroup button {
+  background-color: #F25656;
+  color: white; }
+
+.groupSnippet {
+  height: 200px;
+  background-color: #F25656;
+  color: white;
+  padding: 10px;
+  cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */

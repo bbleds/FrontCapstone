@@ -105,22 +105,22 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
             var monthAbrev = splitDate[1].split(" ")[0];
             var dayAbrev = parseInt(splitDate[1].split(" ")[1]);
             var yearToCompare = splitDate[2];
-            console.log("yearToCompare ", parseInt(yearToCompare));
+            // console.log("yearToCompare ", parseInt(yearToCompare));
 
             //start with year
             //if year of game is less than current year
             if(yearToCompare < today.getFullYear()){
-              console.log("this game was in a past year");
+              // console.log("this game was in a past year");
               ref.child("Games").child(data[i].$id).child("finished").set(true);
 
               //check month
             } else if(monthArray.indexOf(monthAbrev) < monthArray.indexOf(month)){
-              console.log("this game was in a past month");
+              // console.log("this game was in a past month");
               ref.child("Games").child(data[i].$id).child("finished").set(true);
 
               //check day
             } else if(dayAbrev < today.getDate()){
-              console.log("this game was at a past day bruh bruh");
+              // console.log("this game was at a past day bruh bruh");
               ref.child("Games").child(data[i].$id).child("finished").set(true);
             } 
             //after finished app, set it by time by hour

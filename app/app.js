@@ -26,6 +26,14 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/currentGames.html",
 		controller: "currentGamesCtrl"
 	})
+	.when("/groups",  {
+		templateUrl: "app/partials/userGroups.html",
+		controller: "userGroupsCtrl"
+	})
+	.when("/groups/:individualGroup",  {
+		templateUrl: "app/partials/indivGroup.html",
+		controller: "indivGroupCtrl"
+	})
 	// .when("/finishedGames",  {
 	// 	templateUrl: "app/partials/finishedGames.html",
 	// 	controller: "finishedGamesCtrl"

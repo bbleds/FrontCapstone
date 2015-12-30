@@ -318,6 +318,10 @@ a{
 
 /* ========= MAIN PAGE STYLES ========== */
 
+#gameSelector{
+    cursor: pointer;
+}
+
 .inline_input{
     width: 24%;
     display: inline;
@@ -759,3 +763,30 @@ a{
             background-color: white;
             }
 }
+
+
+/* ========= Group Page Styles ========== */
+
+#createGroup, #myGroups{
+    text-align: center;
+}
+
+#createGroup{
+    button{
+        background-color: $redEmph;
+        color: white;
+    }
+}
+
+.groupSnippet{
+    height: 200px;
+    background-color: $redEmph;
+    color: white; 
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
+
+

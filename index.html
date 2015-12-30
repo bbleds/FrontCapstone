@@ -25,24 +25,30 @@
 	                <li id="gameSelector">
 	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 							<span class="glyphicon glyphicon-knight"></span>
-	                    	<p>Games</p>
+	                    	<p>Activities</p>
 	                    </a>
 	                    <div class="collapse" id="collapseExample">
 	                      <div id="gameOptionsWell" class="well">
 	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">
-		                        Create Game
+		                        Create Activity
 	                        </a>
 	                        <a href="#/findGames" data-toggle="modal" data-target="#findGameModal">
-		                        Find Game
+		                        Find Activity
 	                        </a>
 	                        <a href="#/currentGames" ng-click="searchOptions = true">
-		                        Current Games
+		                        Current Activities
 	                        </a>
 	                       <!--  <a href="#/finishedGames" ng-click="searchOptions = true">
 		                        Finished Games
 		                    </a> -->
 	                      </div>
 	                    </div>
+	                </li>
+	                <li>	                	
+	                	 <a href="#/groups" ng-click="logOutUser(); searchOptions = true"> 
+	                  	<span class="glyphicon glyphicon-globe"></span>
+	                  		<p>Groups</p>
+	                  </a>
 	                </li>
 	                
 	                <li>
@@ -105,6 +111,8 @@
 	<script type="text/javascript" src="app/controllers/indivGameCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/notificationsCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/userProfileCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/userGroupsCtrl.js"></script>
+	<script type="text/javascript" src="app/controllers/indivGroupCtrl.js"></script>
 	<script type="text/javascript" src="app/controllers/logOutCtrl.js"></script>
 
 </body>
