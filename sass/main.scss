@@ -758,10 +758,17 @@ a{
             margin-bottom: 0px; 
         }
 
-        span{
+        .check{
             position: absolute;
             right: 10px;
             top: 13px;
+        }
+
+        .eye{
+            position: absolute;
+            right: 50px;
+            top: 0px;
+            padding: 13px;
         }
 
     }

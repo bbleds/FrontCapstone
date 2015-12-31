@@ -97,10 +97,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
         //add user to group
         	$scope.addUserToGroup = function(){
-        		console.log("ADDING USER TO GROUP");
+        		//hide join button
+        		$scope.userJoin = false;
 
         		//go into group object in firebase, add current user to users
         		ref.child("Groups").child(objectName).child("users").child(generalVariables.getUid()).set(generalVariables.getUid());
+
+        		//remove user from invitedUsers key in group object in firebase
+        		ref.child("Groups").child(objectName).child("invitedUsers").child(generalVariables.getUid()).remove();
 
         	}
 

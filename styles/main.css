@@ -506,10 +506,15 @@ a {
     #allNotesHolder .jumbotron p {
       font-size: 1.7rem;
       margin-bottom: 0px; }
-    #allNotesHolder .jumbotron span {
+    #allNotesHolder .jumbotron .check {
       position: absolute;
       right: 10px;
       top: 13px; }
+    #allNotesHolder .jumbotron .eye {
+      position: absolute;
+      right: 50px;
+      top: 0px;
+      padding: 13px; }
   #allNotesHolder .readNote {
     background-color: white; }
 
