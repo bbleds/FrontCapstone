@@ -19,7 +19,7 @@
                     	<div class="gameFound" ng-repeat="game in groupGames">
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
-								<h1>{{game.sportTitle}}</h1>
+								<h1>{{game.sportTitle}} : {{game.gameGroup}}</h1>
 								<p><strong>Date:</strong> {{game.date}}</p>
 								<p><strong>Time:</strong> {{game.time}}</p>
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>

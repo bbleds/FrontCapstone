@@ -85,8 +85,30 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			$scope.groupGames = [];
 
 			//if all groups is selected, display all groups
+			if(groupName === "All My Groups"){
+				console.log("ALL GROUPS SELECTED");
 
-			//if only one group is selected, display activities from that group
+				//get games
+				 $firebaseArray(ref.child("Games")).$loaded()
+               .then(function(games){
+                    console.log("games ", games);
+                    console.log("user groups ", $scope.userGroups);
+	                   //loop through games
+	                   	for(var i = 0; i < games.length; i++){
+	                   		//loop through userGroups
+	                   		for(var x = 0; x < $scope.userGroups.length; x++){
+	                   			//if the current game looped over is part of the current group loop over, push the game into the output array($scope.groupGames)
+	                   			if(games[i].gameGroup === $scope.userGroups[x].groupName && games[i].finished === false){
+	                   				$scope.groupGames.push(games[i]);
+	                   			}
+	                   		}
+	                   	}
+                   	});
+
+
+               } else if(groupName !== "All My Groups"){
+
+				//if only one group is selected, display activities from that group
 			 $firebaseArray(ref.child("Games")).$loaded()
                    .then(function(games){
                         console.log("games ", games);
@@ -99,6 +121,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
                        }
 
                    });
+			}
 
 		}
 
