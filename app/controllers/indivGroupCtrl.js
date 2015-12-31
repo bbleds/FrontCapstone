@@ -16,8 +16,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//get group object from url
 		var objectName = $location.$$path.split("/")[2];  
 
+		//stores the current grup selected (the current group on page)
 		$scope.groupSelected;
-                $scope.groupGames = [];  
+
+		//holds output array for games associated with the group
+        $scope.groupGames = [];  
+
+        //store whether or not a new user is invited to the group
+        $scope.userJoin = false;
 
 		//get group from firebase
 		$firebaseArray(ref.child("Groups")).$loaded()
@@ -36,23 +42,45 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			}
 
 			console.log("groupSelected ", $scope.groupSelected);
+
+			//set $scope.userJoin to true if the user viewing the group page has been invited
+			//see if user is in ivited users
+			if($scope.groupSelected.invitedUsers[generalVariables.getUid()]){
+				console.log("hey there is a match here");
+				$scope.userJoin = true;
+			} else {
+				console.log("nah there aint");
+			}
+
 			
 		});
 
-                //get all games from group
-                   // get games
-                   $firebaseArray(ref.child("Games")).$loaded()
-                   .then(function(games){
-                        console.log("games ", games);
-                       var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": $scope.groupSelected.groupName});                
+        //get all games from group
+           // get games
+           $firebaseArray(ref.child("Games")).$loaded()
+           .then(function(games){
+                console.log("games ", games);
+               var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": $scope.groupSelected.groupName});                
 
-                       //for each item in filter groups, push item into groupGames array
-                       for(var x = 0; x < filteredGroups.length; x++){
-                            //push into groupGames Array
-                            $scope.groupGames.push(filteredGroups[x]);
-                       }
+               //for each item in filter groups, push item into groupGames array
+               for(var x = 0; x < filteredGroups.length; x++){
+                    //push into groupGames Array
+                    $scope.groupGames.push(filteredGroups[x]);
+               }
 
-                   });
+           });
+
+
+        //add user to group
+        	$scope.addUserToGroup = function(){
+        		console.log("ADDING USER TO GROUP");
+
+        		//go into group object in firebase, add current user to users
+        		ref.child("Groups").child(objectName).child("users").child(generalVariables.getUid()).set(generalVariables.getUid());
+
+        	}
+
+
                         
 
 
