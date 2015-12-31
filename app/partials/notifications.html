@@ -12,7 +12,7 @@
                             <!-- if notifications exist -->
                             <div class="indivNote" ng-repeat="notification in notes | orderBy:'-read':true | filter:{ archived: 'false'}">
     							<p class="readNote jumbotron" ng-if="notification.read !== true" ng-click="changeRead(notification)">
-                                <a href="#/games/{{notification.zLink}}">
+                                <a href="#/{{notification.zLink}}">
                                 Notification: {{notification.body}}</a> <span class="note glyphicon glyphicon-ok"></span></p>
                                 <p class="jumbotron" ng-if="notification.read === true" ng-click="removeNote(notification)"><a href="#/games/{{notification.zLink}}">Notification: {{notification.body}} </a><span class="note glyphicon glyphicon-remove"></span></p>
     						</div>

@@ -18,6 +18,10 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/main.html",
 		controller: "mainPageCtrl"
 	})
+	.when("/findUsers",  {
+		templateUrl: "app/partials/findUsers.html",
+		controller: "findUsersCtrl"
+	})	
 	.when("/findGames",  {
 		templateUrl: "app/partials/findGames.html",
 		controller: "findGamesCtrl"

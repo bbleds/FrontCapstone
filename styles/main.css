@@ -20,6 +20,12 @@ a {
     background-color: #22BAA0;
     color: white; }
 
+#searchForPeople {
+  width: 30%;
+  position: relative;
+  right: 10%;
+  top: 12px; }
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -508,10 +514,10 @@ a {
     background-color: white; }
 
 /* ========= Group Page Styles ========== */
-#createGroup, #myGroups {
+#createGroup, #myGroups, #searchPeople {
   text-align: center; }
 
-#createGroup button {
+#createGroup button, #searchPeople button {
   background-color: #F25656;
   color: white; }
 
@@ -521,5 +527,10 @@ a {
   color: white;
   padding: 10px;
   cursor: pointer; }
+
+#findPeople {
+  margin-top: 25px;
+  width: 50%;
+  margin-left: 25%; }
 
 /*# sourceMappingURL=main.css.map */

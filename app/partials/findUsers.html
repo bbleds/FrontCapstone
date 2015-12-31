@@ -1,0 +1,52 @@
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper"> 
+            <div class="container-fluid">		            
+                <div class="row">
+                    <div class="col-lg-12">  
+						
+						 <div id="findPeople" class="input-group">
+                          <input type="text" ng-model="userCred" class="form-control" placeholder="Name, Username, Email...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="findUsers(userCred)">Find!</button>
+                          </span>
+                        </div><!-- /input-group -->
+
+                        <div id="foundUsersPutput">
+                            <p ng-repeat="user in usersFound">{{user.username}} <button data-toggle="modal" data-target="#inviteUserModal" ng-click="setUserToInvite(user)" class="btn">Invite To Group</button></p>
+                        </div>
+
+
+
+
+            <!-- invite user modal -->
+            <div id="inviteUserModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Invite User</h4>
+                  </div>
+                  <div class="modal-body">
+                  <h2>Select Group</h2>
+                    <select ng-model="selectedGroup" class="form-control">
+                        <option ng-repeat="group in userGroups">{{group.groupName}}</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" ng-click="inviteUserToGroup(selectedGroup)" class="btn">Invite</button>
+                    <button data-dismiss="modal" class="btn">Cancel</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>                  

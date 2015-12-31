@@ -153,7 +153,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									"body" : generalVariables.getCurrentUserName()+" commented on a game you are in: "+$scope.selectedGame.sportTitle,
 									"read" : false,
 									"archived" : false,
-									"zLink" : $scope.selectedGame.$id
+									"zLink" : "games/"+$scope.selectedGame.$id
 								})
 							}
 							
@@ -220,7 +220,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"body" : generalVariables.getCurrentUserName()+" joined a game of yours: "+selectedGame.sportTitle,
 								"read" : false,
 								"archived" : false,
-								"zLink" : selectedGame.$id
+								"zLink" : "games/"+selectedGame.$id
 							})
 						}
 						
@@ -281,7 +281,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
 								"read" : false,
 								"archived" : false,
-								"zLink" : game.$id
+								"zLink" : "games/"+game.$id
 							})
 						}
 						

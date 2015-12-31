@@ -206,7 +206,7 @@ $scope.hostUid = generalVariables.getUid();
 								"body" : generalVariables.getCurrentUserName()+" left a game of yours: "+game.sportTitle,
 								"read" : false,
 								"archived" : false,
-								"zLink" : game.$id
+								"zLink" : "games/"+game.$id
 							})
 						}
 						

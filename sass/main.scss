@@ -37,6 +37,13 @@ a{
 
 }
 
+#searchForPeople{
+    width: 30%;
+    position: relative;
+    right: 10%;
+    top: 12px;
+}
+
 // styles accross pages
 #wrapper {
     padding-left: 0;
@@ -767,11 +774,11 @@ a{
 
 /* ========= Group Page Styles ========== */
 
-#createGroup, #myGroups{
+#createGroup, #myGroups, #searchPeople{
     text-align: center;
 }
 
-#createGroup{
+#createGroup, #searchPeople{
     button{
         background-color: $redEmph;
         color: white;
@@ -784,6 +791,13 @@ a{
     color: white; 
     padding: 10px;
     cursor: pointer;
+}
+
+
+#findPeople{
+    margin-top: 25px;
+    width: 50%;
+    margin-left: 25%;
 }
 
 

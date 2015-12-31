@@ -272,7 +272,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"body" : generalVariables.getCurrentUserName()+" joined a game of yours: "+selectedGame.sportTitle,
 								"read" : false,
 								"archived" : false,
-								"zLink" : selectedGame.$id
+								"zLink" : "games/"+selectedGame.$id
 							})
 						}
 						
