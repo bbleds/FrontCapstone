@@ -21,11 +21,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 				_ = window._;				
 
 				$scope.groupName = "";
+				$scope.groupDescription = "";
 
 				//Create Group in Firebase
 				$scope.createGroup = function(){										
 
-					if($scope.groupName !== ""){
+					if($scope.groupName !== "" && $scope.groupDescription !== ""){
 					//if $scope.groupName !== ""
 					//if groupName doesnt exist
 
@@ -52,10 +53,23 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							ref.child("Groups").push({
 								"groupHost": generalVariables.getUid(),
 								"groupName" : $scope.groupName,
+								"groupDescription" : $scope.groupDescription,
 								"users":{
 									[generalVariables.getUid()] : generalVariables.getUid() 
 								}
 							});	
+
+							//add new group to DOM
+							var newGroup = {
+								"groupHost": generalVariables.getUid(),
+								"groupName" : $scope.groupName,
+								"groupDescription" : $scope.groupDescription,
+								"users":{
+									[generalVariables.getUid()] : generalVariables.getUid() 
+								}
+							}
+							$scope.userGroups.push(newGroup);
+
 
 						} else {
 							console.log("this already exists");

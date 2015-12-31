@@ -19,8 +19,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//stores the current grup selected (the current group on page)
 		$scope.groupSelected;
 
-		//holds output array for games associated with the group
-        $scope.groupGames = [];  
+		//holds output array for all memebers of the group
+        $scope.groupMembers =[] 
+
+        //holds total number of group members
+        $scope.memberTotal; 
 
         //store whether or not a new user is invited to the group
         $scope.userJoin = false;
@@ -40,8 +43,42 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					$scope.groupSelected = groups[i];
 				}
 			}
-
 			console.log("groupSelected ", $scope.groupSelected);
+
+			//get all group members
+			var groupMemberArray = [];
+
+				//store group memeber uids in group member array
+				for(var key in  $scope.groupSelected.users){
+					groupMemberArray.push($scope.groupSelected.users[key]);
+				}
+
+				//store total member number
+				  $scope.memberTotal = groupMemberArray.length;
+
+				//get users from firebase
+				$firebaseArray(ref.child("Users")).$loaded()
+				.then(function(users){
+					//loop through users
+					for(var i = 0; i < users.length; i++){
+
+						//loop through group members
+						for(var x = 0; x < groupMemberArray.length; x++){
+							//if user uid is the same as groupMemberArray[index] (which is a uid), push user to output variable
+							if(users[i].uid === groupMemberArray[x]){
+								//push to output variable
+								$scope.groupMembers.push(users[i]);
+
+							}
+						}
+					}
+
+				})
+
+
+
+
+
 
 			//set $scope.userJoin to true if the user viewing the group page has been invited
 			//see if user is in ivited users
@@ -55,20 +92,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 			
 		});
 
-        //get all games from group
-           // get games
-           $firebaseArray(ref.child("Games")).$loaded()
-           .then(function(games){
-                console.log("games ", games);
-               var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": $scope.groupSelected.groupName});                
 
-               //for each item in filter groups, push item into groupGames array
-               for(var x = 0; x < filteredGroups.length; x++){
-                    //push into groupGames Array
-                    $scope.groupGames.push(filteredGroups[x]);
-               }
-
-           });
 
 
         //add user to group

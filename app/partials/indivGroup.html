@@ -10,7 +10,13 @@
                         <p ng-if="userJoin === true">you have been invited: <button ng-click="addUserToGroup()" class="btn">Join</button></p>
 						
 						<h2>{{groupSelected.groupName}}</h2>	
-                        <p ng-repeat="game in groupGames">{{game.sportTitle}}</p>
+                        <h3>{{groupSelected.groupDescription}}</h3>
+                        <h3>Member total: {{memberTotal}}</h3>
+                        <h3>Group Members</h3>
+                        <hr/>
+                        <div id="memberOutput">
+                            <p ng-repeat="member in groupMembers">{{member.username}}</p>
+                        </div>
 
 
                     </div>
