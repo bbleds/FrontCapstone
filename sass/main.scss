@@ -785,7 +785,7 @@ a{
 }
 
 
-/* ========= Group Page Styles ========== */
+/* ========= Main Group Page Styles ========== */
 
 #createGroup, #myGroups, #searchPeople{
     text-align: center;
@@ -840,7 +840,6 @@ a{
         margin: 0px;
         padding-top: 20px;
         padding-bottom: 20px; 
-        filter: blur(20px);
     }
 
     p{
@@ -860,6 +859,54 @@ a{
 }
 
 
+/* ========= Individual Group Page Styles ========== */
+
+.indivGroupHeader{
+    text-align: center;
+    margin-bottom: 30px; 
+    font-family: "Open Sans", sans-serif;
+    color: $redEmph;
+}
 
 
 
+.subDescription, .memberTotal{
+    
+    font-family: "Open Sans", sans-serif;
+    color: gray;
+    font-size: 2rem;
+}
+
+.memberTotal{
+    text-align: center;
+    color: rgba(52, 66, 90, 0.57);
+}
+
+.memberSnippet{
+    background-color: lighten($lightBlueEmph, 10%);
+    padding: 5px;
+    padding-top: 8px;
+    border-radius: 5px;
+
+
+.memberPic{
+    width: 50px;
+    height: 50px;
+    background-position: center center;
+    background-size: cover;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 0px 10px 0px 5px; 
+}
+
+    p{
+        display: inline;
+        vertical-align: top;
+        font-size: 2rem;
+        color: white;        
+        position: relative;
+        top: 10px;
+    }
+
+
+}

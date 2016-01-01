@@ -9,13 +9,20 @@
 
                         <p ng-if="userJoin === true">you have been invited: <button ng-click="addUserToGroup()" class="btn">Join</button></p>
 						
-						<h2>{{groupSelected.groupName}}</h2>	
-                        <h3>{{groupSelected.groupDescription}}</h3>
-                        <h3>Member total: {{memberTotal}}</h3>
-                        <h3>Group Members</h3>
+						<h2 class="indivGroupHeader">{{groupSelected.groupName}}</h2>	
+                        <h3 class="memberTotal">{{memberTotal}} Total Members</h3>
+                        <h3 class="subDescription">{{groupSelected.groupDescription}}</h3>
                         <hr/>
-                        <div id="memberOutput">
-                            <p ng-repeat="member in groupMembers">{{member.username}}</p>
+                        <h3 class="indivGroupHeader"> Members</h3>
+                        <div id="memberOutput" class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-3" ng-repeat="member in groupMembers">
+                                    <div class="memberSnippet">
+                                        <div class="memberPic" style="background-image: url({{member.profilePic}})"></div>
+                                        <p>{{member.username}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
