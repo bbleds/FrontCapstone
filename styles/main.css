@@ -402,7 +402,7 @@ a {
 
 #leaveOrCancel {
   text-align: center; }
-  #leaveOrCancel .cancelBtn {
+  #leaveOrCancel .cancelBtn, #leaveOrCancel .leaveGameBtn {
     background-color: #F25656;
     color: white;
     margin: 20px 0px 15px;
@@ -510,7 +510,7 @@ a {
     #allNotesHolder .jumbotron p {
       font-size: 1.7rem;
       margin-bottom: 0px; }
-    #allNotesHolder .jumbotron .check {
+    #allNotesHolder .jumbotron span, #allNotesHolder .jumbotron .check {
       position: absolute;
       right: 10px;
       top: 13px; }
@@ -545,7 +545,7 @@ a {
     background-color: #22BAA0; }
 
 .groupSnippet {
-  height: 200px;
+  height: 260px;
   color: white;
   padding: 0px;
   cursor: pointer;

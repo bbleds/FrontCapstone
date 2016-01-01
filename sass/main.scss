@@ -606,7 +606,7 @@ a{
 #leaveOrCancel{
     text-align: center;
 
-.cancelBtn{
+.cancelBtn, .leaveGameBtn{
         background-color: $redEmph;    
         color: white;
         margin: 20px 0px 15px;
@@ -764,7 +764,7 @@ a{
             margin-bottom: 0px; 
         }
 
-        .check{
+        span, .check{
             position: absolute;
             right: 10px;
             top: 13px;
@@ -827,7 +827,7 @@ a{
 }
 
 .groupSnippet{
-    height: 200px;
+    height: 260px;
     color: white; 
     padding: 0px;
     cursor: pointer;
