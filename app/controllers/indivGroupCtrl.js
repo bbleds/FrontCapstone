@@ -106,6 +106,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         		//remove user from invitedUsers key in group object in firebase
         		ref.child("Groups").child(objectName).child("invitedUsers").child(generalVariables.getUid()).remove();
 
+        		//send alert to logged in user
+					$.notify({
+							//icon and message
+							icon: 'glyphicon glyphicon-ok',
+							message: "Joined Group Successfully"
+						},{
+							// settings
+							type: 'success'
+					});
+
         	}
 
 

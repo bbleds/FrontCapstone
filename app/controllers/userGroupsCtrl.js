@@ -70,6 +70,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							}
 							$scope.userGroups.push(newGroup);
 
+							//alert user
+							$.notify({
+									//icon and message
+									icon: 'glyphicon glyphicon-ok',
+									message: "Created Group Successfully"
+								},{
+									// settings
+									type: 'success'
+							});
+
 
 						} else {
 							console.log("this already exists");

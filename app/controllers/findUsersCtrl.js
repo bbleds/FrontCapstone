@@ -88,8 +88,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					});
 
 					//notify logged in user
-					//when user goes to group page
-					//display join button
+					$.notify({
+							//icon and message
+							icon: 'glyphicon glyphicon-ok',
+							message: "Invite Successful"
+						},{
+							// settings
+							type: 'success'
+					});
 				}
 
 
