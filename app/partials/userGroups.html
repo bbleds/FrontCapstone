@@ -20,14 +20,17 @@
 
 
                     <div id="myGroups">
-	                    <h2>My Groups</h2>
+	                    <h2 class="groupHeader">My Groups</h2>
 						
 						<div class="container-fluid">
 							<div class="row">
 								
 									<div class="col-lg-4" ng-repeat="group in userGroups">
 										<a href="#/groups/{{group.$id}}">
-											<div class="groupSnippet jumbotron">{{group.groupName}}</div>
+											<div class="jumbotron groupSnippet">
+												<h2>{{group.groupName}}</h2>
+												<p>{{group.groupDescription}}</p>
+											</div>
 										</a>
 									</div>								
 							</div>

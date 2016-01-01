@@ -526,16 +526,44 @@ a {
 #createGroup, #myGroups, #searchPeople {
   text-align: center; }
 
+#myGroups .groupHeader {
+  margin-bottom: 50px; }
+#myGroups .jumbotron {
+  padding: 0px; }
+
 #createGroup button, #searchPeople button {
   background-color: #F25656;
   color: white; }
 
+#createGroupsModal input {
+  margin-bottom: 15px; }
+#createGroupsModal .modal-footer {
+  text-align: center; }
+  #createGroupsModal .modal-footer button {
+    color: white;
+    background-color: #22BAA0; }
+
 .groupSnippet {
-  height: 200px;
-  background-color: #F25656;
+  height: 300px;
   color: white;
-  padding: 10px;
-  cursor: pointer; }
+  padding: 0px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.13);
+  margin-bottom: 55px; }
+  .groupSnippet h2 {
+    font-size: 2rem;
+    background-color: #F25656;
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    filter: blur(20px); }
+  .groupSnippet p {
+    font-size: 1.5rem;
+    color: black;
+    text-align: left;
+    padding: 15px 10px; }
 
 #findPeople {
   margin-top: 25px;
