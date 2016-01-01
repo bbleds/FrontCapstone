@@ -533,7 +533,8 @@ a {
 
 #createGroup button, #searchPeople button {
   background-color: #F25656;
-  color: white; }
+  color: white;
+  width: 100px; }
 
 #createGroupsModal input {
   margin-bottom: 15px; }
@@ -544,7 +545,7 @@ a {
     background-color: #22BAA0; }
 
 .groupSnippet {
-  height: 300px;
+  height: 200px;
   color: white;
   padding: 0px;
   cursor: pointer;
@@ -605,5 +606,44 @@ a {
     color: white;
     position: relative;
     top: 10px; }
+
+/* ================ Find Users Styles ================= */
+.fndBtn {
+  background-color: #34425A;
+  color: white; }
+
+#foundUsersPutput {
+  margin-top: 50px; }
+
+.indivFoundUsr {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  padding: 5px;
+  position: relative;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.13);
+  left: 50%;
+  margin-left: -150px; }
+  .indivFoundUsr div, .indivFoundUsr p, .indivFoundUsr button {
+    display: inline-block;
+    vertical-align: top; }
+  .indivFoundUsr button {
+    position: absolute;
+    right: 5px;
+    background-color: #22BAA0;
+    color: white;
+    top: 13px; }
+  .indivFoundUsr p {
+    font-size: 2rem;
+    position: relative;
+    left: 10px;
+    top: 9px;
+    color: #333333; }
+  .indivFoundUsr .foundUsrSnippetPic {
+    width: 50px;
+    height: 50px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 5px; }
 
 /*# sourceMappingURL=main.css.map */

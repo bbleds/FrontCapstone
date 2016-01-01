@@ -24,7 +24,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	
         	//get profile picture 
         	$firebaseArray(ref.child("Users").child(generalVariables.getUid())).$loaded()
-        		.then(function(userData){        	
+        		.then(function(userData){     
+        		console.log("userData", userData);   	
         			$scope.profilePic = userData[1].$value;
 
         		});        	

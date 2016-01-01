@@ -806,8 +806,10 @@ a{
     button{
         background-color: $redEmph;
         color: white;
+        width: 100px;
     }
 }
+
 
 #createGroupsModal{
     input{
@@ -825,7 +827,7 @@ a{
 }
 
 .groupSnippet{
-    height: 300px;
+    height: 200px;
     color: white; 
     padding: 0px;
     cursor: pointer;
@@ -910,3 +912,58 @@ a{
 
 
 }
+
+/* ================ Find Users Styles ================= */
+.fndBtn{
+    background-color: $darkHighlight;
+    color: white;
+}
+
+#foundUsersPutput{
+    margin-top: 50px;
+}
+
+.indivFoundUsr{
+    background-color: white;
+    border-radius: 5px;
+    width: 300px;
+    padding: 5px;
+    position: relative;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.13);
+    left: 50%;
+    margin-left: -150px; 
+
+    div, p, button{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    button{
+        position: absolute;
+        right: 5px;
+        background-color: $greenEmph;
+        color: white;
+        top: 13px;
+    }
+
+    p{
+        font-size: 2rem;
+        position: relative;
+        left: 10px;
+        top: 9px;
+        color: lighten(black, 20%);
+
+    }
+
+    .foundUsrSnippetPic{
+        width: 50px;
+        height: 50px;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 5px;
+        
+    }
+}
+
+
+

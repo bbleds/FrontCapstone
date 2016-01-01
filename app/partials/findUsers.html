@@ -7,14 +7,18 @@
                     <div class="col-lg-12">  
 						
 						 <div id="findPeople" class="input-group">
-                          <input type="text" ng-model="userCred" class="form-control" placeholder="Name, Username, Email...">
+                          <input type="text" ng-model="userCred" class="form-control" placeholder="Username">
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="findUsers(userCred)">Find!</button>
+                            <button class="btn btn-default fndBtn" type="button" ng-click="findUsers(userCred)">Find!</button>
                           </span>
                         </div><!-- /input-group -->
 
                         <div id="foundUsersPutput">
-                            <p ng-repeat="user in usersFound">{{user.username}} <button data-toggle="modal" data-target="#inviteUserModal" ng-click="setUserToInvite(user)" class="btn">Invite To Group</button></p>
+                            <div class="indivFoundUsr" ng-repeat="user in usersFound">
+                              <div class="foundUsrSnippetPic" style="background-image: url({{user.profilePic}})"></div>
+                              <p>{{user.username}}</p>
+                                <button data-toggle="modal" data-target="#inviteUserModal" ng-click="setUserToInvite(user)" class="btn">Invite</button>
+                            </div>
                         </div>
 
 
