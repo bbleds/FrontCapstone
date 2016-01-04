@@ -97,6 +97,15 @@ $scope.hostUid = generalVariables.getUid();
 
 				console.log("FINAL MATCHES ", $scope.usersGames);
 
+				$scope.noneAvailable = true;
+
+				//if length is none
+				// if($scope.usersGames.length === 0){
+				// 	$scope.noneAvailable = true;
+				// } else {
+				// 	$scope.noneAvailable = false;
+				// }
+
 			})
 		
 
