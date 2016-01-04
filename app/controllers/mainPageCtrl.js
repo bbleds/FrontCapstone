@@ -65,6 +65,17 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		$location.path("/login");
 	}
 
+
+	//toggle sidebar
+	$("#toggle_sidebar").click(function(){
+		if($("#sidebar-wrapper").width()>0){
+		$("#sidebar-wrapper").css( "width", "-=250" );
+		} else {
+			$("#sidebar-wrapper").css( "width", "+=250" );
+		}
+		
+	});
+
 	//store current groups
 
 			$scope.userGroups = [];

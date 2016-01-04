@@ -45,6 +45,8 @@ a{
 }
 
 // styles accross pages
+
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -88,6 +90,10 @@ a{
 }
 
 /* Sidebar Styles */
+
+#toggle_sidebar{
+
+}
 
 .sidebar-nav {
     position: absolute;
@@ -158,34 +164,7 @@ a{
     background: none;
 }
 
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 250px;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-        padding-top: 60px;
-    }
-
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-}
 
 .modify_search{
     width: 25%;
@@ -963,6 +942,73 @@ a{
         border-radius: 5px;
         
     }
+}
+
+
+//============================= Media Queries ======================//
+//media queries
+@media(max-width: 1250px){
+    .singleGameFound{
+        width: 70%;
+        margin-left: 15%;
+    }
+}
+
+@media(max-width: 945px){
+     #allNotesHolder{
+        width: 100%;
+    }
+    .singleGameFound{
+        width: 85%;
+        margin-left: 7%;
+    }
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+        padding-top: 60px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+//for main page margins and responsive styles
+@media(max-width: 768px){
+    #mainContainer{
+        margin-top: 60px;
+    }
+
+    .sidebar-nav > .sidebar-brand{
+        height: 0px;
+        margin-bottom: 15px; 
+    }
+
+    #createGameModal, #createGroupsModal{
+        width: 70%;
+        margin-left: 15%;
+    }
+
 }
 
 
