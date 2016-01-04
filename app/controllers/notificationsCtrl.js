@@ -35,8 +35,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					
 					//if there are no notifications that are not archieved and read
 					if(unarchievedReadNotes.length === 0){
-						$rootScope.noNotes = true;
+						$rootScope.tellNoNotes = true;
+					} else {
+						$rootScope.tellNoNotes = false;
 					}
+					
 
 					//watch for changes to notification array, this is applied to rootscope not scope
 					$rootScope.notes.$watch(function(event){

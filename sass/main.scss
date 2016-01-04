@@ -46,6 +46,13 @@ a{
 
 // styles accross pages
 
+.noneAvailable{
+    font-size: 2rem;
+    color: gray;
+    font-family: "Open+Sans", sans-serif;
+    text-align: center;
+    margin-top: 40px;
+}
 
 #wrapper {
     padding-left: 0;
@@ -943,6 +950,7 @@ a{
         
     }
 }
+
 
 
 //============================= Media Queries ======================//

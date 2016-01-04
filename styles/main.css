@@ -26,6 +26,13 @@ a {
   right: 10%;
   top: 12px; }
 
+.noneAvailable {
+  font-size: 2rem;
+  color: gray;
+  font-family: "Open+Sans", sans-serif;
+  text-align: center;
+  margin-top: 40px; }
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
