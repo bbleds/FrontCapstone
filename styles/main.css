@@ -219,6 +219,23 @@ a {
   border-radius: 3px;
   margin-right: 10px; }
 
+/* ========= LOGIN STYLES ========== */
+#loginContainer {
+  width: 600px;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+  left: 50%;
+  margin-left: -300px;
+  position: relative; }
+  #loginContainer .formLabel {
+    margin-bottom: 0px; }
+  #loginContainer input {
+    margin-bottom: 15px; }
+  #loginContainer button:first-of-type {
+    margin-right: 10px; }
+
 /* ========= MAIN PAGE STYLES ========== */
 #gameSelector {
   cursor: pointer; }

@@ -308,6 +308,39 @@ a{
     margin-right: 10px;
 }
 
+/* ========= LOGIN STYLES ========== */
+// html{
+//     background-image: url(https://images.unsplash.com/photo-1446057633965-55d2dcb22598?crop=entropy&fit=crop&fm=jpg&h=825&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1450);
+//     background-position: center center;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+// }
+
+#loginContainer{
+    width: 600px;
+    border-radius: 10px; 
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+    left: 50%;
+    margin-left: -300px;
+    position: relative;
+
+    .formLabel{
+        margin-bottom: 0px; 
+    }
+
+    input{
+        margin-bottom: 15px; 
+    }
+
+    button {
+        &:first-of-type{
+            margin-right: 10px;
+        }
+    }
+}
+
 
 /* ========= MAIN PAGE STYLES ========== */
 
@@ -828,6 +861,7 @@ a{
         margin: 0px;
         padding-top: 20px;
         padding-bottom: 20px; 
+
     }
 
     p{
@@ -845,6 +879,7 @@ a{
     width: 50%;
     margin-left: 25%;
 }
+
 
 
 /* ========= Individual Group Page Styles ========== */

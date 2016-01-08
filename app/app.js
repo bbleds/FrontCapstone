@@ -1,7 +1,7 @@
 //initialzes app and sets up routes
 var app = angular.module("MainApp", 
 
-	//deps
+	//inject dependencies
 	["firebase","ngRoute", 'ui.bootstrap']);
 
 
@@ -9,48 +9,59 @@ var app = angular.module("MainApp",
 app.config(["$routeProvider", function($routeProvider){
 	$routeProvider
 
-	//login route
+	//login page
 	.when("/login", {
 		templateUrl: "app/partials/login.html",
 		controller: "loginAndRegisterCtrl"
 	})
+
+	//main page
 	.when("/main",  {
 		templateUrl: "app/partials/main.html",
 		controller: "mainPageCtrl"
 	})
+
+	//finding users
 	.when("/findUsers",  {
 		templateUrl: "app/partials/findUsers.html",
 		controller: "findUsersCtrl"
 	})	
+
+	//finding games
 	.when("/findGames",  {
 		templateUrl: "app/partials/findGames.html",
 		controller: "findGamesCtrl"
 	})
+
+	//Current game
 	.when("/currentGames",  {
 		templateUrl: "app/partials/currentGames.html",
 		controller: "currentGamesCtrl"
 	})
+
+	//Group page
 	.when("/groups",  {
 		templateUrl: "app/partials/userGroups.html",
 		controller: "userGroupsCtrl"
 	})
+
+	//individual group game
 	.when("/groups/:individualGroup",  {
 		templateUrl: "app/partials/indivGroup.html",
 		controller: "indivGroupCtrl"
 	})
-	// .when("/finishedGames",  {
-	// 	templateUrl: "app/partials/finishedGames.html",
-	// 	controller: "finishedGamesCtrl"
-	// })
+	// individual profile page
 	.when("/profile",  {
 		templateUrl: "app/partials/userProfile.html",
 		controller: "userProfileCtrl"
 	})
 
-	//do not attach controller here, attached controller in sidebar, otherwise controller is digested twice, resulting in odd bugs
+	//notification number output
 	.when("/notifications",  {
 		templateUrl: "app/partials/notifications.html"
 	})
+
+	//individual group page
 	.when("/games/:individualGame",  {
 		templateUrl: "app/partials/indivGame.html",
 		controller: "indivGameCtrl"
