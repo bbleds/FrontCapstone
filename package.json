@@ -16,5 +16,14 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "abbrev": "^1.0.7",
+    "async": "^1.5.2",
+    "colors": "^1.1.2",
+    "hooker": "^0.2.3",
+    "lodash": "^4.3.0",
+    "lru-cache": "^4.0.0",
+    "sigmund": "^1.0.1"
+  }
 }
