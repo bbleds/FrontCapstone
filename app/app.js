@@ -68,7 +68,7 @@ app.config(["$routeProvider", function($routeProvider){
 	})
 	//default to login route
 	.otherwise("/login");
-}])
+}]);
 
 
 

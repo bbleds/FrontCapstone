@@ -54,7 +54,7 @@ $scope.hostUid = generalVariables.getUid();
 				if(data[i][key] === generalVariables.getUid()){
 					console.log("matches");
 
-					foundArray.push(data[i])
+					foundArray.push(data[i]);
 
 				}
 
@@ -106,10 +106,10 @@ $scope.hostUid = generalVariables.getUid();
 				// 	$scope.noneAvailable = false;
 				// }
 
-			})
+			});
 		
 
-	})
+	});
 
 		
 		//matches users in the current game, and gives back an array of objects where every user is an object in the array
@@ -123,7 +123,7 @@ $scope.hostUid = generalVariables.getUid();
           console.log("data ", data);
 
           	//array to hold filtered user objects
-          	var matchedUsersInGame = []
+          	var matchedUsersInGame = [];
 
 
           	//go into firebase users object
