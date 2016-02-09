@@ -200,7 +200,7 @@ a{
     width: 30%;
     left: 50%;
     margin-left: -15%;
-    
+
     span {
         padding-right: 20px;
     }
@@ -246,7 +246,7 @@ a{
 #notificationsSide{
 
     span {
-        color: whitesmoke;      
+        color: whitesmoke;
     }
 }
 
@@ -269,7 +269,7 @@ a{
     #newNotesNumber, #newNotesColor{
         position: absolute;
     }
-    
+
     #newNotesNumber{
         top: -39px;
         left: 53.3%;
@@ -316,9 +316,16 @@ a{
 //     background-repeat: no-repeat;
 // }
 
+#main_view{
+    height: 100vh;
+    background-image: url("../imgs/bike.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
 #loginContainer{
     width: 600px;
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 20px;
     text-align: center;
     margin-top: 50px;
@@ -327,11 +334,11 @@ a{
     position: relative;
 
     .formLabel{
-        margin-bottom: 0px; 
+        margin-bottom: 0px;
     }
 
     input{
-        margin-bottom: 15px; 
+        margin-bottom: 15px;
     }
 
     button {
@@ -384,8 +391,8 @@ a{
 
             &:first-of-type{
                 margin-bottom: 10px;
-            }  
-        }      
+            }
+        }
     }
 
    .modal-body{
@@ -415,13 +422,13 @@ a{
 #creationTimeHolder{
 
     table {
-       display: inline-block; 
-       margin-top: -15px;       
+       display: inline-block;
+       margin-top: -15px;
 
        input, button{
         color: gray;
        }
-        
+
         .glyphicon{
             color: #565555
         }
@@ -481,13 +488,13 @@ a{
     #findGamesButton{
         width: 100px;
         background-color: $darkHighlight;
-        border: none; 
-        color: white;       
+        border: none;
+        color: white;
     }
 }
 
 .gameFound{
-    
+
     overflow: hidden;
     margin-top: 60px;
 
@@ -500,7 +507,7 @@ a{
     &:nth-of-type(2n+1){
         .singleGameFound{
             h1{
-                background-color: $lightBlueEmph; 
+                background-color: $lightBlueEmph;
             }
         }
     }
@@ -508,7 +515,7 @@ a{
       &:nth-of-type(4n){
         .singleGameFound{
             h1{
-                background-color: $greenEmph; 
+                background-color: $greenEmph;
             }
         }
     }
@@ -516,7 +523,7 @@ a{
       &:nth-of-type(3n+1){
         .singleGameFound{
             h1{
-                background-color: $redEmph; 
+                background-color: $redEmph;
             }
         }
     }
@@ -533,7 +540,7 @@ a{
         font-size: 3rem;
         position: relative;
         margin: 0px;
-        padding: 20px; 
+        padding: 20px;
         background-color: $greenEmph;
         color: white;
 
@@ -566,7 +573,7 @@ a{
     }
 
     .userDisplay{
-        margin: 20px 10px 15px 0px; 
+        margin: 20px 10px 15px 0px;
         background-color: $darkHighlight;
         color: white;
     }
@@ -598,7 +605,7 @@ a{
     .subGroup{
         font-size: 2.7rem;
         font-family: 'Open Sans', sans-serif;
-        font-weight: 100; 
+        font-weight: 100;
     }
 
 }
@@ -607,7 +614,7 @@ a{
     button{
         background-color: $darkHighlight;
         color: white;
-        margin-left: 20px; 
+        margin-left: 20px;
     }
 }
 
@@ -626,7 +633,7 @@ a{
     text-align: center;
 
 .cancelBtn, .leaveGameBtn{
-        background-color: $redEmph;    
+        background-color: $redEmph;
         color: white;
         margin: 20px 0px 15px;
         position: absolute;
@@ -683,7 +690,7 @@ a{
 .noDesc{
     color: gray;
     font-family: 'Open Sans', sans-serif;
-    margin: 20px 0px 60px 0px; 
+    margin: 20px 0px 60px 0px;
 }
 
 .descOutput{
@@ -780,7 +787,7 @@ a{
 
         p{
             font-size: 1.7rem;
-            margin-bottom: 0px; 
+            margin-bottom: 0px;
         }
 
         span, .check{
@@ -811,7 +818,7 @@ a{
 }
 
 #myGroups{
-    
+
     .groupHeader{
         margin-bottom: 50px;
     }
@@ -847,20 +854,20 @@ a{
 
 .groupSnippet{
     height: 260px;
-    color: white; 
+    color: white;
     padding: 0px;
     cursor: pointer;
     overflow: hidden;
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.13);
     margin-bottom: 55px;
-    
+
     h2{
         font-size: 2rem;
         background-color: $redEmph;
         margin: 0px;
         padding-top: 20px;
-        padding-bottom: 20px; 
+        padding-bottom: 20px;
 
     }
 
@@ -886,7 +893,7 @@ a{
 
 .indivGroupHeader{
     text-align: center;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     font-family: "Open Sans", sans-serif;
     color: $redEmph;
 }
@@ -894,7 +901,7 @@ a{
 
 
 .subDescription, .memberTotal{
-    
+
     font-family: "Open Sans", sans-serif;
     color: gray;
     font-size: 2rem;
@@ -919,14 +926,14 @@ a{
     background-size: cover;
     display: inline-block;
     border-radius: 3px;
-    margin: 0px 10px 0px 5px; 
+    margin: 0px 10px 0px 5px;
 }
 
     p{
         display: inline;
         vertical-align: top;
         font-size: 2rem;
-        color: white;        
+        color: white;
         position: relative;
         top: 10px;
     }
@@ -952,7 +959,7 @@ a{
     position: relative;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.13);
     left: 50%;
-    margin-left: -150px; 
+    margin-left: -150px;
 
     div, p, button{
         display: inline-block;
@@ -982,7 +989,7 @@ a{
         background-position: center center;
         background-size: cover;
         border-radius: 5px;
-        
+
     }
 }
 
@@ -1044,7 +1051,7 @@ a{
 
     .sidebar-nav > .sidebar-brand{
         height: 0px;
-        margin-bottom: 15px; 
+        margin-bottom: 15px;
     }
 
     #createGameModal, #createGroupsModal{

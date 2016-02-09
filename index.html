@@ -8,15 +8,15 @@
 	<link rel="stylesheet" type="text/css" href="styles/animate.css">
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
-<body ng-app="MainApp">
+<body id="main_view" ng-app="MainApp">
 
 	<div id="navAndSidebar">
 		 <!-- navbar -->
 				<div ng-include="'./app/partials/navBar.html'"></div>
-		
+
 	        <!-- Sidebar -->
 	        <div id="sidebar-wrapper">
-	            
+
 	            <ul class="sidebar-nav">
 	                <li class="sidebar-brand">
 	                    <a href="#">
@@ -44,14 +44,14 @@
 	                      </div>
 	                    </div>
 	                </li>
-	                <li>	                	
-	                	 <a href="#/groups" ng-click="searchOptions = true"> 
+	                <li>
+	                	 <a href="#/groups" ng-click="searchOptions = true">
 	                  	<span class="glyphicon glyphicon-globe"></span>
 	                  		<p>Groups</p>
 	                  </a>
-	                </li>	                 
+	                </li>
 	                <li>
-	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true"> 
+	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true">
 	                  	<span class="glyphicon glyphicon-user"></span>
 	                  		<p>Profile</p>
 	                  </a>
@@ -59,15 +59,15 @@
 	                <li id="notificationHolder">
 	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">
 	                   <span class="glyphicon glyphicon-envelope"></span>
-	                   <p>Notifications</p> 
+	                   <p>Notifications</p>
 	                   <div id="newNotesStyling">
 		                   <span id="newNotesColor" ng-if="newNotes"></span>
 		                   <span id="newNotesNumber" ng-if="newNotes">{{newNotes}}</span>
 	                   </div>
 	                   </a>
 	                </li>
-	                <li>	      
-	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()"> 
+	                <li>
+	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()">
 	                  	<span id="logoutGly" class="glyphicon glyphicon-sunglasses"></span>
 	                  	<p>Log Out</p>
 	                  </a>
@@ -76,15 +76,15 @@
 	        </div>
 	        <!-- /#sidebar-wrapper -->
 	</div>
-	
+
 
 	<div id="mainContainer" ng-view>
-	
-		
+
+
 	</div>
 	<!-- game creation modal -->
 	<div ng-include="'./app/partials/gameCreationModal.html'"></div>
-		
+
 	<script type="text/javascript" src="lib/bower_components/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="lib/bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js"></script>

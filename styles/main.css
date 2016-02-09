@@ -220,6 +220,12 @@ a {
   margin-right: 10px; }
 
 /* ========= LOGIN STYLES ========== */
+#main_view {
+  height: 100vh;
+  background-image: url("../imgs/bike.jpg");
+  background-position: center;
+  background-size: cover; }
+
 #loginContainer {
   width: 600px;
   border-radius: 10px;
