@@ -1,0 +1,56 @@
+<div id="sidebar-wrapper">
+
+	            <ul class="sidebar-nav">
+	                <li class="sidebar-brand">
+	                    <a href="#">
+	                    </a>
+	                </li>
+	                <li id="gameSelector">
+	                    <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+							<span class="glyphicon glyphicon-knight"></span>
+	                    	<p>Activities</p>
+	                    </a>
+	                    <div class="collapse" id="collapseExample">
+	                      <div id="gameOptionsWell" class="well">
+	                        <a href="#/main" data-toggle="modal" data-target="#createGameModal">
+		                        Create Activity
+	                        </a>
+	                        <a href="#/findGames" data-toggle="modal" data-target="#findGameModal">
+		                        Find Activity
+	                        </a>
+	                        <a href="#/currentGames" ng-click="searchOptions = true">
+		                        Current Activities
+	                        </a>
+	                      </div>
+	                    </div>
+	                </li>
+	                <li>
+	                	 <a href="#/groups" ng-click="searchOptions = true">
+	                  	<span class="glyphicon glyphicon-globe"></span>
+	                  		<p>Groups</p>
+	                  </a>
+	                </li>
+	                <li>
+	                  <a href="#/profile" ng-click="logOutUser(); searchOptions = true">
+	                  	<span class="glyphicon glyphicon-user"></span>
+	                  		<p>Profile</p>
+	                  </a>
+	                </li>
+	                <li id="notificationHolder">
+	                   <a id="notificationsSide" ng-controller="notificationCtrl" href="#/notifications" ng-click="searchOptions = true">
+	                   <span class="glyphicon glyphicon-envelope"></span>
+	                   <p>Notifications</p>
+	                   <div id="newNotesStyling">
+		                   <span id="newNotesColor" ng-if="newNotes"></span>
+		                   <span id="newNotesNumber" ng-if="newNotes">{{newNotes}}</span>
+	                   </div>
+	                   </a>
+	                </li>
+	                <li>
+	                  <a href="#/login" ng-controller="logOutCtrl" ng-click="logOutUser()">
+	                  	<span id="logoutGly" class="glyphicon glyphicon-sunglasses"></span>
+	                  	<p>Log Out</p>
+	                  </a>
+	                </li>
+	            </ul>
+	        </div>
