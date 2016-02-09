@@ -1,5 +1,5 @@
 //test controller
-app.controller("loginAndRegisterCtrl", 
+app.controller("loginAndRegisterCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "generalVariables",
 
 function($firebaseArray, $scope, $location, $rootScope, generalVariables){
@@ -89,18 +89,18 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 							    //set up username, pass and profile pic
 							    appRef.child("Users").child(userData.uid).set({
 							    		username : $scope.registerUserName,
-							    		uid: userData.uid,						    		
+							    		uid: userData.uid,
 							    		//pic is null until user uploads, this is default profile pic
 							    		profilePic: defaultPic,
 							    		//profile tagline
-							    		zTagline: false	
+							    		zTagline: false
 							    });
 
 							    //set up notifications
 							    appRef.child("Users").child(userData.uid).child("notifications").push({
 							    	body : "This is where you will see all activity!",
 							    	read: false,
-							    	archived: false							    							    	
+							    	archived: false
 							    })
 
 
@@ -114,10 +114,10 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 				} else {
 					console.log("please check your passwords");
 				}
-				
+
 			}
 
-			
+
 		})
 
 	}
@@ -133,7 +133,10 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		  } else {
 		    console.log("Authenticated successfully with payload:", authData);
 
-		    //new path to go to 
+		    //change body bg image
+		    document.getElementById("main_view").style.backgroundImage = "none";
+
+		    //new path to go to
 		     $rootScope.$apply(function() {
 
 		       $location.path("/main");
