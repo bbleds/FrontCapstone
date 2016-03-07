@@ -21,13 +21,6 @@ app.config(["$routeProvider", function($routeProvider){
 		controller: "mainPageCtrl"
 	})
 
-	//finding users ------------------------> Should now be able to remove this one
-	.when("/findUsers",  {
-		templateUrl: "app/partials/findUsers.html",
-		controller: "findUsersCtrl"
-	})
-	// -----------------------------------------------------------------------------
-
 	//finding games
 	.when("/findGames",  {
 		templateUrl: "app/partials/findGames.html",
@@ -38,12 +31,6 @@ app.config(["$routeProvider", function($routeProvider){
 	.when("/currentGames",  {
 		templateUrl: "app/partials/currentGames.html",
 		controller: "currentGamesCtrl"
-	})
-
-	//Group page
-	.when("/groups",  {
-		templateUrl: "app/partials/userGroups.html",
-		controller: "userGroupsCtrl"
 	})
 
 	//individual group game
