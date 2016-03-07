@@ -1,7 +1,7 @@
 //controller for logging out
 
-app.controller("logOutCtrl", ["$scope", "$location",
-function($scope, $location){
+app.controller("logOutCtrl", ["$scope", "$location", "generalVariables",
+function($scope, $location, generalVariables){
 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 
@@ -11,11 +11,14 @@ function($scope, $location){
 			angular.element("#navAndSidebar").css({"display":"none"});
 
 			//clear auth
-			ref.unauth()
+			ref.unauth();
 
 			//navigate back to main
 			$location.path("/login");
 
-	}
+			// show backgroundImage
+			generalVariables.showMainBg();
+
+	};
 
 }]);;

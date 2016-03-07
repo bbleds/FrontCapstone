@@ -181,7 +181,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
       showMainBg: function(){
         //change body bg image
-		    document.getElementById("main_view").style.backgroundImage = url("../imgs/bike.jpg");
+		    document.getElementById("main_view").style.backgroundImage = 'url("../imgs/bike.jpg")';
       }
 
   	};
