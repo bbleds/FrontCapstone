@@ -69,11 +69,11 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
                 console.log("user ", data[3].$value);
 
                 //set current username
-                currentUserName = data[3].$value
+                currentUserName = data[3].$value;
 
                 //show sidebar options
-                angular.element("#navAndSidebar").css({"display":"block"})
-              })
+                angular.element("#navAndSidebar").css({"display":"block"});
+              });
 
         	   //if user is not logged in, redirect to login page
         	  } else {
@@ -126,7 +126,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
             //after finished app, set it by time by hour
           }
 
-        })
+        });
 
 
       },
@@ -135,7 +135,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
           //set promise
           var deffered = $q.defer();
 
-        var unreadArray = []
+        var unreadArray = [];
 
         //go into firebase
         //go into current user's uid
@@ -153,9 +153,9 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
             if(note.read === "false"){
               //push all notifications where read = false into array
               console.log("this hasnt been read yet");
-              unreadArray.push(note)
+              unreadArray.push(note);
             }
-          })
+          });
 
           //set length of that array to noteNumber
           noteNumber = unreadArray.length;
@@ -163,7 +163,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
           deffered.resolve(noteNumber);
 
-        })
+        });
 
         return deffered.promise;
 
@@ -171,7 +171,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
       },
 
       getUnreadNotifications: function(){
-        return noteNumber
+        return noteNumber;
       },
 
       hideMainBg: function(){
