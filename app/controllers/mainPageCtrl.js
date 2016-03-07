@@ -99,7 +99,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 							$scope.gameCity;
 							$scope.gameDate;
 							$scope.skillLevel;
-							$scope.gameGroup;
 							$scope.gameDescription;
 
 							//creation success variable
@@ -111,9 +110,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 								//collapse search options
 								$scope.searchOptions = true;
-// ------------------------------------------------------------- This is where to start tonight
 								// if all required data is filled in
-							 if( $scope.gameTitle && $scope.gameGroup && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
+							 if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
 								//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
 									var splitTime = $scope.gameTime.toString().split(" ")[4].split(":");
@@ -167,8 +165,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 										"hostUserPic" : $scope.profilePic,
 										"finished": false,
 										"skillLevel" : $scope.skillLevel,
-										"gameDescription" : $scope.gameDescription,
-										"gameGroup": $scope.gameGroup
+										"gameDescription" : $scope.gameDescription
 									}, function(){
 										var gameArray = $firebaseArray(ref.child("Games"));
 
