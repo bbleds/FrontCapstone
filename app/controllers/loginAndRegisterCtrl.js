@@ -15,6 +15,7 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		//how to pass this as depemdency in app.js
 	_ = window._;
 
+
 	//Information For Login
 	$scope.loginEmail="";
 	$scope.loginPassword="";

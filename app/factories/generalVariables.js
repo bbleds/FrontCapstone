@@ -1,6 +1,6 @@
 app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
   function($q, $http, $location, $firebaseArray) {
-    
+
     //private variables
   	var userUid;
     var currentUserName;
@@ -31,7 +31,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
           //navigate back to main
           $location.path("/login");
-          
+
       },
 
       getCurrentUserName : function(){
@@ -79,7 +79,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         	  } else {
         	    console.log("Client unauthenticated.");
         	    $location.path("/login");
-        		 
+
         	  }
         	});
       },
@@ -122,7 +122,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
             } else if(dayAbrev < today.getDate()){
               // console.log("this game was at a past day bruh bruh");
               ref.child("Games").child(data[i].$id).child("finished").set(true);
-            } 
+            }
             //after finished app, set it by time by hour
           }
 
@@ -141,7 +141,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
         //go into current user's uid
 
         var allNotifs = $firebaseArray(ref.child("Users").child(userUid).child("notifications"));
-        
+
         //get notifcations
         allNotifs.$loaded()
         .then(function(noteResponse){
@@ -172,8 +172,18 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
       getUnreadNotifications: function(){
         return noteNumber
+      },
+
+      hideMainBg: function(){
+        //change body bg image
+		    document.getElementById("main_view").style.backgroundImage = "none";
+      },
+
+      showMainBg: function(){
+        //change body bg image
+		    document.getElementById("main_view").style.backgroundImage = url("../imgs/bike.jpg");
       }
 
-  	}
+  	};
 
   }]);

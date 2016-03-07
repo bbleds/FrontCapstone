@@ -1,13 +1,11 @@
 //controller for main page, functionality for current games, . . . in other modules
 
-app.controller("mainPageCtrl", 
+app.controller("mainPageCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-	//see if user is logged in 
+	//see if user is logged in
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
-	// generalVariables.checkUserLogin("main");
-
 
 	//instead of running onauth in general variables, we run it here because the code was being parsed in an unexpected sequence which cause generalVairables.getUid to be undefined in the code below. Since we are checking directly in this file for auth data, (and in notificationsCtrl), it elminates those errors and unexpected behavior
 	ref.onAuth(function(authdata){
@@ -17,18 +15,21 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
         	    $location.path("/login");
         	}  else {
 
-        
+						// clear background image
+						generalVariables.hideMainBg();
+
+
         	//store current username in variable
         	$scope.currentUsername = generalVariables.getCurrentUserName();
 
-        	
-        	//get profile picture 
+
+        	//get profile picture
         	$firebaseArray(ref.child("Users").child(generalVariables.getUid())).$loaded()
-        		.then(function(userData){     
-        		console.log("userData", userData);   	
+        		.then(function(userData){
+        		console.log("userData", userData);
         			$scope.profilePic = userData[1].$value;
 
-        		});        	
+        		});
 
 
 	//be sure to clear out all games that are finished
@@ -73,7 +74,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		} else {
 			$("#sidebar-wrapper").css( "width", "+=250" );
 		}
-		
+
 	});
 
 	//store current groups
@@ -88,21 +89,21 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					//loop through groups in firebase
 					for(var i = 0; i < groups.length; i++){
 						console.log("groups[i]", groups[i]);
-						
+
 						//see if user uid exists in object
-						// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);					
+						// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);
 						//if user uid is in group
-						if(groups[i].users[generalVariables.getUid()] !== undefined){							
+						if(groups[i].users[generalVariables.getUid()] !== undefined){
 							//push group object into usersGroups
 							$scope.userGroups.push(groups[i]);
 
 						} else {
 							console.log("user isnt there");
-						}						
+						}
 					}
 
 					console.log("$scope.userGroups ", $scope.userGroups);
-						
+
 
 				});
 
@@ -130,13 +131,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//collapse search options
 		$scope.searchOptions = true;
 
-		
-		//create Game in reference 
+
+		//create Game in reference
 
 	 if( $scope.gameTitle && $scope.gameGroup && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
 		//fix entered time to the format hh:mm a.m./p.m. in the timeToPass variable
-			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":"); 
+			var splitTime = $scope.gameTime.toString().split(" ")[4].split(":");
 
 				if(splitTime[0] > 12){
 					splitTime[0] = splitTime[0] - 12
@@ -218,7 +219,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 					console.log("below show alert call");
 
-				})	
+				})
 			});
 
 
