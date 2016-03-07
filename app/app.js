@@ -1,5 +1,5 @@
 //initialzes app and sets up routes
-var app = angular.module("MainApp", 
+var app = angular.module("MainApp",
 
 	//inject dependencies
 	["firebase","ngRoute", 'ui.bootstrap']);
@@ -25,7 +25,7 @@ app.config(["$routeProvider", function($routeProvider){
 	.when("/findUsers",  {
 		templateUrl: "app/partials/findUsers.html",
 		controller: "findUsersCtrl"
-	})	
+	})
 
 	//finding games
 	.when("/findGames",  {
@@ -69,11 +69,3 @@ app.config(["$routeProvider", function($routeProvider){
 	//default to login route
 	.otherwise("/login");
 }]);
-
-
-
-
-
-
-
-

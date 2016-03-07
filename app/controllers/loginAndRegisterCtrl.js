@@ -1,23 +1,35 @@
-//test controller
+
+// ---- Controller Summary
+	// This controller handles registering and logging in users
+
+
 app.controller("loginAndRegisterCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "generalVariables",
 
 function($firebaseArray, $scope, $location, $rootScope, generalVariables){
-	console.log("oooo mah ");
+
+
+// ------------------------- Initial Controller vars and functionality
 
 	//lodash
 		//how to pass this as depemdency in app.js
 	_ = window._;
 
 	//Information For Login
-	$scope.loginEmail;
-	$scope.loginPassword;
+	$scope.loginEmail="";
+	$scope.loginPassword="";
+
+	// status messages
+	$scope.registerSuccess="";
+	$scope.showRegisterMessage = false;
 
 	//app reference
 	var appRef = new Firebase("https://frontcapstone.firebaseio.com");
 
 	//see if user is logged in, and if so, redirect to main page
 	generalVariables.checkUserLogin("main");
+
+// ------------------------ Registration functionality
 
 	//registration info
 	$scope.registerEmail;
@@ -40,7 +52,6 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 			//get array of all usernames (lodash method)
 			var userNames = _.map(data, 'username');
 
-			console.log("userNames", userNames);
 
 			var userNameExists = false;
 
@@ -57,7 +68,9 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 			//userName exists, log username already exists, else, create user
 			if(userNameExists){
 
-				console.log("this username already exists please choose another");
+				// tell user this message
+				$scope.registerSuccess="This username already exists please choose another";
+				$scope.showRegisterMessage = true;
 
 			//if username doesnt exist
 			} else {
@@ -70,16 +83,17 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 						  password : $scope.registerPassword
 						}, function(error, userData) {
 						  if (error) {
-						    console.log("Error creating user:", error);
+								$scope.registerSuccess="Error creating user: "+ error;
+								$scope.showRegisterMessage = true;
 						  } else {
-						    console.log("Successfully created user account with uid:", userData.uid);
+						    // console.log("Successfully created user account with uid:", userData.uid);
 
 						    //array that holds references to the three default profile pictures
 						    var picArray = ["http://bledsoedesigns.com/crown.jpg", "http://bledsoedesigns.com/light.jpg", "http://bledsoedesigns.com/shield.jpg"]
 
 						    //generate random number between 0 and 2
 						    var randIndex = Math.floor(Math.random() * 3);
-						    console.log("randIndex ", randIndex);
+						    // console.log("randIndex ", randIndex);
 
 						    //set default profile picture to array[randomNumber]
 						    var defaultPic = picArray[randIndex];
@@ -105,14 +119,14 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 
 
 						    //log user in
-
 						    $scope.loginUser($scope.registerEmail, $scope.registerPassword);
 
 
 						  }
 						});
 				} else {
-					console.log("please check your passwords");
+					$scope.registerSuccess="Error: Please check your passwords";
+					$scope.showRegisterMessage = true;
 				}
 
 			}
@@ -122,6 +136,8 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 
 	}
 
+
+// ------------------------ Login Functionality
 	//Login user
 	$scope.loginUser = function(email, password){
 		appRef.authWithPassword({
@@ -129,9 +145,13 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		  password : password
 		}, function(error, authData) {
 		  if (error) {
-		    console.log("Login Failed!", error);
+		    // console.log("Login Failed!", error);
+				$scope.registerSuccess = "Login Failed: "+error;
+				$scope.showRegisterMessage = true;
 		  } else {
-		    console.log("Authenticated successfully with payload:", authData);
+		    // console.log("Authenticated successfully with payload:", authData);
+				$scope.registerSuccess = "";
+				$scope.showRegisterMessage = false;
 
 		    //change body bg image
 		    document.getElementById("main_view").style.backgroundImage = "none";
@@ -140,12 +160,9 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		     $rootScope.$apply(function() {
 
 		       $location.path("/main");
-		        console.log($location.path());
+		        // console.log($location.path());
 		      });
 		  }
 		});
-	}
-
-
-
+	};
 }]);
