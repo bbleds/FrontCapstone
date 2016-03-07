@@ -111,7 +111,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 								//collapse search options
 								$scope.searchOptions = true;
-
+// ------------------------------------------------------------- This is where to start tonight
 								// if all required data is filled in
 							 if( $scope.gameTitle && $scope.gameGroup && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 

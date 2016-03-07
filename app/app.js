@@ -21,11 +21,12 @@ app.config(["$routeProvider", function($routeProvider){
 		controller: "mainPageCtrl"
 	})
 
-	//finding users
+	//finding users ------------------------> Should now be able to remove this one
 	.when("/findUsers",  {
 		templateUrl: "app/partials/findUsers.html",
 		controller: "findUsersCtrl"
 	})
+	// -----------------------------------------------------------------------------
 
 	//finding games
 	.when("/findGames",  {
