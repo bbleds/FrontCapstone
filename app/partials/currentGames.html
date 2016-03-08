@@ -1,21 +1,21 @@
 <div id="wrapper">
  <!-- Page Content -->
  			<!-- page-content-wrapper is main content -->
-        <div id="page-content-wrapper"> 
+        <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">					
-					
+                    <div class="col-lg-12">
+
 					<div class="gameFound" ng-repeat="game in usersGames">
 						<!-- <p ng-if="noneAvailable === true"> You have no current games right now.</p> -->
 
 						<div class="jumbotron singleGameFound">
 						<a href="#/games/{{game.$id}}">
-							<h1>{{game.sportTitle}} <span class="subGroup"> - {{game.gameGroup}}</span></h1>
+							<h1>{{game.sportTitle}} <span class="subGroup"></span></h1>
 								<p><strong>Date:</strong> {{game.date}}</p>
 								<p><strong>Time:</strong> {{game.time}}</p>
 								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
-								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>			
+								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
 								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
 								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
 						</a>
@@ -27,7 +27,7 @@
 										<p ng-repeat="user in GameUsers"><img class="picThumb" src="{{user.profilePic}}"/> {{user.username}}
 										<span ng-if="game.hostUser === hostUid && user.$id !== hostUid" class="kickUser glyphicon glyphicon-remove" data-toggle="modal" data-target="#kickUserModal" ng-click="setUserToKick(user, game)"></span>
 										</p>
-									</div>						
+									</div>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 	      </div>
 	      <div class="modal-body">
 	      	<h2>Are you sure you wish to kick {{userSelectedToKick.username}}?</h2>
-	      	
+
 	      </div>
 	      <div class="modal-footer">
 	      	<button class="btn" data-dismiss="modal" ng-click="kickSelectedUser(userSelectedToKick)">Yes</button>

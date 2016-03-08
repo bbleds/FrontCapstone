@@ -1,4 +1,4 @@
-app.controller("indivGameCtrl", 
+app.controller("indivGameCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
@@ -57,7 +57,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						//if host user of game clicked on the individual game, dont display join or leave buttons
 						if(game.hostUser === generalVariables.getUid()){
 							$scope.hostIsHere = true;
-							console.log("host is hur");
 						}
 					})
 				  	// if user user is host of game
@@ -97,12 +96,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	  //functionality for posting comments
 		console.log("username is ", generalVariables.getCurrentUserName());
-			
+
 			//holds body of comment
 			$scope.commentBody;
 
 			//function to post comment to a users firebase
-			$scope.postComment = function(){		
+			$scope.postComment = function(){
 
 				//if user has enetered a comment
 				if($scope.commentBody){
@@ -156,7 +155,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									"zLink" : "games/"+$scope.selectedGame.$id
 								})
 							}
-							
+
 						})
 
 
@@ -168,8 +167,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//funtionality for joining and leaving games
 		//Joining game
 	$scope.joinGame = function(selectedGame){
-		
-		
+
+
 			//if user is not in game
 			if($scope.userIsInGame = "not in game"){
 
@@ -223,13 +222,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"zLink" : "games/"+selectedGame.$id
 							})
 						}
-						
+
 					});
 			  } else {
 			  	console.log("you already joined it bruh");
 			  }
 		  }
-	    
+
 
 	    //leaving games
 	    $scope.leaveGame = function(game){
@@ -251,7 +250,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	          		//does a transaction on firebase game to reduce number of current players
 	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
-					   
+
 					  return currentPlayers - 1;
 					});
 
@@ -284,7 +283,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"zLink" : "games/"+game.$id
 							})
 						}
-						
+
 					})
 
 					//removes user from GameUsers object
@@ -304,13 +303,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								});
 	          	}
 	          })
-	          
-	          
+
+
 	        })
 
 
 		}
 
 
-	
+
 }]);

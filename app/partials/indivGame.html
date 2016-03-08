@@ -1,7 +1,7 @@
 <div id="wrapper">
  <!-- Page Content -->
  			<!-- page-content-wrapper is main content -->
-        <div id="page-content-wrapper"> 
+        <div id="page-content-wrapper">
             <div class="container-fluid">
             <!-- navbar -->
                 <div class="row">
@@ -11,7 +11,6 @@
 							<h3><strong>Time:</strong> {{selectedGame.time}}</h3>
 							<h3><strong>Date:</strong> {{selectedGame.date}}</h3>
 							<h3><strong>Location:</strong> {{selectedGame.address + " " + selectedGame.city + " " + selectedGame.state}}</h3>
-							<h3><strong>Group:</strong> {{selectedGame.gameGroup}}</h3>
 							<h3><strong>Current Players:</strong> {{selectedGame.currentPlayers}}</h3>
 							<h3><strong>Spots Left:</strong> {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
 
@@ -33,17 +32,16 @@
 						<hr/>
 							<div ng-repeat="comment in fireComments" class="indivComment">
 								<p><img class="picThumb" src="{{comment.commentUserPic}}"/>{{comment.userName}} :  {{comment.commentBody}}</p>
-								<hr/>								
+								<hr/>
 							</div>
 							<div class="addComment">
 									<textarea id="theCommentBody" class="form-control" ng-model="commentBody"></textarea>
 									<button ng-click="postComment()" class="btn">Comment</button>
 							</div>
-							
+
 						</div>
     	         </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
 </div><!-- end wrapper -->
-

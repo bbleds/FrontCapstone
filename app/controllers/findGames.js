@@ -176,7 +176,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 						//if only city and state are entered
 						}else if($scope.modState && $scope.modCity){
-							
+
 							if(index.state.toLowerCase() ===  $scope.modState.toLowerCase() && index.city.toLowerCase() ===  $scope.modCity.toLowerCase()){
 
 
