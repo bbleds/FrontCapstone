@@ -110,7 +110,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 								//collapse search options
 								$scope.searchOptions = true;
-								
+
 								// if all required data is filled in
 							 if( $scope.gameTitle && $scope.gameMaxPlayers && $scope.gameMinPlayers && $scope.gameTime && $scope.streetAddress && $scope.gameCity && $scope.gameState && $scope.gameDate && $scope.skillLevel){
 
@@ -149,6 +149,8 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 								}
 
+								// convert city to uppercase
+								$scope.gameCity = $scope.gameCity.toUpperCase();
 
 								// push object to firebase
 									ref.child("Games").push({

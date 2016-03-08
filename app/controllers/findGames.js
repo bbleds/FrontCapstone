@@ -70,7 +70,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 											//  search by city and state
 										}  else if(city !== "" && state !== "" && city !== undefined && state !== undefined){
 
-										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase(), "city":city});
+										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase(), "city":city.toUpperCase()});
 
 										//for each item in filter groups, push item into groupGames array
 										for(var x = 0; x < filteredGroups.length; x++){
@@ -90,7 +90,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 										}
 
 										// search by state
-										// this is not firing
 									} else if(state !== "" && state !== undefined && city === "" || city === undefined) {
 										console.log("searching by state");
 										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase()});
@@ -177,9 +176,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 						//if only city and state are entered
 						}else if($scope.modState && $scope.modCity){
-							console.log("city and state entered");
+							
 							if(index.state.toLowerCase() ===  $scope.modState.toLowerCase() && index.city.toLowerCase() ===  $scope.modCity.toLowerCase()){
-								console.log("we have a city and state match");
+
 
 								//push found games into output array
 							 	$scope.gamesFound.push(index);
