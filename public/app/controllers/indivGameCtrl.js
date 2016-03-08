@@ -2,10 +2,10 @@ app.controller("indivGameCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-	
+
 
 	var objectName = $location.$$path.split("/")[2];
-	
+
 
 	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 
@@ -21,7 +21,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.userIsInGame;
 
 	//variable set to true if user has joined the game already and false if user has not joined the game already
-		
+
 		var currentUid = generalVariables.getUid();
 
 		//get all users in the current game by looking at uids in GameUsers object in firebase
@@ -30,27 +30,27 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 		//if current user id doesnt exist in the game, then add game and update current players
 		gameUsersArrayofCurrent.$loaded()
 		.then(function(data){
-			
+
 
 			//pluck the uids stored
 			var uidArray = _.pluck(data, "$value");
-			
+
 
 			//see if current uid of user exists
 			var uidIndex = uidArray.indexOf(generalVariables.getUid());
-			
+
 
 			//if uidIndex is -1 (doesnt exist)
 			if(uidIndex === -1){
 
 				$scope.userIsInGame = "not in game";
-				
+
 
 			  } else {
 
 			  	objectFromFirebase.$loaded()
 				.then(function(data){
-					
+
 
 					_.filter(data, function(game){
 
@@ -77,14 +77,21 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//get game selected by user
 	objectFromFirebase.$loaded()
 	.then(function(data){
-		
+
 
 		_.filter(data, function(game){
 
 			//reference all data from individal game selected
 			if(game.$id === objectName){
-				
+
 				$scope.selectedGame = game;
+
+				console.log("before TRY ->>>>>>>>>>>>");
+				if($scope.selectedGame.maxPlayers - $scope.selectedGame.currentPlayers <= 0 ){
+					console.log("inside try");
+					$scope.gameFull = true;
+					console.log($scope.gameFull);
+				}
 			}
 		})
 
@@ -95,7 +102,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 	  //functionality for posting comments
-		
+
 
 			//holds body of comment
 			$scope.commentBody;
@@ -132,13 +139,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						var playersInGame = $firebaseArray(ref.child("GameUsers").child($scope.selectedGame.$id));
 
 						playersInGame.$loaded(function(data){
-							
+
 
 							var sendUidArray = []
 
 							//go into usersobject in firebase to each of other players,
 							for(var i =0; i < data.length; i++){
-								
+
 
 								//if data[i] is not equal to current user logged in
 								if(data[i].$value !== generalVariables.getUid()){
@@ -160,7 +167,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 				} else {
-					
+
 				}
 			}
 
@@ -199,13 +206,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					var playersInGame = $firebaseArray(ref.child("GameUsers").child(selectedGame.$id));
 
 					playersInGame.$loaded(function(data){
-						
+
 
 						var sendUidArray = []
 
 						//go into usersobject in firebase to each of other players,
 						for(var i =0; i < data.length; i++){
-							
+
 
 							//if data[i] is not equal to current user logged in
 							if(data[i].$value !== generalVariables.getUid()){
@@ -225,14 +232,14 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 					});
 			  } else {
-			  	
+
 			  }
 		  }
 
 
 	    //leaving games
 	    $scope.leaveGame = function(game){
-			
+
 
 
 			//remove user from gameUsers
@@ -246,7 +253,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	          //loop over users in game and find current uid
 	          _.filter(data, function(index){
 	          	if(index.$value === generalVariables.getUid()){
-	          		
+
 
 	          		//does a transaction on firebase game to reduce number of current players
 	          		ref.child("Games").child(game.$id).child("currentPlayers").transaction(function(currentPlayers) {
@@ -260,13 +267,13 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 					var playersInGame = $firebaseArray(ref.child("GameUsers").child(game.$id));
 
 					playersInGame.$loaded(function(data){
-						
+
 
 						var sendUidArray = []
 
 						//go into usersobject in firebase to each of other players,
 						for(var i =0; i < data.length; i++){
-							
+
 
 							//if data[i] is not equal to current user logged in
 							if(data[i].$value !== generalVariables.getUid()){

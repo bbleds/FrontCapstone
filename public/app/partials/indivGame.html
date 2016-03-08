@@ -20,7 +20,7 @@
 
 						<!-- join and leave functionality -->
 						<!-- display join if user is not in game -->
-						<button class="btn" ng-if="userIsInGame === 'not in game'" ng-click="joinGame(selectedGame)">Join</button>
+						<button class="btn" ng-hide="gameFull" ng-if="userIsInGame === 'not in game'" ng-click="joinGame(selectedGame)">Join</button>
 						<!-- display leave if user is not in game -->
 						<button class="btn" ng-if="userIsInGame === 'in game'" ng-click="leaveGame(selectedGame)">Leave</button>
 						<!-- display neither if it is a host user -->
