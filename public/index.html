@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Yether</title>
+	<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../styles/animate.css">
+	<link rel="stylesheet" type="text/css" href="../styles/main.css">
+</head>
+<body id="main_view" ng-app="MainApp">
+
+	<div id="navAndSidebar">
+		 <!-- navbar -->
+		  <div ng-include="'./app/partials/navBar.html'"></div>
+	    <!-- Sidebar -->
+		  <div ng-include="'./app/partials/main-sidebar.html'"></div>
+	</div>
+
+	<div id="mainContainer" ng-view></div>
+
+	<!-- game creation modal -->
+	<div ng-include="'./app/partials/gameCreationModal.html'"></div>
+
+	<!-- Js links -->
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script type="text/javascript" src="../bower_components/lodash/dist/lodash.min.js"></script>
+
+	<!-- angular links -->
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	<script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="../bower_components/firebase/firebase.js"></script>
+	<script type="text/javascript" src="../bower_components/angularfire/dist/angularfire.min.js"></script>
+	<script type="text/javascript" src="../app/app.js"></script>
+	<script type="text/javascript" src="../app/factories/generalVariables.js"></script>
+	<script type="text/javascript" src="../app/controllers/loginAndRegisterCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/mainPageCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/findGames.js"></script>
+	<script type="text/javascript" src="../app/controllers/currentGamesCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/finishedGames.js"></script>
+	<script type="text/javascript" src="../app/controllers/indivGameCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/notificationsCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/userProfileCtrl.js"></script>
+	<script type="text/javascript" src="../app/controllers/logOutCtrl.js"></script>
+
+</body>
+</html>
