@@ -208,7 +208,17 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 															// settings
 															type: 'warning'
 														});
-									} else {
+									} else if($scope.gameTime === undefined || $scope.gameTime === "") {
+										$.notify({
+															//icon and message
+															icon: 'glyphicon glyphicon-remove',
+															message: "You have not selected a game time!"
+														},{
+															// settings
+															type: 'warning'
+														});
+
+									}else {
 
 									$.notify({
 														//icon and message
