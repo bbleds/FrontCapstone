@@ -68,7 +68,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 											 });
 
 											//  search by city and state
-										 }  else if(city !== "" && state !== "" || city !== undefined && state !== undefined){
+										}  else if(city !== "" && state !== "" && city !== undefined && state !== undefined){
 
 										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase(), "city":city});
 
@@ -91,7 +91,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 										// search by state
 										// this is not firing
-									} else if(city=== "" || city === undefined && state !== "" || state !== undefined) {
+									} else if(state !== "" && state !== undefined && city === "" || city === undefined) {
 										console.log("searching by state");
 										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase()});
 
