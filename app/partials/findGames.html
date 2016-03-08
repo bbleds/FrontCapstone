@@ -1,0 +1,66 @@
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    <!-- displays Group Options -->
+                    <div id="modifyGroupSearch">
+                      <h1 style="text-align:center">Search for Games</h1>
+                      <input style="width:50%; margin-bottom:10px; margin-left:25%" placeholder="City"  ng-model="findCity" class="form-control" />
+                      <input style="width:50%; margin-bottom:10px; margin-left:25%" placeholder="State" ng-model="findState" class="form-control"  />
+                      <button  style="width:100px; position:relative; left:50%; margin-left:-50px;" class="btn btn-primary" ng-click="findGames(findCity, findState)">Search</button>
+          						<hr/>
+                    </div>
+
+                    	<div class="gameFound" ng-repeat="game in gamesFound">
+							<div class="jumbotron singleGameFound">
+							  <a href="#/games/{{game.$id}}">
+								<h1>{{game.sportTitle}} <span class="subGroup"></span></h1>
+								<p><strong>Date:</strong> {{game.date}}</p>
+								<p><strong>Time:</strong> {{game.time}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city.toLowerCase().split("")[0].toUpperCase()+game.city.toLowerCase().substring(1,game.city.length) + " " + game.state}}</p>
+								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
+								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
+								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
+							</a>
+								<!-- if game is full, output disabled full btn, if not, output join btn -->
+								<div ng-include="(game.maxPlayers - game.currentPlayers) > 0 ? './app/partials/joinGameBtn.html' : './app/partials/gameFullBtn.html'"></div>
+								<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
+								<div uib-collapse="isCollapsed">
+									<div class="well well-lg">
+										<p ng-repeat="user in GameUsers"><img class="picThumb" src="{{user.profilePic}}"/> {{user.username}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+</div><!-- end wrapper -->
+
+<!-- Find Games Modal -->
+<!-- 	<div id="findGameModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Find Games</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<input class="form-control" placeholder="City" ng-model="findCity" type="text" />
+	      	<input class="form-control" placeholder="State" ng-model="findState" type="text" />
+	      </div>
+	      <div class="modal-footer">
+	        <button id="findGamesButton" type="button" ng-click="findGames()" class="btn btn-default" data-dismiss="modal">Find</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div> -->

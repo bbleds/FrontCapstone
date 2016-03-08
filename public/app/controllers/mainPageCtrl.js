@@ -78,7 +78,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 											for(var i = 0; i < groups.length; i++){
 
 												//see if user uid exists in object
-													
+
 												//if user uid is in group
 												if(groups[i].users[generalVariables.getUid()] !== undefined){
 													//push group object into usersGroups
@@ -147,12 +147,12 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 														type: 'warning'
 													});
 
-								}
+								}  else {
 
-								// convert city to uppercase
-								$scope.gameCity = $scope.gameCity.toUpperCase();
+									// convert city to uppercase
+									$scope.gameCity = $scope.gameCity.toUpperCase();
 
-								// push object to firebase
+									// push object to firebase
 									ref.child("Games").push({
 										"sportTitle": $scope.gameTitle,
 										"maxPlayers": $scope.gameMaxPlayers,
@@ -176,26 +176,40 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 										.then(function(response){
 
 											var theOne = _.filter(response, {"hostUser": generalVariables.getUid(), "sportTitle": $scope.gameTitle, "city": $scope.gameCity, "address": $scope.streetAddress, "maxPlayers": $scope.gameMaxPlayers,
-										"minPlayers": $scope.gameMinPlayers, "time" : timeToPass, "date": dateToPass, "state": $scope.gameState});
+											"minPlayers": $scope.gameMinPlayers, "time" : timeToPass, "date": dateToPass, "state": $scope.gameState});
 											var objectToAdd = theOne[0];
 
 											//add host user to game created
 											ref.child("GameUsers").child(objectToAdd.$id).push(generalVariables.getUid());
 
 											//display success message through notification
-													$.notify({
-														//icon and message
-														icon: 'glyphicon glyphicon-ok',
-														message: "Game created successfully!"
-													},{
-														// settings
-														type: 'success'
-													});
+											$.notify({
+												//icon and message
+												icon: 'glyphicon glyphicon-ok',
+												message: "Game created successfully!"
+											},{
+												// settings
+												type: 'success'
+											});
 										});
 									});
 
+								}
+
+
 
 								} else {
+									if($scope.gameMaxPlayers > 25 || $scope.gameMinPlayers > 25 ||$scope.gameMaxPlayers === undefined||$scope.gameMinPlayers === undefined){
+										$.notify({
+															//icon and message
+															icon: 'glyphicon glyphicon-remove',
+															message: "You may only have up to 25 players in a game."
+														},{
+															// settings
+															type: 'warning'
+														});
+									} else {
+
 									$.notify({
 														//icon and message
 														icon: 'glyphicon glyphicon-remove',
@@ -205,6 +219,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 														type: 'warning'
 													});
 								}
+							}
 
 							}
 
@@ -239,7 +254,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									  };
 
 									  $scope.changed = function () {
-									    
+
 									  };
 
 									  $scope.clear = function() {

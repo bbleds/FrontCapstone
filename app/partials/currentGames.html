@@ -1,0 +1,83 @@
+<div id="wrapper">
+ <!-- Page Content -->
+ 			<!-- page-content-wrapper is main content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+					<div class="gameFound" ng-repeat="game in usersGames">
+						<!-- <p ng-if="noneAvailable === true"> You have no current games right now.</p> -->
+
+						<div class="jumbotron singleGameFound">
+						<a href="#/games/{{game.$id}}">
+							<h1>{{game.sportTitle}} <span class="subGroup"></span></h1>
+								<p><strong>Date:</strong> {{game.date}}</p>
+								<p><strong>Time:</strong> {{game.time}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city.toLowerCase().split("")[0].toUpperCase()+game.city.toLowerCase().substring(1,game.city.length) + " " + game.state}}</p>
+								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
+								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
+								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
+						</a>
+							<!-- if user is host of game, load hostUser Settings -->
+							<div id="leaveOrCancel" ng-include="hostedGames[game.$id] ? './app/partials/hostUserOptions.html' : './app/partials/leaveGame.html'"></div>
+							<button class="btn userDisplay" ng-click="isCollapsed = !isCollapsed; getGameUsers(game.$id)"><span class="glyphicon glyphicon-user"></span></button>
+								<div uib-collapse="isCollapsed">
+									<div class="well well-lg">
+										<p ng-repeat="user in GameUsers"><img class="picThumb" src="{{user.profilePic}}"/> {{user.username}}
+										<span ng-if="game.hostUser === hostUid && user.$id !== hostUid" class="kickUser glyphicon glyphicon-remove" data-toggle="modal" data-target="#kickUserModal" ng-click="setUserToKick(user, game)"></span>
+										</p>
+									</div>
+							</div>
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+</div><!-- end wrapper -->
+
+<!--  confirm cancel Modal -->
+	<div id="confirmCancelModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Cancel Game</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<h2>Are you sure you wish to cancel this game?</h2>
+	      </div>
+	      <div class="modal-footer">
+	        <button ng-click="cancelGame()" data-dismiss="modal" class="btn">Yes</button>
+	      	<button class="btn" data-dismiss="modal">No</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+<!--  kick user Modal -->
+	<div id="kickUserModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Game Management</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<h2>Are you sure you wish to kick {{userSelectedToKick.username}}?</h2>
+
+	      </div>
+	      <div class="modal-footer">
+	      	<button class="btn" data-dismiss="modal" ng-click="kickSelectedUser(userSelectedToKick)">Yes</button>
+	      	<button class="btn" data-dismiss="modal">No</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
