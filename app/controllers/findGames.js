@@ -228,26 +228,24 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	$scope.joinGame = function(selectedGame){
 
 		var userIsInGame = false;
-		console.log("selectedGame ", selectedGame.$id);
 		var currentUid = generalVariables.getUid();
 
 
 		var gameUsersArrayofCurrent = $firebaseArray(ref.child("GameUsers").child(selectedGame.$id));
+		console.log("selected game");
+		console.log(selectedGame.$id);
 
 	//SHOW THIS TO RED
 
 		//if current user id doesnt exist in the game, then add game and update current players
 		gameUsersArrayofCurrent.$loaded()
 		.then(function(data){
-			console.log("data ", data);
 
 			//pluck the uids stored
 			var uidArray = _.pluck(data, "$value");
-			console.log("uidArray ", uidArray);
 
 			//see if current uid of user exists
 			var uidIndex = uidArray.indexOf(generalVariables.getUid());
-			console.log("uid index is ", uidIndex);
 
 			//if uidIndex is -1 (doesnt exist)
 			if(uidIndex === -1){
@@ -282,7 +280,6 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 						//go into usersobject in firebase to each of other players,
 						for(var i =0; i < data.length; i++){
-							console.log("data[i] ", data[i]);
 
 							//if data[i] is not equal to current user logged in
 							if(data[i].$value !== generalVariables.getUid()){
@@ -322,13 +319,11 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 
 		$scope.getGameUsers = function(gameId){
-			console.log("game searched for is ", gameId);
         var gameUsersArray = $firebaseArray(ref.child("GameUsers").child(gameId));
 
         gameUsersArray.$loaded()
         .then(function(data){
           //need to set a variable to data and return a promise or something  to give to other module
-          console.log("data ", data);
 
           	//array to hold filtered user objects
           	var matchedUsersInGame = []
@@ -339,11 +334,9 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
           		//when all users in firebase are loaded
           		.then(function(usersInFirebase){
-          			console.log("users in firebase ", usersInFirebase);
 
           			//for each user in data
           			for (var i = 0; i < data.length; i++){
-          				console.log("data[i] ", data[i]);
 
 	          			//filter users in firebase users object by 'id's and match to ids of users in current game (data[i])
 	          			_.filter(usersInFirebase, function(userIndex){
