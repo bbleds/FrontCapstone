@@ -10,7 +10,7 @@
 							<h1>{{selectedGame.sportTitle}}</h1>
 							<h3><strong>Time:</strong> {{selectedGame.time}}</h3>
 							<h3><strong>Date:</strong> {{selectedGame.date}}</h3>
-							<h3><strong>Location:</strong> {{selectedGame.address + " " + selectedGame.city + " " + selectedGame.state}}</h3>
+							<h3><strong>Location:</strong> {{selectedGame.address + " " + selectedGame.city.toLowerCase().split("")[0].toUpperCase()+selectedGame.city.toLowerCase().substring(1,game.city.length) + " " + selectedGame.state}}</h3>
 							<h3><strong>Current Players:</strong> {{selectedGame.currentPlayers}}</h3>
 							<h3><strong>Spots Left:</strong> {{selectedGame.maxPlayers - selectedGame.currentPlayers }}</h3>
 

@@ -14,7 +14,7 @@
 							<h1>{{game.sportTitle}} <span class="subGroup"></span></h1>
 								<p><strong>Date:</strong> {{game.date}}</p>
 								<p><strong>Time:</strong> {{game.time}}</p>
-								<p><strong>Location:</strong> {{game.address + " " + game.city + " " + game.state}}</p>
+								<p><strong>Location:</strong> {{game.address + " " + game.city.toLowerCase().split("")[0].toUpperCase()+game.city.toLowerCase().substring(1,game.city.length) + " " + game.state}}</p>
 								<p><strong>Skill Level:</strong> {{game.skillLevel}}</p>
 								<p><strong>Current Players:</strong> {{game.currentPlayers}}</p>
 								<p class="indivImgP"><img class="picThumb" src="{{game.hostUserPic}}"/>@{{game.hostUserName}} has <strong>{{game.maxPlayers - game.currentPlayers }}</strong> Spots left </p>
