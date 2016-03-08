@@ -78,7 +78,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 											for(var i = 0; i < groups.length; i++){
 
 												//see if user uid exists in object
-													// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);
+													
 												//if user uid is in group
 												if(groups[i].users[generalVariables.getUid()] !== undefined){
 													//push group object into usersGroups
@@ -239,7 +239,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 									  };
 
 									  $scope.changed = function () {
-									    // console.log('Time changed to: ' + $scope.gameTime);
+									    
 									  };
 
 									  $scope.clear = function() {

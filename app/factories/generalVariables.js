@@ -50,7 +50,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
       checkUserLogin : function(pathName){
           ref.onAuth(function(authData) {
         	  if (authData) {
-        	    console.log("Authenticated with uid:", authData.uid);
+        	    
               userUid = authData.uid;
         	    $location.path("/"+pathName);
 
@@ -63,10 +63,10 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
               arrayOfName.$loaded()
               .then(function(data){
-                console.log("data ", data);
+                
 
                 //data[index] will change if notifcations key is deleted on a user
-                console.log("user ", data[3].$value);
+                
 
                 //set current username
                 currentUserName = data[3].$value;
@@ -77,7 +77,7 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
         	   //if user is not logged in, redirect to login page
         	  } else {
-        	    console.log("Client unauthenticated.");
+        	    
         	    $location.path("/login");
 
         	  }
@@ -105,22 +105,22 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
             var monthAbrev = splitDate[1].split(" ")[0];
             var dayAbrev = parseInt(splitDate[1].split(" ")[1]);
             var yearToCompare = splitDate[2];
-            // console.log("yearToCompare ", parseInt(yearToCompare));
+            // 
 
             //start with year
             //if year of game is less than current year
             if(yearToCompare < today.getFullYear()){
-              // console.log("this game was in a past year");
+              // 
               ref.child("Games").child(data[i].$id).child("finished").set(true);
 
               //check month
             } else if(monthArray.indexOf(monthAbrev) < monthArray.indexOf(month)){
-              // console.log("this game was in a past month");
+              // 
               ref.child("Games").child(data[i].$id).child("finished").set(true);
 
               //check day
             } else if(dayAbrev < today.getDate()){
-              // console.log("this game was at a past day bruh bruh");
+              // 
               ref.child("Games").child(data[i].$id).child("finished").set(true);
             }
             //after finished app, set it by time by hour
@@ -148,18 +148,18 @@ app.factory("generalVariables", ["$q", "$http", "$location", "$firebaseArray",
 
 
           _.filter(noteResponse, function(note){
-            console.log("note ", note);
+            
 
             if(note.read === "false"){
               //push all notifications where read = false into array
-              console.log("this hasnt been read yet");
+              
               unreadArray.push(note);
             }
           });
 
           //set length of that array to noteNumber
           noteNumber = unreadArray.length;
-          console.log("noteNumber ", noteNumber);
+          
 
           deffered.resolve(noteNumber);
 

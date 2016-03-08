@@ -87,14 +87,14 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 								$scope.registerSuccess="Error creating user: "+ error;
 								$scope.showRegisterMessage = true;
 						  } else {
-						    // console.log("Successfully created user account with uid:", userData.uid);
+
 
 						    //array that holds references to the three default profile pictures
 						    var picArray = ["http://bledsoedesigns.com/crown.jpg", "http://bledsoedesigns.com/light.jpg", "http://bledsoedesigns.com/shield.jpg"]
 
 						    //generate random number between 0 and 2
 						    var randIndex = Math.floor(Math.random() * 3);
-						    // console.log("randIndex ", randIndex);
+
 
 						    //set default profile picture to array[randomNumber]
 						    var defaultPic = picArray[randIndex];
@@ -146,11 +146,11 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		  password : password
 		}, function(error, authData) {
 		  if (error) {
-		    // console.log("Login Failed!", error);
+
 				$scope.registerSuccess = "Login Failed: "+error;
 				$scope.showRegisterMessage = true;
 		  } else {
-		    // console.log("Authenticated successfully with payload:", authData);
+
 				$scope.registerSuccess = "";
 				$scope.showRegisterMessage = false;
 
@@ -161,7 +161,7 @@ function($firebaseArray, $scope, $location, $rootScope, generalVariables){
 		     $rootScope.$apply(function() {
 
 		       $location.path("/main");
-		        // console.log($location.path());
+
 		      });
 		  }
 		});
