@@ -1,9 +1,9 @@
-app.controller("findGamesCtrl", 
+app.controller("findGamesCtrl",
 ["$firebaseArray", "$scope", "$location", "$rootScope", "$http", "generalVariables",
 function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables){
 
-	//see if user is logged in 
-	var ref = new Firebase("https://frontcapstone.firebaseio.com"); 
+	//see if user is logged in
+	var ref = new Firebase("https://frontcapstone.firebaseio.com");
 	generalVariables.checkUserLogin("findGames");
 
 	//be sure to clear out all games that are finished
@@ -45,87 +45,89 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 	//Find Game  REFACTORED, now runs immediately
 		$scope.gamesFound=[];
 
-		//store user groups in $scope.userGroups variable
-			$scope.userGroups = [];
 
-		//store a groups games
-			$scope.groupGames;
-
-			//List groups in firebase
-			$firebaseArray(ref.child("Groups")).$loaded()
-			.then(function(groups){
-				console.log("groups ", groups);
-
-				//loop through groups in firebase
-				for(var i = 0; i < groups.length; i++){
-					console.log("groups[i]", groups[i]);
-					
-					//see if user uid exists in object
-					// console.log("groups[i].users.uid ", groups[i].users[generalVariables.getUid()]);					
-					//if user uid is in group
-					if(groups[i].users[generalVariables.getUid()] !== undefined){							
-						//push group object into usersGroups
-						$scope.userGroups.push(groups[i]);
-
-					} else {
-						console.log("user isnt there");
-					}						
-				}
-
-				console.log("$scope.userGroups ", $scope.userGroups);
-					
-
-			});
-
-		//get games that match users selected group search
-		$scope.findGames = function(groupName){
-			console.log("groupName ", groupName);
+		//get games that match users selected search
+		$scope.findGames = function(city, state){
 
 			//clear group array
-			$scope.groupGames = [];
+			$scope.gamesFound = [];
 
-			//if all groups is selected, display all groups
-			if(groupName === "All My Groups"){
-				console.log("ALL GROUPS SELECTED");
-
-				//get games
-				 $firebaseArray(ref.child("Games")).$loaded()
-               .then(function(games){
-                    console.log("games ", games);
-                    console.log("user groups ", $scope.userGroups);
-	                   //loop through games
-	                   	for(var i = 0; i < games.length; i++){
-	                   		//loop through userGroups
-	                   		for(var x = 0; x < $scope.userGroups.length; x++){
-	                   			//if the current game looped over is part of the current group loop over, push the game into the output array($scope.groupGames)
-	                   			if(games[i].gameGroup === $scope.userGroups[x].groupName && games[i].finished === false){
-	                   				$scope.groupGames.push(games[i]);
-	                   			}
-	                   		}
-	                   	}
-                   	});
-
-
-               } else if(groupName !== "All My Groups"){
-
-				//if only one group is selected, display activities from that group
+			// load all games from firebase that match the criteria and are in the future
 			 $firebaseArray(ref.child("Games")).$loaded()
                    .then(function(games){
-                        console.log("games ", games);
-                       var filteredGroups =  _.filter(games, {"finished": false, "gameGroup": groupName});                
+										//  if city was only thing user input
+										 if(city !== "" && state === undefined){
+											//  notify that a state must be included
+											 $.notify({
+												 //icon and message
+												 icon: 'glyphicon glyphicon-remove',
+												 message: "You must input a state, please try again!"
+											 },{
+												 // settings
+												 type: 'warning'
+											 });
 
-                       //for each item in filter groups, push item into groupGames array
-                       for(var x = 0; x < filteredGroups.length; x++){
-                            //push into groupGames Array
-                            $scope.groupGames.push(filteredGroups[x]);
-                       }
+											//  search by city and state
+										 }  else if(city !== "" && state !== "" || city !== undefined && state !== undefined){
+
+										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase(), "city":city});
+
+										//for each item in filter groups, push item into groupGames array
+										for(var x = 0; x < filteredGroups.length; x++){
+											//push into groupGames Array
+											$scope.gamesFound.push(filteredGroups[x]);
+										}
+
+										if($scope.gamesFound.length === 0){
+											$.notify({
+											//icon and message
+											icon: 'glyphicon glyphicon-remove',
+											message: "No results found for that request, please try again!"
+										},{
+											// settings
+											type: 'warning'
+										});
+										}
+
+										// search by state
+										// this is not firing
+									} else if(city=== "" || city === undefined && state !== "" || state !== undefined) {
+										console.log("searching by state");
+										var filteredGroups =  _.filter(games, {"finished": false, "state": state.toUpperCase()});
+
+										//for each item in filter groups, push item into groupGames array
+										for(var x = 0; x < filteredGroups.length; x++){
+											//push into groupGames Array
+											$scope.gamesFound.push(filteredGroups[x]);
+										}
+
+										if($scope.gamesFound.length === 0){
+											$.notify({
+											//icon and message
+											icon: 'glyphicon glyphicon-remove',
+											message: "No results found for that request, please try again!"
+										},{
+											// settings
+											type: 'warning'
+										});
+										}
+							 //  search by city and state
+							 } else {
+											 $.notify({
+												//icon and message
+												icon: 'glyphicon glyphicon-remove',
+												message: "Sorry, there was an error, please try again!"
+											},{
+												// settings
+												type: 'warning'
+											});
+										 }
+
 
                    });
 			}
 
-		}
 
-	
 
 
 	//modify search
@@ -157,7 +159,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 						console.log("all fields entahed");
 						if(index.state.toLowerCase() ===  $scope.modState.toLowerCase() && index.city.toLowerCase() ===  $scope.modCity.toLowerCase() && index.sportTitle.toLowerCase() ===  $scope.modSport.toLowerCase()){
 							console.log("found some matches for all");
-							
+
 							//push found games into output array
 						 	$scope.gamesFound.push(index);
 
@@ -298,7 +300,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 								"zLink" : "games/"+selectedGame.$id
 							})
 						}
-						
+
 					})
 
 
@@ -316,7 +318,7 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 		});
 
-			
+
 		}
 
 
@@ -346,16 +348,16 @@ function($firebaseArray, $scope, $location, $rootScope, $http, generalVariables)
 
 	          			//filter users in firebase users object by 'id's and match to ids of users in current game (data[i])
 	          			_.filter(usersInFirebase, function(userIndex){
-	          				
+
 	          				if(data[i].$value === userIndex.$id){
 	          					matchedUsersInGame.push(userIndex);
 	          				}
 	          			})
-	          		}	          		
-	          		
+	          		}
+
 		          $scope.GameUsers = matchedUsersInGame;
           		})
-          
+
         })
 
 

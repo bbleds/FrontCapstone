@@ -32,7 +32,7 @@ app.config(["$routeProvider", function($routeProvider){
 		templateUrl: "app/partials/currentGames.html",
 		controller: "currentGamesCtrl"
 	})
-	
+
 	// individual profile page
 	.when("/profile",  {
 		templateUrl: "app/partials/userProfile.html",

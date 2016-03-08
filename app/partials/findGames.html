@@ -1,22 +1,26 @@
 <div id="wrapper">
  <!-- Page Content -->
  			<!-- page-content-wrapper is main content -->
-        <div id="page-content-wrapper"> 
-            <div class="container-fluid">		            
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12"> 
+                    <div class="col-lg-12">
 
                     <!-- displays Group Options -->
-                    <div id="modifyGroupSearch">  
-                    	<h1>Select Group</h1>
-						<select id="selectedGroup" class="form-control" ng-model="groupSelected" ng-change="findGames(groupSelected)">
-							<option>All My Groups</option>
-							<option ng-repeat="group in userGroups">{{group.groupName}}</option>
-						</select>
-						<hr/>
-                    </div>                       
+                    <div id="modifyGroupSearch">
+                    	<!-- <h1>Select Group</h1>
+          						<select id="selectedGroup" class="form-control" ng-model="groupSelected" ng-change="findGames(groupSelected)">
+          							<option>All My Groups</option>
+          							<option ng-repeat="group in userGroups">{{group.groupName}}</option>
+          						</select> -->
+                      <h1>Search for Games</h1>
+                      <input placeholder="City"  ng-model="findCity" class="form-control" />
+                      <input placeholder="State" ng-model="findState" class="form-control"  />
+                      <button class="btn btn-primary" ng-click="findGames(findCity, findState)">Search</button>
+          						<hr/>
+                    </div>
 
-                    	<div class="gameFound" ng-repeat="game in groupGames">
+                    	<div class="gameFound" ng-repeat="game in gamesFound">
 							<div class="jumbotron singleGameFound">
 							  <a href="#/games/{{game.$id}}">
 								<h1>{{game.sportTitle}} <span class="subGroup"> - {{game.gameGroup}}</span></h1>
@@ -37,7 +41,7 @@
 								</div>
 							</div>
 						</div>
-                      
+
                 </div>
             </div>
         </div>
