@@ -222,7 +222,7 @@ a {
 /* ========= LOGIN STYLES ========== */
 #main_view {
   height: 100vh;
-  background-image: url("../imgs/compressed_bike.jpg");
+  background-image: url("../imgs/bike.jpg");
   background-position: center;
   background-size: cover; }
 
