@@ -1,5 +1,5 @@
 # Yether (front-end capstone)
-A social application for creating, viewing, and/or joining recreational activities in any U.S. city, driven by user input. Try it out at [farmers-market-ionic.herokuapp.com](https://frontcapstone.firebaseapp.com/#/login).
+A social application for creating, viewing, and/or joining recreational activities in any U.S. city, driven by user input. Try it out at [frontcapstone.firebaseapp.com](https://frontcapstone.firebaseapp.com/#/login).
 
 #Purpose & Goal
 
