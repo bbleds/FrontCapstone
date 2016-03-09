@@ -9,6 +9,6 @@ This app was my front-end capstone project during my time at Nashville Software 
  3. Integrate/develop real-time user notifications and comments for user interactivity
 
 #Features
-Yether includes the following features: real-time notifications for users, real-time comment/discussion functionality, user profiles, and authentication
+Yether includes the following features: real-time notifications for users, real-time comment/discussion functionality, user profiles, and authentication.
 
 
